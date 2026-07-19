@@ -1,0 +1,12 @@
+# GitHub Actions(리눅스)는 LF로, 윈도우 체크아웃은 CRLF로 저장하려 해서
+# data.js 처럼 매일 자동 갱신되는 파일에서 줄바꿈만 바뀐 가짜 변경이 생긴다.
+# 아래처럼 고정해 두면 양쪽이 항상 같은 줄바꿈을 쓴다.
+* text eol=lf
+
+# 배치 파일은 윈도우에서만 쓰이고 CRLF 여야 안전하다.
+*.bat text eol=crlf
+
+# 바이너리 취급
+*.png binary
+*.jpg binary
+*.ico binary
