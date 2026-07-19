@@ -42,8 +42,9 @@ FRESH_DAYS = 4         # 며칠 이내 기사만 채택
 UA = {"User-Agent": "Mozilla/5.0 (compatible; HDEC-NewsBoard/1.0)"}
 CTX = ssl.create_default_context()
 
-# 카테고리별 검색어와 채택 건수
-CATEGORIES = {
+# 카테고리별 검색어와 채택 건수.
+# config.json 의 searchKeywords 가 있으면 그쪽이 우선하고, 없으면 아래 값을 쓴다.
+DEFAULT_CATEGORIES = {
     "order": {
         "max": 3,
         "queries": ["현대건설 수주", "건설사 수주", "해외건설 수주", "플랜트 수주"],
@@ -220,9 +221,11 @@ def search_news(query):
 
 
 def build_category(key, spec, used_keys):
-    log(f"[{key}] 검색 {len(spec['queries'])}건")
+    queries = spec.get("queries") or []
+    limit = int(spec.get("max") or 3)
+    log(f"[{key}] 검색 {len(queries)}건")
     pool = []
-    for q in spec["queries"]:
+    for q in queries:
         got = search_news(q)
         log(f"  - {q}: {len(got)}건")
         pool.extend(got)
@@ -235,7 +238,7 @@ def build_category(key, spec, used_keys):
         if is_similar(art["title"], used_keys) or is_similar(art["title"], [p["title"] for p in picked]):
             continue
         picked.append(art)
-        if len(picked) >= spec["max"]:
+        if len(picked) >= limit:
             break
     used_keys.extend(p["title"] for p in picked)
 
@@ -320,35 +323,78 @@ def indicators_manual(cfg):
 
 # ---------------------------------------------------------------- data.js
 
+def extract_array(src, varname):
+    """window.<varname> = [ ... ] 의 배열 부분만 잘라낸다.
+
+    data.js 에는 NEWS_DATA 말고 NEWS_CONFIG 도 들어가므로 정규식으로
+    끝까지 훑으면 안 된다. 대괄호 짝을 세되 문자열 안의 괄호는 무시한다.
+    """
+    i = src.find("window." + varname)
+    if i < 0:
+        return None
+    j = src.find("[", i)
+    if j < 0:
+        return None
+    depth, in_str, esc = 0, False, False
+    for k in range(j, len(src)):
+        c = src[k]
+        if in_str:
+            if esc:
+                esc = False
+            elif c == "\\":
+                esc = True
+            elif c == '"':
+                in_str = False
+        elif c == '"':
+            in_str = True
+        elif c == "[":
+            depth += 1
+        elif c == "]":
+            depth -= 1
+            if depth == 0:
+                return src[j:k + 1]
+    return None
+
+
 def load_archive():
-    """기존 data.js 에서 배열만 떼어내 파싱."""
+    """기존 data.js 에서 뉴스 배열만 떼어내 파싱."""
     if not os.path.exists(DATA_JS):
         return []
     try:
         with open(DATA_JS, encoding="utf-8") as f:
             src = f.read()
-        m = re.search(r"window\.NEWS_DATA\s*=\s*(\[.*?\])\s*;\s*$", src, re.S)
-        if not m:
-            log("  ! 기존 data.js 형식을 못 읽음 — 새로 시작")
+        raw = extract_array(src, "NEWS_DATA")
+        if not raw:
+            log("  ! 기존 data.js 형식을 못 읽음 - 새로 시작")
             return []
-        return json.loads(m.group(1))
+        return json.loads(raw)
     except Exception as e:
-        log(f"  ! 기존 data.js 파싱 실패({type(e).__name__}) — 새로 시작")
+        log(f"  ! 기존 data.js 파싱 실패({type(e).__name__}) - 새로 시작")
         return []
 
 
-HEADER = """/* 건설 뉴스 브리핑 보드 — 데이터 파일
+HEADER = """/* 건설 뉴스 브리핑 보드 - 데이터 파일
  * !! 자동 생성 파일입니다. 직접 고쳐도 다음 실행 때 덮어써집니다.
  * 생성: scripts/build_news.py  (GitHub Actions, 매일 오전)
- * 지표 중 기준금리·공사비지수는 config.json 에서 수동 관리합니다.
+ * 설정 변경은 config.json 또는 보드판 관리자 화면에서 하세요.
  */
 """
 
 
-def write_data_js(archive):
+def write_data_js(archive, cfg):
+    """data.js 에 뉴스와 함께 현재 설정도 싣는다.
+
+    관리자 화면이 현재 키워드·언론사를 보여주려면 config.json 을 읽어야 하는데,
+    file:// 로 열면 fetch 가 CORS 로 막힌다. data.js 에 같이 실어 보내면
+    로컬에서도 GitHub Pages 에서도 문제없이 읽힌다.
+    """
+    shown = {k: v for k, v in cfg.items() if not k.startswith("_")}
     body = json.dumps(archive, ensure_ascii=False, indent=2)
+    conf = json.dumps(shown, ensure_ascii=False, indent=2)
     with open(DATA_JS, "w", encoding="utf-8", newline="\n") as f:
-        f.write(HEADER + "window.NEWS_DATA = " + body + ";\n")
+        f.write(HEADER
+                + "window.NEWS_DATA = " + body + ";\n\n"
+                + "window.NEWS_CONFIG = " + conf + ";\n")
     log(f"data.js 작성 완료 - {len(archive)}일치, {os.path.getsize(DATA_JS):,} bytes")
 
 
@@ -435,8 +481,17 @@ def main():
     ALLOWED_PRESS = cfg.get("allowedPress", [])
     log(f"주요 신문사 필터: {'ON - ' + str(len(ALLOWED_PRESS)) + '개 허용' if ALLOWED_PRESS else 'OFF'}")
 
-    used = []  # 이미 채택한 제목들 — 카테고리 간 중복 방지
-    categories = {k: build_category(k, spec, used) for k, spec in CATEGORIES.items()}
+    # 관리자 화면에서 저장한 키워드가 있으면 그것을 쓴다
+    cats_cfg = cfg.get("searchKeywords") or DEFAULT_CATEGORIES
+    cats_cfg = {k: v for k, v in cats_cfg.items() if v.get("queries")}
+    if not cats_cfg:
+        log("!! searchKeywords 가 비어 있음 - 기본 키워드로 대체")
+        cats_cfg = DEFAULT_CATEGORIES
+    log("검색 카테고리: " + ", ".join(
+        f"{v.get('label', k)}({len(v.get('queries', []))}개 키워드)" for k, v in cats_cfg.items()))
+
+    used = []  # 이미 채택한 제목들 - 카테고리 간 중복 방지
+    categories = {k: build_category(k, spec, used) for k, spec in cats_cfg.items()}
 
     if _press_dropped:
         top = sorted(_press_dropped.items(), key=lambda x: -x[1])[:8]
@@ -487,7 +542,7 @@ def main():
     archive.insert(0, entry)
     archive = archive[:MAX_ARCHIVE]
 
-    write_data_js(archive)
+    write_data_js(archive, cfg)
     board_url = os.environ.get("BOARD_URL", "")
     write_email(entry, board_url)
     log(f"완료 - 기사 {total}건, 헤드라인: {headline[:40]}")

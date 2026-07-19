@@ -435,6 +435,76 @@
 
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+        /* ============ 관리자 ============ */
+        .mask {
+            position: fixed; inset: 0; z-index: 300;
+            background: rgba(15, 18, 26, .55);
+            backdrop-filter: blur(3px);
+            display: grid; place-items: center;
+            padding: 20px;
+        }
+
+        .mask.hide { display: none; }
+
+        .dlg {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, .3);
+            width: min(760px, 100%);
+            max-height: 88vh;
+            overflow: auto;
+            padding: 28px 30px;
+        }
+
+        .dlg h2 {
+            margin: 0 0 6px;
+            font-size: 18px; font-weight: 900; letter-spacing: -.03em;
+        }
+
+        .dlg .lead { margin: 0 0 20px; font-size: 12.5px; color: var(--muted); font-weight: 500; line-height: 1.6; }
+
+        .dlg label { display: block; font-size: 12px; font-weight: 800; margin: 0 0 6px; }
+
+        .dlg input[type=password], .dlg input[type=text], .dlg textarea {
+            width: 100%; padding: 11px 13px;
+            border: 1px solid var(--line); border-radius: 10px;
+            font-family: inherit; font-size: 13px; color: var(--text);
+            background: #FAFBFC;
+        }
+
+        .dlg textarea { min-height: 84px; resize: vertical; line-height: 1.6; }
+
+        .dlg input:focus, .dlg textarea:focus { outline: 2px solid var(--brand); outline-offset: -1px; background: #fff; }
+
+        .kw { border: 1px solid var(--line); border-radius: 12px; padding: 15px 16px; margin-bottom: 10px; }
+
+        .kw .kwtop { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+
+        .kw .kwtop .nm { font-size: 13px; font-weight: 900; }
+
+        .kw .kwtop .mx { margin-left: auto; font-size: 11.5px; color: var(--muted); font-weight: 700; }
+
+        .kw .kwtop input { width: 58px; padding: 5px 8px; font-size: 12px; text-align: center; }
+
+        .dlgfoot { display: flex; gap: 8px; margin-top: 22px; flex-wrap: wrap; align-items: center; }
+
+        .btn {
+            border: none; border-radius: 10px; padding: 11px 18px;
+            font-family: inherit; font-size: 13px; font-weight: 800; cursor: pointer;
+        }
+
+        .btn.primary { background: var(--brand); color: #fff; }
+        .btn.ghost { background: #fff; border: 1px solid var(--line); color: var(--text); }
+        .btn:hover { filter: brightness(.96); }
+
+        .note {
+            background: #FFF8E6; border: 1px solid #F5E3B0; color: #6B5314;
+            border-radius: 10px; padding: 13px 15px; font-size: 12px;
+            line-height: 1.7; font-weight: 500; margin-top: 16px;
+        }
+
+        .note code { background: rgba(0, 0, 0, .06); padding: 1px 5px; border-radius: 4px; }
+
         @media (max-width: 900px) {
             .stats { grid-template-columns: repeat(2, 1fr); }
             .grid { grid-template-columns: 1fr; }
@@ -462,6 +532,56 @@
             <select class="tool" id="dsel" title="지난 브리핑"></select>
             <button class="tool" id="bcopy">요약 복사</button>
             <button class="tool" id="bprint">인쇄 / PDF</button>
+            <button class="tool" id="badmin">관리자</button>
+        </div>
+    </div>
+
+    <!-- 관리자: 비밀번호 -->
+    <div class="mask hide" id="m-login">
+        <div class="dlg" style="max-width:400px">
+            <h2>관리자 로그인</h2>
+            <p class="lead">검색 키워드와 언론사 목록을 편집합니다.</p>
+            <label for="pw">비밀번호</label>
+            <input type="password" id="pw" autocomplete="off">
+            <div class="dlgfoot">
+                <button class="btn primary" id="pw-ok">확인</button>
+                <button class="btn ghost" id="pw-no">닫기</button>
+                <span id="pw-err" style="color:var(--up);font-size:12px;font-weight:800"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 관리자: 설정 편집 -->
+    <div class="mask hide" id="m-admin">
+        <div class="dlg">
+            <h2>수집 설정</h2>
+            <p class="lead">
+                고친 뒤 <b>[config.json 내보내기]</b>로 파일을 받아 GitHub 저장소에 덮어쓰면
+                다음 실행부터 반영됩니다. 이 화면에서 고친 것만으로는 서버에 저장되지 않습니다.
+            </p>
+
+            <label style="margin-bottom:10px">카테고리별 검색 키워드 <span style="font-weight:500;color:var(--muted)">(쉼표 또는 줄바꿈으로 구분)</span></label>
+            <div id="kw-list"></div>
+
+            <label style="margin-top:20px">허용 언론사 <span style="font-weight:500;color:var(--muted)">(여기 있는 곳의 기사만 실립니다. 부분일치 — '연합뉴스'만 적어도 '연합뉴스TV' 포함)</span></label>
+            <textarea id="press" style="min-height:120px"></textarea>
+
+            <label style="margin-top:20px">다음주 전망 <span style="font-weight:500;color:var(--muted)">(사람이 직접 씁니다)</span></label>
+            <textarea id="outlook-in" style="min-height:60px"></textarea>
+
+            <div class="note">
+                <b>반영 방법</b><br>
+                ① 아래 [config.json 내보내기] 클릭 → 파일 다운로드<br>
+                ② GitHub 저장소 → <code>config.json</code> → 연필 아이콘 → 내용 붙여넣기 → Commit<br>
+                ③ Actions 탭 → Run workflow (기다리면 다음날 아침 자동 반영)
+            </div>
+
+            <div class="dlgfoot">
+                <button class="btn primary" id="ad-export">config.json 내보내기</button>
+                <button class="btn ghost" id="ad-copy">클립보드로 복사</button>
+                <button class="btn ghost" id="ad-reset">되돌리기</button>
+                <button class="btn ghost" id="ad-close" style="margin-left:auto">닫기</button>
+            </div>
         </div>
     </div>
 
@@ -507,6 +627,13 @@
                 geo:      { icon: '🌍', name: '지정학적 이슈', c: '#7C3AED', soft: '#F1EAFE' }
             };
             var ORDER = ['order', 'industry', 'economy', 'geo'];
+
+            // config.json 에서 카테고리 이름을 바꿨으면 보드 표시에도 반영한다
+            var CFG = window.NEWS_CONFIG || {};
+            ORDER.forEach(function (k) {
+                var s = (CFG.searchKeywords || {})[k];
+                if (s && s.label) { CAT[k].name = s.label; }
+            });
 
             var $ = function (i) { return document.getElementById(i); };
 
@@ -662,6 +789,126 @@
                     catch (x) { toast('복사 실패'); }
                     document.body.removeChild(a);
                 }
+            });
+
+            /* ================= 관리자 ================= */
+            /* 비밀번호는 소스에 그대로 보입니다. 공개 저장소라 숨길 수 없습니다.
+               남이 함부로 못 건드리게 하는 정도의 잠금일 뿐이고, 실제 반영은
+               GitHub 저장소에 커밋할 권한이 있어야만 가능합니다. */
+            var ADMIN_PW = 'admin1234';
+
+            function show(id, on) { $(id).classList.toggle('hide', !on); }
+
+            function fillAdmin() {
+                var sk = CFG.searchKeywords || {};
+                $('kw-list').innerHTML = ORDER.filter(function (k) { return sk[k]; }).map(function (k) {
+                    var s = sk[k], m = CAT[k];
+                    return '<div class="kw" style="border-left:4px solid ' + m.c + '">'
+                        + '<div class="kwtop"><span>' + m.icon + '</span>'
+                        + '<span class="nm">' + esc(s.label || m.name) + '</span>'
+                        + '<span class="mx">보드에 실을 기사 수</span>'
+                        + '<input type="text" inputmode="numeric" data-mx="' + k + '" value="'
+                        + esc(s.max == null ? 3 : s.max) + '"></div>'
+                        + '<textarea data-kw="' + k + '">' + esc((s.queries || []).join(', ')) + '</textarea>'
+                        + '</div>';
+                }).join('');
+                $('press').value = (CFG.allowedPress || []).join(', ');
+                $('outlook-in').value = CFG.outlook || '';
+            }
+
+            function splitList(v) {
+                return String(v || '').split(/[,\n]/)
+                    .map(function (x) { return x.trim(); })
+                    .filter(function (x) { return x.length > 0; });
+            }
+
+            function buildConfig() {
+                var sk = {};
+                Array.prototype.forEach.call(document.querySelectorAll('[data-kw]'), function (ta) {
+                    var k = ta.getAttribute('data-kw');
+                    var mxEl = document.querySelector('[data-mx="' + k + '"]');
+                    var mx = parseInt(String(mxEl && mxEl.value).replace(/[^0-9]/g, ''), 10);
+                    var old = (CFG.searchKeywords || {})[k] || {};
+                    sk[k] = {
+                        label: old.label || CAT[k].name,
+                        max: (isFinite(mx) && mx > 0) ? Math.min(mx, 10) : 3,
+                        queries: splitList(ta.value)
+                    };
+                });
+                return {
+                    "_설명": "보드판 관리자 화면에서 편집한 뒤 내보낸 파일입니다. GitHub 저장소의 config.json 에 덮어쓰면 다음 실행부터 반영됩니다.",
+                    "_키워드_안내": "queries 를 늘리면 후보가 많아지고, max 는 보드에 실을 기사 수입니다.",
+                    searchKeywords: sk,
+                    "_언론사_안내": "여기 적힌 언론사 기사만 실립니다. 부분일치로 판정합니다. 비우면 필터가 꺼집니다.",
+                    allowedPress: splitList($('press').value),
+                    "_지표_안내": "유가·환율은 자동 수집됩니다. 아래는 발표 주기가 길어 수동 관리합니다.",
+                    manualIndicators: CFG.manualIndicators || [],
+                    outlook: $('outlook-in').value.trim()
+                };
+            }
+
+            function validate(c) {
+                var empty = Object.keys(c.searchKeywords).filter(function (k) {
+                    return !c.searchKeywords[k].queries.length;
+                });
+                if (empty.length === Object.keys(c.searchKeywords).length) {
+                    return '검색어를 최소 한 카테고리에는 남겨두세요.';
+                }
+                if (empty.length) {
+                    return '주의: ' + empty.map(function (k) { return CAT[k].name; }).join(', ')
+                        + ' 에 검색어가 없어 해당 칸이 비게 됩니다.';
+                }
+                return '';
+            }
+
+            $('badmin').addEventListener('click', function () {
+                $('pw').value = ''; $('pw-err').textContent = '';
+                show('m-login', true);
+                setTimeout(function () { $('pw').focus(); }, 50);
+            });
+
+            $('pw-no').addEventListener('click', function () { show('m-login', false); });
+
+            function tryLogin() {
+                if ($('pw').value === ADMIN_PW) {
+                    show('m-login', false);
+                    fillAdmin();
+                    show('m-admin', true);
+                } else {
+                    $('pw-err').textContent = '비밀번호가 다릅니다';
+                }
+            }
+
+            $('pw-ok').addEventListener('click', tryLogin);
+            $('pw').addEventListener('keydown', function (e) { if (e.key === 'Enter') tryLogin(); });
+            $('ad-close').addEventListener('click', function () { show('m-admin', false); });
+            $('ad-reset').addEventListener('click', function () { fillAdmin(); toast('원래 설정으로 되돌렸습니다'); });
+
+            $('ad-export').addEventListener('click', function () {
+                var c = buildConfig(), warn = validate(c);
+                if (warn && warn.indexOf('주의') !== 0) { toast(warn); return; }
+                var txt = JSON.stringify(c, null, 2);
+                var url = URL.createObjectURL(new Blob([txt], { type: 'application/json' }));
+                var a = document.createElement('a');
+                a.href = url; a.download = 'config.json';
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+                toast(warn || 'config.json 을 받았습니다 - GitHub 에 덮어쓰세요');
+            });
+
+            $('ad-copy').addEventListener('click', function () {
+                var c = buildConfig(), warn = validate(c);
+                if (warn && warn.indexOf('주의') !== 0) { toast(warn); return; }
+                var txt = JSON.stringify(c, null, 2);
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(txt).then(
+                        function () { toast(warn || '복사했습니다 - GitHub 의 config.json 에 붙여넣으세요'); },
+                        function () { toast('복사 실패'); });
+                } else { toast('이 브라우저는 복사를 지원하지 않습니다'); }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') { show('m-login', false); show('m-admin', false); }
             });
 
             render(DATA[0]);
