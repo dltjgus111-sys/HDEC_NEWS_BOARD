@@ -65,7 +65,7 @@
   --flat:      #767E77;
 
   /* --- 타이포 --- */
-  --font: 'Pretendard','Pretendard Variable','Malgun Gothic','Apple SD Gothic Neo','맑은 고딕',sans-serif;
+  --font: 'Pretendard','Pretendard Variable','HyundaiHarmony','Hyundai Harmony','현대하모니','HyundaiHarmonyOTF','Malgun Gothic','Apple SD Gothic Neo','맑은 고딕',sans-serif;
 
   /* --- 간격 / radius / 그림자 --- */
   --gap: 12px;
@@ -212,12 +212,24 @@ select.tool {
 }
 
 .card {
+  --i: 0;
   background: var(--card);
   border: 1px solid var(--line);
   border-top: 4px solid var(--sec, var(--brand));   /* ← 카테고리색 주입 */
-  border-radius: var(--radius); box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 4px rgba(21,24,27,.04), 0 16px 32px -16px rgba(21,24,27,.18);   /* 떠 있는 느낌 */
   overflow: hidden; display: flex; flex-direction: column;
+  transition: box-shadow .22s ease, border-color .22s ease;
+  /* stagger 등장 후 은은한 부유(두둥실) — 지연은 각 카드 인라인 --i 로 제어 */
+  animation: cardRise .5s both cubic-bezier(.22,.61,.36,1), cardFloat 6.5s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 55ms), calc(var(--i) * 320ms + 640ms);
 }
+.card[data-url] { cursor: pointer; }
+@keyframes cardRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes cardFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+/* 마우스 오버: 테두리 강조 + 떠오르는 그림자 */
+.card:hover { border-color: var(--brand); box-shadow: 0 20px 44px -12px rgba(0,140,70,.32), 0 6px 16px rgba(21,24,27,.10); }
+@media (prefers-reduced-motion: reduce) { .card { animation: none; } }
 .card-head {
   padding: 14px 16px 12px; display: flex; align-items: center; gap: 9px;
   background: var(--secsoft, var(--brand-soft));    /* ← 카테고리 연한색 주입 */
@@ -230,29 +242,41 @@ select.tool {
   padding: 3px 8px; border-radius: var(--pill);
 }
 
-.lead { padding: 15px 16px 14px; display: flex; flex-direction: column; flex: 1; }
-/* 폭 223px에서도 44자가 읽히도록: 줄바꿈 허용 + 균형 줄바꿈, 클램프 없음 */
-.lead h3 {
-  margin: 0; font-size: 14px; font-weight: 700;
-  line-height: 1.5; letter-spacing: -.025em; color: var(--text); text-wrap: pretty;
+/* 대표 기사 = 카드뉴스형 리드. 유형(강한/숫자/공감)은 제목에서 자동 판정된다 */
+.lead { padding: 14px 15px 13px; display: flex; flex-direction: column; flex: 1; }
+.chips { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 11px; min-height: 18px; }
+.bignum {
+  font-size: 28px; font-weight: 800; letter-spacing: -.045em; line-height: .95;
+  color: var(--point); font-variant-numeric: tabular-nums; margin-bottom: 7px;
 }
-.lead .meta {
-  margin-top: 10px; font-size: 11px; font-weight: 600; color: var(--muted);
-  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-}
-/* 신뢰도 배지 — 단독/다수 모두 부정적으로 보이지 않게: 그린 vs 뉴트럴 */
+.bignum span { font-size: 14px; font-weight: 800; margin-left: 3px; }
+.quote { color: var(--sec, var(--brand)); font-size: 28px; font-weight: 800; line-height: .4; height: 12px; }
+/* 18~60자 대응: 줄바꿈 허용 + 균형 줄바꿈, 클램프 없음 */
+.lead h3 { margin: 0; font-weight: 800; letter-spacing: -.03em; line-height: 1.3; color: var(--text); text-wrap: pretty; }
+.lead h3.big { font-size: 15.5px; }
+.lead h3.mid { font-size: 13.5px; font-weight: 700; line-height: 1.42; color: var(--text-2); margin-top: 4px; }
+.lead h3 b { font-weight: 800; }
+
+/* 신뢰도/주목 배지 (카드·펼침 목록 공용) */
 .cov { font-size: 10.5px; font-weight: 900; padding: 3px 8px; border-radius: var(--pill); white-space: nowrap; }
 .cov.multi { background: var(--brand-soft); color: var(--brand-strong); }
 .cov.solo  { background: #EEF1ED; color: #6C746D; }
-
 .hotbadge { font-size: 10px; font-weight: 900; color: #fff; background: var(--point); padding: 2px 7px; border-radius: 5px; }
 
-.lead .go {
-  margin-top: 12px; font-size: 12px; font-weight: 800;
-  color: var(--sec, var(--brand)); text-decoration: none;
-  display: inline-flex; align-items: center; gap: 4px;
+/* 출처 = 항상 리드 맨 아래 고정 (매체·날짜 + 원문 버튼) */
+.srcrow {
+  margin-top: auto; padding-top: 11px; border-top: 1px solid var(--line-soft);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
 }
-.lead .go:hover { gap: 8px; }
+.srcrow .src { font-size: 10.5px; font-weight: 600; color: var(--muted); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.srcrow .go {
+  flex: none; font-size: 10.5px; font-weight: 800; text-decoration: none; color: #fff;
+  background: var(--sec, var(--brand)); padding: 5px 10px; border-radius: var(--pill); white-space: nowrap;
+}
+.srcrow .go:hover { filter: brightness(1.08); }
+
+/* ── 강한형·숫자형 공통: 흰 카드 · 블랙 텍스트 · 딝그린 구조 · 버건디 강조 ── */
+.card.t-strong, .card.t-number { background: var(--card); }
 
 .more {
   margin-top: auto; border: none; border-top: 1px solid var(--line);
@@ -455,6 +479,7 @@ select.tool {
   body { background: #fff; padding: 0; }
   .topbar, .foot, .toast, .more, .mask { display: none !important; }
   .card, .panel, .hero, .kwbar { box-shadow: none; break-inside: avoid; }
+  .card { animation: none !important; }
   .grid { grid-template-columns: repeat(2, 1fr); }
   .rest { display: block !important; }   /* 인쇄 땐 접힌 것도 모두 보이게 */
 }
@@ -642,6 +667,11 @@ select.tool {
             // 견적팀 기준 중요도 순서 (보드에 놓이는 순서이기도 하다)
             var ORDER = ['order', 'competitor', 'trend', 'industry', 'economy', 'geo'];
 
+            /* 색감 통일: 카테고리별 색을 쓰지 않고 화이트+딝그린 구조 / 버건디 강조로 통일한다.
+               CAT의 아이콘·이름은 그대로 쓰되 색만 딝그린으로 덮어 --sec·통계바·스크랩변이 모두 통일된다. */
+            var EMPH = '#971934';
+            ORDER.forEach(function (k) { CAT[k].c = '#008C46'; CAT[k].soft = '#EAF3EE'; });
+
             // config.json 에서 카테고리 이름을 바꿨으면 보드 표시에도 반영한다
             var CFG = window.NEWS_CONFIG || {};
             ORDER.forEach(function (k) {
@@ -699,6 +729,45 @@ select.tool {
                 return '<span class="cov solo">단독</span>';
             }
 
+            /* ---- 카드뉴스형 자동 판정/강조 : 매일 바뀌는 raw 제목에서 유형과 강조부를 뽑는다 ---- */
+            function lighten(hex, amt) {
+                var h = String(hex || '#008C46').replace('#', '');
+                if (h.length === 3) h = h.replace(/./g, function (c) { return c + c; });
+                var r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+                function mx(x) { return Math.round(x + (255 - x) * amt).toString(16).padStart(2, '0'); }
+                return '#' + mx(r) + mx(g) + mx(b);
+            }
+
+            // 제목 속 핵심 수치 (숫자형 판정·표시용)
+            var NUM_RE = /([+\-]?\d[\d,]*\.?\d*)\s*(조\s?원|조|억\s?달러|억\s?원|억|만\s?가구|만\s?원|천\s?원|개월|개사|가구|퍼센트|%|배|명|위|GW|MW|㎥|톤)/;
+            function extractNumber(t) {
+                var m = String(t || '').match(NUM_RE);
+                if (!m) return null;
+                return { num: m[1], unit: m[2].replace(/\s+/g, ' ').trim(), start: m.index, end: m.index + m[0].length };
+            }
+
+            // 숫자형(수치 있음) / 강한형(그 외) 둘만 사용
+            function classify(t) {
+                return extractNumber(t) ? 'number' : 'strong';
+            }
+
+            // 핵심부(수치 또는 마지막 쉼표·말줄임 이후)를 색으로 강조
+            function hlHead(t, color) {
+                t = String(t || '');
+                var nm = extractNumber(t);
+                if (nm) {
+                    return esc(t.slice(0, nm.start))
+                        + '<b style="color:' + color + '">' + esc(t.slice(nm.start, nm.end)) + '</b>'
+                        + esc(t.slice(nm.end));
+                }
+                var ci = Math.max(t.lastIndexOf(','), t.lastIndexOf('…'));
+                if (ci > 0 && ci < t.length - 1) {
+                    return esc(t.slice(0, ci + 1))
+                        + '<b style="color:' + color + '">' + esc(t.slice(ci + 1)) + '</b>';
+                }
+                return esc(t);
+            }
+
             function render(e) {
                 if (!e) return;
 
@@ -725,11 +794,14 @@ select.tool {
                         + '</div>';
                 }).join('');
 
-                // 카테고리당 카드 하나. 대표 기사만 보이고 나머지는 접어둔다.
-                $('grid').innerHTML = ORDER.map(function (k) {
+                // 카테고리당 카드뉴스형 카드 하나 (대표 기사). 유형은 제목에서 자동 판정.
+                $('grid').innerHTML = ORDER.map(function (k, ci) {
                     var m = CAT[k], items = (e.categories || {})[k] || [];
+                    var bright = lighten(m.c, .42);
+                    var vars = '--sec:' + m.c + ';--secsoft:' + m.soft + ';--secbright:' + bright
+                        + ';--i:' + ci;
                     if (!items.length) {
-                        return '<article class="card" style="--sec:' + m.c + ';--secsoft:' + m.soft + '">'
+                        return '<article class="card" style="' + vars + '">'
                             + '<div class="card-head"><span class="ic">' + m.icon + '</span>'
                             + '<span class="nm">' + esc(m.name) + '</span></div>'
                             + '<div class="empty">오늘은 새 소식이 없습니다</div></article>';
@@ -737,6 +809,25 @@ select.tool {
 
                     var top = items[0], rest = items.slice(1);
                     var u = safeUrl(top.url), s = splitSource(top.source);
+                    var type = classify(top.text);
+
+                    var chips = '<div class="chips">'
+                        + (top.hot ? '<span class="hotbadge">주목</span>' : '')
+                        + covBadge(top) + '</div>';
+
+                    var hero;
+                    if (type === 'number') {
+                        var nn = extractNumber(top.text);
+                        hero = '<div class="bignum">' + esc(nn.num) + '<span>' + esc(nn.unit) + '</span></div>'
+                            + '<h3 class="mid">' + hlHead(top.text, EMPH) + '</h3>';
+                    } else {
+                        hero = '<h3 class="big">' + hlHead(top.text, EMPH) + '</h3>';
+                    }
+
+                    var srcrow = '<div class="srcrow"><span class="src">'
+                        + esc(s.press) + (s.when ? ' · ' + esc(s.when) : '') + '</span>'
+                        + (u ? '<a class="go" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">원문 →</a>' : '')
+                        + scrapBtn(top, k) + '</div>';
 
                     var restHtml = rest.map(function (it) {
                         var u2 = safeUrl(it.url), s2 = splitSource(it.source);
@@ -748,21 +839,12 @@ select.tool {
                             + '</div>';
                     }).join('');
 
-                    return '<article class="card" data-k="' + k + '" style="--sec:' + m.c + ';--secsoft:' + m.soft + '">'
+                    return '<article class="card t-' + type + '" data-k="' + k + '"'
+                        + (u ? ' data-url="' + esc(u) + '"' : '') + ' style="' + vars + '">'
                         + '<div class="card-head"><span class="ic">' + m.icon + '</span>'
                         + '<span class="nm">' + esc(m.name) + '</span>'
                         + '<span class="cnt">' + items.length + '건</span></div>'
-                        + '<div class="lead">'
-                        + '<h3>' + esc(top.text) + '</h3>'
-                        + '<div class="meta">' + (top.hot ? '<span class="hotbadge">주목</span>' : '')
-                        + covBadge(top) + '<span>' + esc(s.press)
-                        + (s.when ? ' · ' + esc(s.when) : '') + '</span></div>'
-                        + '<div style="margin-top:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap">'
-                        + (u ? '<a class="go" style="margin:0" href="' + esc(u)
-                            + '" target="_blank" rel="noopener noreferrer">원문 보기 →</a>' : '')
-                        + scrapBtn(top, k)
-                        + '</div>'
-                        + '</div>'
+                        + '<div class="lead">' + chips + hero + srcrow + '</div>'
                         + (rest.length
                             ? '<div class="rest">' + restHtml + '</div>'
                             + '<button class="more" data-more="' + k + '">'
@@ -852,6 +934,13 @@ select.tool {
                 var open = card.classList.toggle('open');
                 var n = card.querySelectorAll('.rest .row').length;
                 btn.querySelector('.lbl').textContent = open ? '접기' : ('기사 ' + n + '건 더');
+            });
+
+            // 카드 전체를 누르면 대표 기사 원문 열기 (버튼·링크·펼침은 각자 처리)
+            $('grid').addEventListener('click', function (ev) {
+                if (ev.target.closest('a, button, [data-more], [data-scrap]')) return;
+                var card = ev.target.closest('.card[data-url]');
+                if (card) window.open(card.getAttribute('data-url'), '_blank', 'noopener');
             });
 
             var sel = $('dsel');
