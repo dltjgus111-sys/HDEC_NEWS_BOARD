@@ -30,7 +30,8 @@
 
             --radius: 16px;
             --shadow: 0 2px 4px rgba(20, 25, 40, .04), 0 12px 28px rgba(20, 25, 40, .06);
-            --content: min(1120px, calc(100vw - 40px));
+            /* 카테고리 4개를 한 줄에 놓아야 해서 기존보다 넓게 잡는다 */
+            --content: min(1440px, calc(100vw - 40px));
         }
 
         * { box-sizing: border-box; }
@@ -166,215 +167,184 @@
         .stat .d.flat { color: var(--muted); }
         .stat .n { margin-top: 4px; font-size: 10.5px; color: var(--muted); font-weight: 500; }
 
-        /* ============ 필터 칩 ============ */
-        .chips { margin: 26px 0 18px; display: flex; gap: 8px; flex-wrap: wrap; }
-
-        .chip {
-            border: 1px solid var(--line);
-            background: #fff;
-            border-radius: 999px;
-            padding: 9px 16px;
-            font-size: 13px;
-            font-weight: 700;
-            font-family: inherit;
-            color: var(--muted);
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            transition: all .15s;
+        /* ============ 카테고리 카드 (한 화면에 4개) ============ */
+        .grid {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            align-items: start;
         }
-
-        .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-        .chip:hover { border-color: #C9CEDA; }
-        .chip.on { background: var(--text); border-color: var(--text); color: #fff; }
-        .chip.on .dot { background: var(--chipc, #fff); }
-
-        /* ============ 카테고리 섹션 ============ */
-        .sec { margin-bottom: 34px; }
-        .sec.hide { display: none; }
-
-        .sec-head {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            margin-bottom: 14px;
-        }
-
-        .sec-head .ic {
-            width: 34px; height: 34px;
-            border-radius: 10px;
-            display: grid; place-items: center;
-            font-size: 17px;
-            background: var(--secsoft);
-        }
-
-        .sec-head h2 {
-            margin: 0;
-            font-size: 17px;
-            font-weight: 900;
-            letter-spacing: -.03em;
-        }
-
-        .sec-head .cnt {
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--sec);
-            background: var(--secsoft);
-            padding: 3px 9px;
-            border-radius: 999px;
-        }
-
-        .sec-head .rule { flex: 1; height: 1px; background: var(--line); }
-
-        /* ============ 카드 ============ */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 
         .card {
             background: var(--card);
             border: 1px solid var(--line);
+            border-top: 4px solid var(--sec);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform .18s ease, box-shadow .18s ease;
         }
 
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(20, 25, 40, .05), 0 18px 40px rgba(20, 25, 40, .1);
-        }
-
-        /* 카드 상단 비주얼 — RSS에 기사 이미지가 없어 카테고리 그래픽으로 대체 */
-        .thumb {
-            height: 132px;
-            position: relative;
-            display: grid;
-            place-items: center;
-            background: var(--secsoft);
-            overflow: hidden;
-        }
-
-        .thumb::before {
-            content: "";
-            position: absolute;
-            width: 190px; height: 190px;
-            border-radius: 50%;
-            background: var(--sec);
-            opacity: .07;
-            top: -70px; right: -50px;
-        }
-
-        .thumb::after {
-            content: "";
-            position: absolute;
-            width: 120px; height: 120px;
-            border-radius: 32px;
-            background: var(--sec);
-            opacity: .05;
-            bottom: -50px; left: -30px;
-            transform: rotate(22deg);
-        }
-
-        .thumb .big {
-            font-size: 42px;
-            filter: saturate(1.05);
-            position: relative;
-            z-index: 1;
-        }
-
-        .thumb .press {
-            position: absolute;
-            left: 13px; bottom: 12px;
-            background: rgba(255, 255, 255, .95);
-            border: 1px solid rgba(0, 0, 0, .05);
-            color: var(--sec);
-            font-size: 11px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 999px;
-            z-index: 2;
-            max-width: calc(100% - 26px);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .thumb .hot {
-            position: absolute;
-            right: 12px; top: 12px;
-            background: var(--up);
-            color: #fff;
-            font-size: 10.5px;
-            font-weight: 900;
-            padding: 4px 9px;
-            border-radius: 999px;
-            z-index: 2;
-            letter-spacing: .02em;
-        }
-
-        .card-body {
-            padding: 18px 20px 20px;
+        .card-head {
+            padding: 15px 17px 13px;
             display: flex;
-            flex-direction: column;
-            flex: 1;
+            align-items: center;
+            gap: 9px;
+            background: var(--secsoft);
         }
 
-        .card .num {
-            display: inline-grid;
-            place-items: center;
-            width: 24px; height: 24px;
-            border-radius: 7px;
-            background: var(--sec);
-            color: #fff;
+        .card-head .ic { font-size: 16px; }
+        .card-head .nm { font-size: 13.5px; font-weight: 900; letter-spacing: -.03em; }
+
+        .card-head .cnt {
+            margin-left: auto;
             font-size: 11px;
             font-weight: 900;
-            margin-bottom: 11px;
+            color: var(--sec);
+            background: rgba(255, 255, 255, .8);
+            padding: 3px 8px;
+            border-radius: 999px;
         }
 
-        .card h3 {
+        .lead { padding: 16px 17px 15px; display: flex; flex-direction: column; flex: 1; }
+
+        .lead h3 {
             margin: 0;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             line-height: 1.55;
             letter-spacing: -.025em;
         }
 
-        .card .meta {
-            margin-top: 12px;
-            font-size: 11.5px;
+        .lead .meta {
+            margin-top: 11px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
         }
 
-        .card .go {
-            margin-top: 16px;
-            padding-top: 14px;
-            border-top: 1px solid var(--line);
-            font-size: 12.5px;
+        /* 보도한 언론사 수 = 신뢰도 배지. 단독도 그대로 싣되 표시만 구분한다 */
+        .cov {
+            font-size: 10.5px;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .cov.multi { background: #E8F5EE; color: #0B6E39; }
+        .cov.solo { background: #F1F2F5; color: #6B7280; }
+
+        .hotbadge {
+            font-size: 10px; font-weight: 900; color: #fff;
+            background: var(--up); padding: 2px 7px; border-radius: 5px;
+        }
+
+        .lead .go {
+            margin-top: 13px;
+            font-size: 12px;
             font-weight: 800;
             color: var(--sec);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
         }
 
-        .card .go:hover { gap: 9px; }
-        .card .go .arw { transition: transform .18s; }
-        .card .go:hover .arw { transform: translateX(2px); }
+        .lead .go:hover { gap: 8px; }
+
+        .more {
+            margin-top: auto;
+            border: none;
+            border-top: 1px solid var(--line);
+            background: #FAFBFC;
+            padding: 11px;
+            font-family: inherit;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            width: 100%;
+        }
+
+        .more:hover { background: var(--secsoft); color: var(--sec); }
+        .more .cx { transition: transform .2s; font-size: 9px; }
+        .card.open .more .cx { transform: rotate(180deg); }
+
+        .rest { display: none; border-top: 1px solid var(--line); }
+        .card.open .rest { display: block; }
+
+        .rest .row {
+            padding: 13px 17px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .rest .row:last-child { border-bottom: none; }
+
+        .rest .row p {
+            margin: 0;
+            font-size: 12.5px;
+            line-height: 1.55;
+            font-weight: 500;
+        }
+
+        .rest .row .meta { margin-top: 8px; font-size: 10.5px; }
+
+        .rest .row a {
+            color: var(--sec);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 800;
+        }
 
         .empty {
-            grid-column: 1 / -1;
-            background: #fff;
-            border: 1px dashed var(--line);
-            border-radius: var(--radius);
-            padding: 28px;
-            text-align: center;
-            font-size: 13px;
+            padding: 22px 17px;
+            font-size: 12.5px;
             font-weight: 600;
             color: var(--muted);
+            text-align: center;
+        }
+
+        /* ============ 오늘의 키워드 ============ */
+        .kwbar {
+            margin-top: 12px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 17px 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .kwbar .t {
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--muted);
+            letter-spacing: -.02em;
+            white-space: nowrap;
+        }
+
+        .kwbar .tag {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--brand);
+            background: var(--brand-soft);
+            padding: 6px 13px;
+            border-radius: 999px;
+            letter-spacing: -.02em;
         }
 
         /* ============ 하단 ============ */
@@ -505,22 +475,27 @@
 
         .note code { background: rgba(0, 0, 0, .06); padding: 1px 5px; border-radius: 4px; }
 
+        @media (max-width: 1180px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 900px) {
             .stats { grid-template-columns: repeat(2, 1fr); }
-            .grid { grid-template-columns: 1fr; }
             .bottom { grid-template-columns: 1fr; }
         }
 
-        @media (max-width: 560px) {
+        @media (max-width: 620px) {
             :root { --content: calc(100vw - 24px); }
+            .grid { grid-template-columns: 1fr; }
             .hero { padding: 24px 20px 20px; }
         }
 
         @media print {
-            body { background: #fff; }
-            .topbar, .chips, .foot, .toast, .card .go { display: none !important; }
-            .card, .panel, .hero { box-shadow: none; break-inside: avoid; }
+            body { background: #fff; padding: 0; }
+            .topbar, .foot, .toast, .more, .mask { display: none !important; }
+            .card, .panel, .hero, .kwbar { box-shadow: none; break-inside: avoid; }
             .grid { grid-template-columns: repeat(2, 1fr); }
+            .rest { display: block !important; }   /* 인쇄할 땐 접힌 것도 모두 보이게 */
         }
     </style>
 </head>
@@ -593,8 +568,12 @@
             <div class="stats" id="stats"></div>
         </section>
 
-        <div class="chips" id="chips"></div>
-        <div id="sections"></div>
+        <div class="grid" id="grid"></div>
+
+        <div class="kwbar">
+            <span class="t">오늘의 키워드</span>
+            <span id="kw"></span>
+        </div>
 
         <div class="bottom">
             <div class="panel">
@@ -661,6 +640,18 @@
                 return { press: (m[0] || '').trim(), when: (m[1] || '').trim() };
             }
 
+            /* 몇 개 언론사가 같은 사건을 다뤘는지 = 신뢰도 신호.
+               건설 뉴스는 대개 1~2개사만 다루므로 '단독'도 그대로 싣고 표시만 구분한다. */
+            function covBadge(it) {
+                var n = it.coverage || 1;
+                if (n >= 2) {
+                    var tip = (it.outlets || []).join(', ');
+                    return '<span class="cov multi"' + (tip ? ' title="' + esc(tip) + '"' : '')
+                        + '>' + n + '개사 보도</span>';
+                }
+                return '<span class="cov solo">단독</span>';
+            }
+
             function render(e) {
                 if (!e) return;
 
@@ -683,34 +674,54 @@
                         + '</div>';
                 }).join('');
 
-                // 카테고리별 카드
-                $('sections').innerHTML = ORDER.map(function (k) {
+                // 카테고리당 카드 하나. 대표 기사만 보이고 나머지는 접어둔다.
+                $('grid').innerHTML = ORDER.map(function (k) {
                     var m = CAT[k], items = (e.categories || {})[k] || [];
-                    var cards = items.length ? items.map(function (it, idx) {
-                        var u = safeUrl(it.url), s = splitSource(it.source);
-                        return '<article class="card">'
-                            + '<div class="thumb">'
-                            + (it.hot ? '<span class="hot">주목</span>' : '')
-                            + '<span class="big">' + m.icon + '</span>'
-                            + (s.press ? '<span class="press">' + esc(s.press) + '</span>' : '')
-                            + '</div>'
-                            + '<div class="card-body">'
-                            + '<span class="num">' + ('0' + (idx + 1)).slice(-2) + '</span>'
-                            + '<h3>' + esc(it.text) + '</h3>'
-                            + '<div class="meta">' + esc(m.name)
-                            + (s.when ? ' · ' + esc(s.when) : '') + '</div>'
-                            + (u ? '<a class="go" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">'
-                                + '기사 원문 보기 <span class="arw">→</span></a>' : '')
-                            + '</div></article>';
-                    }).join('') : '<div class="empty">오늘은 이 분야 새 소식이 없습니다</div>';
+                    if (!items.length) {
+                        return '<article class="card" style="--sec:' + m.c + ';--secsoft:' + m.soft + '">'
+                            + '<div class="card-head"><span class="ic">' + m.icon + '</span>'
+                            + '<span class="nm">' + esc(m.name) + '</span></div>'
+                            + '<div class="empty">오늘은 새 소식이 없습니다</div></article>';
+                    }
 
-                    return '<section class="sec" data-k="' + k + '" style="--sec:' + m.c + ';--secsoft:' + m.soft + '">'
-                        + '<div class="sec-head"><span class="ic">' + m.icon + '</span>'
-                        + '<h2>' + m.name + '</h2>'
-                        + '<span class="cnt">' + items.length + '건</span>'
-                        + '<span class="rule"></span></div>'
-                        + '<div class="grid">' + cards + '</div></section>';
+                    var top = items[0], rest = items.slice(1);
+                    var u = safeUrl(top.url), s = splitSource(top.source);
+
+                    var restHtml = rest.map(function (it) {
+                        var u2 = safeUrl(it.url), s2 = splitSource(it.source);
+                        return '<div class="row"><p>' + esc(it.text) + '</p>'
+                            + '<div class="meta">' + covBadge(it) + ' '
+                            + esc(s2.press) + (s2.when ? ' · ' + esc(s2.when) : '') + '</div>'
+                            + (u2 ? '<a href="' + esc(u2) + '" target="_blank" rel="noopener noreferrer">원문 →</a>' : '')
+                            + '</div>';
+                    }).join('');
+
+                    return '<article class="card" data-k="' + k + '" style="--sec:' + m.c + ';--secsoft:' + m.soft + '">'
+                        + '<div class="card-head"><span class="ic">' + m.icon + '</span>'
+                        + '<span class="nm">' + esc(m.name) + '</span>'
+                        + '<span class="cnt">' + items.length + '건</span></div>'
+                        + '<div class="lead">'
+                        + '<h3>' + esc(top.text) + '</h3>'
+                        + '<div class="meta">' + (top.hot ? '<span class="hotbadge">주목</span>' : '')
+                        + covBadge(top) + '<span>' + esc(s.press)
+                        + (s.when ? ' · ' + esc(s.when) : '') + '</span></div>'
+                        + (u ? '<a class="go" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">'
+                            + '원문 보기 →</a>' : '')
+                        + '</div>'
+                        + (rest.length
+                            ? '<div class="rest">' + restHtml + '</div>'
+                            + '<button class="more" data-more="' + k + '">'
+                            + '<span class="lbl">기사 ' + rest.length + '건 더</span>'
+                            + '<span class="cx">▼</span></button>'
+                            : '')
+                        + '</article>';
                 }).join('');
+
+                // 오늘의 키워드
+                var kws = e.keywords || [];
+                $('kw').innerHTML = kws.length
+                    ? kws.map(function (w) { return '<span class="tag">' + esc(w) + '</span>'; }).join(' ')
+                    : '<span style="font-size:12.5px;color:var(--muted)">추출된 키워드가 없습니다</span>';
 
                 var lw = e.lastWeek || [];
                 $('lw').innerHTML = lw.length
@@ -726,10 +737,12 @@
                     if (!it.length) return;
                     o.push('■ ' + CAT[k].name);
                     it.forEach(function (x) {
-                        o.push(' - ' + x.text + (x.url ? ' (' + (x.source || '') + ' ' + x.url + ')' : ''));
+                        var cov = (x.coverage || 1) >= 2 ? '[' + x.coverage + '개사] ' : '[단독] ';
+                        o.push(' - ' + cov + x.text + (x.url ? ' (' + (x.source || '') + ' ' + x.url + ')' : ''));
                     });
                     o.push('');
                 });
+                if ((e.keywords || []).length) o.push('■ 오늘의 키워드: ' + e.keywords.join(', '), '');
                 if (e.outlook) o.push('■ 다음주 전망: ' + e.outlook);
                 return o.join('\n');
             }
@@ -748,24 +761,14 @@
 
             DATA.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
 
-            // 필터 칩
-            $('chips').innerHTML = '<button class="chip on" data-f="all">전체</button>'
-                + ORDER.map(function (k) {
-                    return '<button class="chip" data-f="' + k + '" style="--chipc:' + CAT[k].c + '">'
-                        + '<span class="dot" style="background:' + CAT[k].c + '"></span>'
-                        + CAT[k].name + '</button>';
-                }).join('');
-
-            $('chips').addEventListener('click', function (ev) {
-                var b = ev.target.closest('.chip');
-                if (!b) return;
-                var f = b.getAttribute('data-f');
-                Array.prototype.forEach.call($('chips').children, function (c) {
-                    c.classList.toggle('on', c === b);
-                });
-                Array.prototype.forEach.call($('sections').children, function (s) {
-                    s.classList.toggle('hide', f !== 'all' && s.getAttribute('data-k') !== f);
-                });
+            // 카드 제자리 펼치기 (페이지 이동 없이 한 화면 유지)
+            $('grid').addEventListener('click', function (ev) {
+                var btn = ev.target.closest('[data-more]');
+                if (!btn) return;
+                var card = btn.closest('.card');
+                var open = card.classList.toggle('open');
+                var n = card.querySelectorAll('.rest .row').length;
+                btn.querySelector('.lbl').textContent = open ? '접기' : ('기사 ' + n + '건 더');
             });
 
             var sel = $('dsel');

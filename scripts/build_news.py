@@ -75,6 +75,7 @@ BLOCK_WORDS = ["분양광고", "협찬", "특별기고", "부고", "인사말"]
 # config.json 의 allowedPress 를 담아둔다 (load_config 에서 채움)
 ALLOWED_PRESS = []
 _press_dropped = {}
+_pool_titles = []   # 키워드 추출용 - 필터를 통과한 후보 기사 제목 전체
 
 
 def load_config():
@@ -230,32 +231,106 @@ def build_category(key, spec, used_keys):
         log(f"  - {q}: {len(got)}건")
         pool.extend(got)
 
+    _pool_titles.extend(a["title"] for a in pool)   # 키워드 추출용 표본
     pool.sort(key=lambda a: a["score"], reverse=True)
 
-    picked = []
+    # --- 같은 사건끼리 묶어 '몇 개 언론사가 다뤘나'를 센다 ---
+    # 거시 뉴스(금리·유가)는 15개사가 쓰고 건설 뉴스는 1~2개사만 쓴다.
+    # 그래서 보도 수는 정렬의 주 기준이 아니라 신뢰도 배지 + 약한 가산점으로만 쓴다.
+    # (카테고리가 분리돼 있어 거시가 건설을 밀어내지 않는다)
+    clusters = []
     for art in pool:
-        # used_keys 는 카테고리 간, picked 는 카테고리 내 중복 차단
-        if is_similar(art["title"], used_keys) or is_similar(art["title"], [p["title"] for p in picked]):
+        for c in clusters:
+            if is_similar(art["title"], [m["title"] for m in c]):
+                c.append(art)
+                break
+        else:
+            clusters.append([art])
+
+    ranked = []
+    for members in clusters:
+        outlets = sorted({m["source"] for m in members if m["source"]})
+        rep = max(members, key=lambda m: m["score"])
+        boost = min(len(outlets) - 1, 5) * 6
+        ranked.append({"rep": rep, "outlets": outlets, "score": rep["score"] + boost})
+    ranked.sort(key=lambda c: c["score"], reverse=True)
+
+    picked = []
+    for c in ranked:
+        if is_similar(c["rep"]["title"], used_keys):   # 다른 카테고리와 중복 차단
             continue
-        picked.append(art)
+        picked.append(c)
         if len(picked) >= limit:
             break
-    used_keys.extend(p["title"] for p in picked)
+    used_keys.extend(c["rep"]["title"] for c in picked)
 
     # 대형 건설사 소식을 카테고리 맨 위로
-    picked.sort(key=lambda a: 0 if any(m in a["title"] for m in MAJORS) else 1)
+    picked.sort(key=lambda c: 0 if any(m in c["rep"]["title"] for m in MAJORS) else 1)
 
     items = []
-    for i, a in enumerate(picked):
+    for i, c in enumerate(picked):
+        a = c["rep"]
         items.append({
             "text": a["title"],
             "source": f"{a['source']} · {a['pub'].astimezone(KST):%m/%d}",
             "url": a["url"],
+            "coverage": len(c["outlets"]),          # 1이면 단독
+            "outlets": c["outlets"][:8],            # 어느 언론사들이 다뤘는지
             # 대형 건설사가 언급된 최상단 기사만 '주목' 표시
             "hot": i == 0 and any(m in a["title"] for m in MAJORS),
         })
-    log(f"  => 채택 {len(items)}건")
+    multi = sum(1 for it in items if it["coverage"] >= 2)
+    log(f"  => 채택 {len(items)}건 (복수보도 {multi}, 단독 {len(items) - multi})")
     return items
+
+
+# ---------------------------------------------------------------- 키워드
+
+# 뉴스 제목에 흔하지만 내용이 없는 말들
+STOPWORDS = {
+    "있다", "없다", "한다", "된다", "했다", "이다", "위해", "통해", "대한", "관련",
+    "지난", "올해", "내년", "이번", "오늘", "내일", "최근", "다시", "아직", "이미",
+    "전망", "예상", "분석", "발표", "추진", "확대", "강화", "예정", "방침", "계획",
+    "지역", "사업", "경우", "때문", "가운데", "상황", "문제", "필요", "가능", "우려",
+    "속으로", "종합", "상보", "속보", "단독", "인터뷰", "기자", "그래픽", "포토",
+    "머니", "종목", "리포트", "모닝", "주간", "마감", "개장", "장중", "코스피", "코스닥",
+    # 단위·수량 조각 (숫자와 붙어 다녀 의미가 없다)
+    "만에", "개월", "달러", "원대", "억원", "조원", "만원", "포인트", "퍼센트",
+    "이후", "대비", "전년", "기록", "수준", "규모", "돌파", "육박", "가운데서",
+    "번째", "눈앞", "속에", "에서", "으로", "하며", "이며", "라며", "까지",
+}
+
+
+def extract_keywords(titles, queries_used, top=6):
+    """그날 기사 제목에서 자주 나온 단어를 뽑아 '오늘의 키워드'를 만든다.
+
+    보드에 실린 10건만 보면 표본이 너무 작아 한 번씩만 나온 잡음
+    ('17만5000원' 같은)이 올라온다. 그래서 필터를 통과한 **후보 기사 전체**
+    (보통 100건 이상)에서 빈도를 센다.
+
+    검색어 자체(건설·수주 등)는 모든 기사에 들어 있어 정보가 없으므로 뺀다.
+    남는 건 그날 실제로 일어난 사건의 말들(호르무즈·기준금리·재건축 등)이다.
+    """
+    banned = set(STOPWORDS)
+    for q in queries_used:
+        for tok in re.findall(r"[가-힣A-Za-z0-9]{2,}", q):
+            banned.add(tok)
+
+    counts = {}
+    for t in titles:
+        seen = set()
+        for tok in re.findall(r"[가-힣A-Za-z]{2,}", t):   # 숫자 섞인 토큰은 제외
+            if tok in banned or tok in seen:
+                continue
+            seen.add(tok)
+            counts[tok] = counts.get(tok, 0) + 1
+
+    # 표본이 크므로 3회 이상 나온 말만 신뢰한다
+    ranked = sorted(counts.items(), key=lambda kv: (-kv[1], -len(kv[0])))
+    strong = [w for w, c in ranked if c >= 3]
+    if len(strong) < 3:                                    # 뉴스가 적은 날 대비
+        strong = [w for w, c in ranked if c >= 2]
+    return strong[:top]
 
 
 # ---------------------------------------------------------------- 지표
@@ -535,6 +610,8 @@ def main():
         "headline": headline,
         "indicators": indicators,
         "categories": categories,
+        "keywords": extract_keywords(
+            _pool_titles, [q for v in cats_cfg.values() for q in v.get("queries", [])]),
         "lastWeek": last_week or ["아카이브가 쌓이면 지난주 요약이 자동으로 표시됩니다."],
         "outlook": cfg.get("outlook", ""),
     }
