@@ -46,11 +46,21 @@ CTX = ssl.create_default_context()
 # config.json 의 searchKeywords 가 있으면 그쪽이 우선하고, 없으면 아래 값을 쓴다.
 DEFAULT_CATEGORIES = {
     "order": {
-        "max": 3,
+        "label": "수주", "max": 3,
         "queries": ["현대건설 수주", "건설사 수주", "해외건설 수주", "플랜트 수주"],
     },
+    "competitor": {
+        "label": "경쟁사", "max": 3,
+        "queries": ["삼성물산 건설", "GS건설", "대우건설", "DL이앤씨", "포스코이앤씨",
+                    "현대엔지니어링", "롯데건설", "HDC현대산업개발", "SK에코플랜트"],
+    },
+    "trend": {
+        "label": "핵심상품 트렌드", "max": 3,
+        "queries": ["데이터센터 건설", "양수발전", "해상풍력", "수전해 그린수소",
+                    "원자력 발전소", "SAF 지속가능항공유", "SMR 소형모듈원자로", "건설 로보틱스"],
+    },
     "industry": {
-        "max": 3,
+        "label": "건설업계", "max": 2,
         "queries": ["건설업계", "국토교통부 건설 정책", "부동산 대책", "분양 착공"],
     },
     "economy": {
@@ -581,22 +591,45 @@ def main():
     log("[지표] 수집")
     indicators = [indicator_oil(), indicator_fx()] + indicators_manual(cfg)
 
-    # 헤드라인 = 대형 건설사가 언급된 수주 기사 우선, 없으면 카테고리 우선순위대로
-    headline = None
-    for k in ("order", "geo", "economy", "industry"):
-        for it in categories.get(k, []):
+    # --- 오늘의 핵심 고르기 ---
+    # 견적팀 기준 중요도: 수주 > 경쟁사 > 핵심상품 > 지정학 > 물가 > 업계.
+    # 여기에 대형 건설사 언급과 보도 언론사 수를 얹어 하나를 고르고,
+    # '왜 이게 오늘의 핵심인지'를 한 줄로 붙인다 (눈길을 끄는 후킹 문구 역할).
+    PRIORITY = {"order": 60, "competitor": 50, "trend": 44,
+                "geo": 30, "economy": 26, "industry": 20}
+
+    best, best_key, best_score = None, None, -1
+    for k, items in categories.items():
+        for it in items:
+            s = PRIORITY.get(k, 10)
             if any(m in it["text"] for m in MAJORS):
-                headline = it["text"]
-                break
-        if headline:
-            break
-    if not headline:
-        for k in ("order", "geo", "economy", "industry"):
-            if categories.get(k):
-                headline = categories[k][0]["text"]
-                break
+                s += 30
+            s += min(it.get("coverage", 1) - 1, 6) * 5
+            if it.get("hot"):
+                s += 5
+            if s > best_score:
+                best, best_key, best_score = it, k, s
+
+    headline = best["text"] if best else "오늘 수집된 기사가 없습니다"
+    headline_cat = (cats_cfg.get(best_key, {}) or {}).get("label", best_key) if best else ""
+
+    # 후킹 문구: 사실에 근거한 것만 붙인다 (없는 말을 지어내지 않는다)
+    note_bits = []
+    if best:
+        cov = best.get("coverage", 1)
+        if cov >= 5:
+            note_bits.append(f"오늘 가장 많이 다뤄진 이슈 · {cov}개 언론사 보도")
+        elif cov >= 2:
+            note_bits.append(f"{cov}개 언론사가 함께 보도")
+        else:
+            note_bits.append("단독 보도")
+        hit = [m for m in MAJORS if m in best["text"]]
+        if hit:
+            note_bits.append(f"{hit[0]} 관련")
+    headline_note = " · ".join(note_bits[:2])   # 길어지면 후킹이 아니라 잡음이 된다
 
     archive = load_archive()
+    prev_today = next((e for e in archive if e.get("date") == today), None)
     archive = [e for e in archive if e.get("date") != today]  # 같은 날 재실행 시 교체
 
     # 지난주 돌아보기 = 직전 7일 아카이브의 헤드라인
@@ -608,6 +641,8 @@ def main():
         "date": today,
         "generatedAt": now.strftime("%H:%M"),
         "headline": headline,
+        "headlineNote": headline_note,
+        "headlineCat": headline_cat,
         "indicators": indicators,
         "categories": categories,
         "keywords": extract_keywords(
@@ -615,6 +650,17 @@ def main():
         "lastWeek": last_week or ["아카이브가 쌓이면 지난주 요약이 자동으로 표시됩니다."],
         "outlook": cfg.get("outlook", ""),
     }
+
+    # 오후 2차 실행용: 새 기사가 없으면 아무것도 바꾸지 않고 끝낸다.
+    # (generatedAt 만 바뀐 커밋으로 Pages 를 매번 재배포하는 낭비를 막는다)
+    if "--only-if-new" in sys.argv and prev_today:
+        old_urls = {it.get("url") for v in prev_today.get("categories", {}).values() for it in v}
+        new_urls = {it.get("url") for v in categories.values() for it in v}
+        added = new_urls - old_urls
+        if not added:
+            log("새 기사 없음 - data.js 를 그대로 두고 종료 (커밋/재배포 없음)")
+            return 0
+        log(f"새 기사 {len(added)}건 발견 - 갱신 진행")
 
     archive.insert(0, entry)
     archive = archive[:MAX_ARCHIVE]

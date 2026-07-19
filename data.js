@@ -6,8 +6,10 @@
 window.NEWS_DATA = [
   {
     "date": "2026-07-19",
-    "generatedAt": "17:35",
-    "headline": "반토막 난 현대건설, 목표가 줄하향에도 “사라”…대체 왜? [종목Pick]",
+    "generatedAt": "17:49",
+    "headline": "대우건설, 울산 북항 LNG 터미널 3단계 준공",
+    "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 16개 언론사 보도 · 대우건설 관련",
+    "headlineCat": "경쟁사",
     "indicators": [
       {
         "label": "국제유가 (Brent)",
@@ -75,6 +77,91 @@ window.NEWS_DATA = [
           "hot": false
         }
       ],
+      "competitor": [
+        {
+          "text": "SK에코플랜트 대표, KTX 공사 중 숨진 미얀마 노동자 빈소 방문",
+          "source": "뉴스1 · 07/19",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE0zTEZzc3RtWFZmZGpFS2J2VVRkWnNVSWhyNnFVbHE4ZE85Zmh1UjhyM3NNTW1raG1SdjRtRlNOd2cwUGptcGdaaTZRMUVXVmticjNMU2l3bUZoNnM?oc=5",
+          "coverage": 5,
+          "outlets": [
+            "Chosunbiz",
+            "SBS Biz",
+            "경향신문",
+            "뉴스1",
+            "이투데이"
+          ],
+          "hot": true
+        },
+        {
+          "text": "대우건설, 울산 북항 LNG 터미널 3단계 준공",
+          "source": "대한경제 · 07/18",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9yM180X1JHNXl3M2Rwei1BUEpBTnI1aUdJZGdPdFNLVVo2RXBGTU9BZjJzNm45bDZ3cFpVY1pQb2g4cjEwb3VmeEx5WXdCNV9YRkU3cXdCT1FtbWxLRGZsRGEzTHp3OW9aSjhDSHNrQktQQjg?oc=5",
+          "coverage": 16,
+          "outlets": [
+            "Chosunbiz",
+            "edaily.co.kr",
+            "뉴스1",
+            "뉴스핌",
+            "뉴시스",
+            "대한경제",
+            "데일리안",
+            "동아일보"
+          ],
+          "hot": false
+        },
+        {
+          "text": "목표주가 일부 조정됐지만…GS건설, AI 데이터센터로 날아오를까",
+          "source": "연합인포맥스 · 07/19",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5GeXZjSUVTZkxlVmJaLXF2Zi1RS0dkV1Z3aHVTcVZMb0l2Ri1mTGFCRWNwZ3BFWTJUbzRyV2ViZzBnaHRRZ01ybUdYV2NQQ2l6V0tKZHM4OW5mMF9GSjRjejdraGhoSjBOcXR5cm01U1E2cHFm?oc=5",
+          "coverage": 1,
+          "outlets": [
+            "연합인포맥스"
+          ],
+          "hot": false
+        }
+      ],
+      "trend": [
+        {
+          "text": "국민성장펀드 1호 '신안우이 해상풍력' 첫삽…바람소득 시동[하반기 에너지②]",
+          "source": "뉴시스 · 07/18",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1ubmZObW00QV95Zjc4ZUdGQ2ZIcVgzYlhKVEpvTTB5d3NORTA5MDhJakxUNlR3bUpzY2VhVHNlRXNfUTc2a0Q4X0ZWd196dTJPNnM2NHp1RHJUTDNLaE1mMNIBeEFVX3lxTE40YndhLWZFcDc3NVYtbnd3dkFOUWZqU0ZVaW5RY3hValFoRHdpdERFdFJ6RWRHdFhJRWdERlgxcUpLeXg0aU9yQWV2bTgzSEJQajBScmZFeU9ncEc4Zk5pRWtjMm0wVVZWVzBZUjVtQWI5YnJ3c1BTaQ?oc=5",
+          "coverage": 10,
+          "outlets": [
+            "KBS 뉴스",
+            "뉴스1",
+            "뉴스핌",
+            "뉴시스",
+            "머니투데이",
+            "서울경제",
+            "아주경제",
+            "에너지경제신문"
+          ],
+          "hot": false
+        },
+        {
+          "text": "“데이터센터 투자 활발… 건설 활동 증가”",
+          "source": "미주한국일보 · 07/17",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBPMHVFMGNXVWlobXlLVDZkRjlaVldFcjVEaDFEaHo2VU5kcF9Ia1d5MWZYclE2cGlEcV8xTEhpZjlFbVF4dWVCT0VaTENuanlIUGVaWWRwQ090UzVla2Jj?oc=5",
+          "coverage": 4,
+          "outlets": [
+            "KBS 뉴스",
+            "미주한국일보",
+            "연합뉴스",
+            "헤럴드경제"
+          ],
+          "hot": false
+        },
+        {
+          "text": "美 42개주서 AI 데이터센터 반대 시위…\"물이 데이터보다 중요\"",
+          "source": "뉴스1 · 07/19",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBIT2hmWGR0R2JtR1BUS29UOHdXcFZldlVzNEwzdmZLWlZjalZjaGdLZU9yZ3NWM1RPdmRmQWI5dF8tNTdoeTZjWTMyT0FFamxkcFczWGNKY2E?oc=5",
+          "coverage": 1,
+          "outlets": [
+            "뉴스1"
+          ],
+          "hot": false
+        }
+      ],
       "industry": [
         {
           "text": "건협 충북도회-영동군, 지역건설산업 활성화 간담회 개최",
@@ -93,16 +180,6 @@ window.NEWS_DATA = [
           "coverage": 1,
           "outlets": [
             "한겨레"
-          ],
-          "hot": false
-        },
-        {
-          "text": "부동산 토론회 릴레이 속 주택·건설업계 “규제보다 공급” “금융 숨통부터”",
-          "source": "에너지경제신문 · 07/17",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE96bVFiell6UWgyZEFlVVUyWDh1R3dxbnJKQ2lFN2FaMW5kenhQMDlKcUNxZTg3WGFmem5Tb2FCQ3RtUjVTd0VCQVpfc2RyTHFWRTBmbHRxWEdUcmM?oc=5",
-          "coverage": 1,
-          "outlets": [
-            "에너지경제신문"
           ],
           "hot": false
         }
@@ -142,19 +219,19 @@ window.NEWS_DATA = [
       ],
       "geo": [
         {
-          "text": "호르무즈 봉쇄 후 15번째 韓 원유 수송선 홍해 통과",
-          "source": "연합인포맥스 · 07/19",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1YSnRqYU9DNTdHN2lFbms2UmpkNTBpcHB3cDFpbkQ5bGhIenJURzFHbncxLUsxRDg2d25xWE1GeUxHTE5LQWVMMWhhbUFvS1ZjcE0yN0RSNWotUi1zMXI1b0Rpc0o1ZGJJckpHa0ZIQUgxelFV?oc=5",
-          "coverage": 8,
+          "text": "호르무즈 봉쇄 후 15번째 한국선박 홍해 통해 원유 운송",
+          "source": "세계일보 · 07/19",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE04cHlPOGtxTkNsZ0p0TmF6TFNGNXc4ZHBIRC1vWDhEV2ZyZk14U0FkMHJRV2s5amw4NHgxdHBuUnBnZFhiTlk5SldoYWZqS1lrZ3ZwRFZvMHDSAVRBVV95cUxNMVNqUWZ1THZ0V1ZmeVBmR0o0RHVmS3U1Y0FJRUF6c00wUGU0alVOWWtZRHBNRmVBTnh1bElEVmFmc29HT2hMYTc3eWtNYTNoT3dsRjA?oc=5",
+          "coverage": 9,
           "outlets": [
             "SBS Biz",
             "edaily.co.kr",
             "뉴시스",
+            "세계일보",
             "아시아경제",
             "연합뉴스",
             "연합인포맥스",
-            "중앙일보",
-            "헤럴드경제"
+            "중앙일보"
           ],
           "hot": false
         },
@@ -177,10 +254,10 @@ window.NEWS_DATA = [
     "keywords": [
       "한은",
       "이란",
-      "금리",
-      "하락",
-      "봉쇄",
-      "WTI"
+      "신안우이",
+      "울산",
+      "LNG",
+      "북항"
     ],
     "lastWeek": [
       "아카이브가 쌓이면 지난주 요약이 자동으로 표시됩니다."
@@ -201,9 +278,38 @@ window.NEWS_CONFIG = {
         "플랜트 수주"
       ]
     },
+    "competitor": {
+      "label": "경쟁사",
+      "max": 3,
+      "queries": [
+        "삼성물산 건설",
+        "GS건설",
+        "대우건설",
+        "DL이앤씨",
+        "포스코이앤씨",
+        "현대엔지니어링",
+        "롯데건설",
+        "HDC현대산업개발",
+        "SK에코플랜트"
+      ]
+    },
+    "trend": {
+      "label": "핵심상품 트렌드",
+      "max": 3,
+      "queries": [
+        "데이터센터 건설",
+        "양수발전",
+        "해상풍력",
+        "수전해 그린수소",
+        "원자력 발전소",
+        "SAF 지속가능항공유",
+        "SMR 소형모듈원자로",
+        "건설 로보틱스"
+      ]
+    },
     "industry": {
       "label": "건설업계",
-      "max": 3,
+      "max": 2,
       "queries": [
         "건설업계",
         "국토교통부 건설 정책",

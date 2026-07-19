@@ -127,6 +127,32 @@
             line-height: 1.4;
         }
 
+        /* 왜 이게 오늘의 핵심인지 - 사실 기반 후킹 문구 */
+        .hero .hook {
+            margin-top: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #B4531A;
+            background: #FFF3E4;
+            border: 1px solid #F6DCC0;
+            padding: 7px 14px;
+            border-radius: 999px;
+        }
+
+        .hero .hook:empty { display: none; }
+
+        .hero .hook .cat {
+            background: var(--brand);
+            color: #fff;
+            font-size: 10.5px;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 5px;
+        }
+
         .hero .sub {
             margin-top: 12px;
             font-size: 13px;
@@ -171,7 +197,7 @@
         .grid {
             margin-top: 14px;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
             align-items: start;
         }
@@ -479,6 +505,11 @@
             .grid { grid-template-columns: repeat(2, 1fr); }
         }
 
+        /* 큰 모니터에서는 6개를 한 줄에 놓아 스크롤 없이 다 보이게 한다 */
+        @media (min-width: 1800px) {
+            .grid { grid-template-columns: repeat(6, 1fr); }
+        }
+
         @media (max-width: 900px) {
             .stats { grid-template-columns: repeat(2, 1fr); }
             .bottom { grid-template-columns: 1fr; }
@@ -564,6 +595,7 @@
         <section class="hero">
             <span class="kicker" id="kicker">오늘의 핵심</span>
             <h1 id="hl">데이터를 불러오는 중…</h1>
+            <div class="hook" id="hook"></div>
             <div class="sub" id="sub"></div>
             <div class="stats" id="stats"></div>
         </section>
@@ -600,12 +632,15 @@
             var DATA = (window.NEWS_DATA && Array.isArray(window.NEWS_DATA)) ? window.NEWS_DATA.slice() : [];
 
             var CAT = {
-                order:    { icon: '🏆', name: '수주',        c: '#008C46', soft: '#E8F5EE' },
-                industry: { icon: '🏗️', name: '건설업계',    c: '#2563EB', soft: '#E8F0FE' },
-                economy:  { icon: '💰', name: '물가·경제',   c: '#E8760C', soft: '#FDF0E3' },
-                geo:      { icon: '🌍', name: '지정학적 이슈', c: '#7C3AED', soft: '#F1EAFE' }
+                order:      { icon: '🏆', name: '수주',          c: '#008C46', soft: '#E8F5EE' },
+                competitor: { icon: '⚔️', name: '경쟁사',        c: '#B91C4A', soft: '#FCE8EF' },
+                trend:      { icon: '🔬', name: '핵심상품 트렌드', c: '#0E7490', soft: '#E0F4F8' },
+                industry:   { icon: '🏗️', name: '건설업계',      c: '#2563EB', soft: '#E8F0FE' },
+                economy:    { icon: '💰', name: '물가·경제',     c: '#E8760C', soft: '#FDF0E3' },
+                geo:        { icon: '🌍', name: '지정학적 이슈',  c: '#7C3AED', soft: '#F1EAFE' }
             };
-            var ORDER = ['order', 'industry', 'economy', 'geo'];
+            // 견적팀 기준 중요도 순서 (보드에 놓이는 순서이기도 하다)
+            var ORDER = ['order', 'competitor', 'trend', 'industry', 'economy', 'geo'];
 
             // config.json 에서 카테고리 이름을 바꿨으면 보드 표시에도 반영한다
             var CFG = window.NEWS_CONFIG || {};
@@ -658,6 +693,10 @@
                 $('hl').textContent = e.headline || '(핵심 이슈 없음)';
                 $('kicker').textContent =
                     e.date === new Date().toISOString().slice(0, 10) ? '오늘의 핵심' : '해당일 핵심';
+                $('hook').innerHTML = e.headlineNote
+                    ? (e.headlineCat ? '<span class="cat">' + esc(e.headlineCat) + '</span>' : '')
+                        + esc(e.headlineNote)
+                    : '';
                 var n = ORDER.reduce(function (a, k) { return a + ((e.categories || {})[k] || []).length; }, 0);
                 $('sub').textContent = fmtDate(e.date) +
                     (e.generatedAt ? ' · ' + e.generatedAt + ' 갱신' : '') + ' · 뉴스 ' + n + '건';

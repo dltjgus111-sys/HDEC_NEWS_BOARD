@@ -2,10 +2,15 @@ name: 건설 뉴스 보드 자동 갱신
 
 on:
   schedule:
-    # GitHub Actions 의 cron 은 UTC 기준입니다.
-    # 22:30 UTC = 한국시간 07:30. GitHub 스케줄은 혼잡 시 5~20분 밀릴 수 있어
-    # 8시 전에 확실히 끝나도록 30분 여유를 뒀습니다.
-    - cron: "30 22 * * *"
+    # cron 은 UTC 기준입니다 (한국시간 -9시간).
+    #
+    # 실제 기사 발행 시각을 조사한 결과(주요 언론사 261건, 평일 기준):
+    #   07시까지 누적 14.9% / 09시 40건 / 10시 29건 / 14시 23건 / 18시까지 92.7%
+    #   건설 관련 기사는 14시(17건)와 10시(17건)에 가장 많이 나옴
+    #
+    # 그래서 두 번 돌립니다.
+    - cron: "0 22 * * *"   # 07:00 KST - 아침 브리핑 (전날 저녁~새벽 기사)
+    - cron: "30 6 * * 1-5" # 15:30 KST 평일 - 오전 피크 + 14시 건설 피크 반영
   workflow_dispatch: # Actions 탭에서 수동 실행용
 
 # data.js 를 커밋해야 하므로 쓰기 권한 필요
@@ -34,12 +39,36 @@ jobs:
         with:
           python-version: "3.12"
 
+      # 오후 실행은 새 기사가 있을 때만 갱신합니다.
+      # (아침 것과 같은 기사뿐이면 커밋도 재배포도 하지 않습니다)
+      - name: 실행 모드 결정
+        id: mode
+        run: |
+          if [ "${{ github.event.schedule }}" = "30 6 * * 1-5" ]; then
+            echo "args=--only-if-new" >> "$GITHUB_OUTPUT"
+            echo "실행: 오후 2차 (새 기사 있을 때만 갱신)"
+          else
+            echo "args=" >> "$GITHUB_OUTPUT"
+            echo "실행: 아침 1차 (전체 갱신)"
+          fi
+
       - name: 뉴스 수집 및 data.js 생성
+        id: build
         env:
           BOARD_URL: ${{ vars.BOARD_URL }}
-        run: python scripts/build_news.py
+        run: |
+          rm -f email.html notify.txt
+          python scripts/build_news.py ${{ steps.mode.outputs.args }}
+          # 갱신을 건너뛰면 메일 파일이 생기지 않는다 -> 이후 단계를 건너뛰게 표시
+          if [ -f notify.txt ]; then
+            echo "updated=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "updated=no" >> "$GITHUB_OUTPUT"
+            echo "새 기사가 없어 갱신을 건너뜁니다."
+          fi
 
       - name: 변경사항 커밋
+        if: steps.build.outputs.updated == 'yes'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -53,6 +82,7 @@ jobs:
 
       - name: 메일 제목 준비
         id: headline
+        if: steps.build.outputs.updated == 'yes'
         run: |
           {
             echo 'text<<__EOF__'
@@ -64,7 +94,7 @@ jobs:
       # 메일 발송 — 시크릿 3개가 설정된 경우에만 동작합니다.
       # MAIL_USERNAME / MAIL_PASSWORD(Gmail 앱 비밀번호) / MAIL_TO
       - name: 브리핑 메일 발송
-        if: env.MAIL_USERNAME != ''
+        if: env.MAIL_USERNAME != '' && steps.build.outputs.updated == 'yes'
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
