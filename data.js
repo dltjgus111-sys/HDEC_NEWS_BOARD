@@ -6,7 +6,7 @@
 window.NEWS_DATA = [
   {
     "date": "2026-07-19",
-    "generatedAt": "16:36",
+    "generatedAt": "17:01",
     "headline": "[모닝 리포트] \"현대건설 목표가 17만5000원…美 원전·SMR 수주 기대\"",
     "indicators": [
       {
@@ -99,15 +99,15 @@ window.NEWS_DATA = [
       ],
       "geo": [
         {
-          "text": "물길 막히자 트럭 수천 대에 실어 운반⋯중동 원유길 다시 그린다 [호르무즈 전면전 위기 재점화]",
+          "text": "이란, 美 봉쇄 풀린 한 달 새 원유 대거 수출…‘60억달러 실탄’ 확보 [호르무즈 전면전 위기 재점화]",
           "source": "이투데이 · 07/19",
-          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5PNnljSjJCSUM3ZjVBaG5teUFvMU5JbTJHV0RfNTB0X3hVT0s1dkM4dUFzZE5TeGlsU1Jfb3Fwc0V3RDNlT2RYUE9YVmhnR3VFZ09MWg?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9XNDFycWFFYlNkQ1hMWXFnb3dMZFJ1aEtieFI5ZE4wNl90Z1lNcTlzVVdPZHZESjQ5aWRybTJFUEpmZ2I2OURNdjF5RHFBX1dTbE1JMkhIRHEzaWRvWmQybEs0MVBZX2N0V3NWbXA5YnF3TEFC?oc=5",
           "hot": false
         },
         {
-          "text": "호르무즈 봉쇄 후 15번째 韓 원유 수송선 홍해 통과",
-          "source": "연합인포맥스 · 07/19",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1YSnRqYU9DNTdHN2lFbms2UmpkNTBpcHB3cDFpbkQ5bGhIenJURzFHbncxLUsxRDg2d25xWE1GeUxHTE5LQWVMMWhhbUFvS1ZjcE0yN0RSNWotUi1zMXI1b0Rpc0o1ZGJJckpHa0ZIQUgxelFV?oc=5",
+          "text": "물길 막히자 트럭 수천 대에 실어 운반⋯중동 원유길 다시 그린다 [호르무즈 전면전 위기 재점화]",
+          "source": "이투데이 · 07/19",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5PNnljSjJCSUM3ZjVBaG5teUFvMU5JbTJHV0RfNTB0X3hVT0s1dkM4dUFzZE5TeGlsU1Jfb3Fwc0V3RDNlT2RYUE9YVmhnR3VFZ09MWg?oc=5",
           "hot": false
         }
       ]
