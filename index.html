@@ -78,7 +78,52 @@
             letter-spacing: .04em;
         }
 
+        .viewtabs {
+            margin-left: 18px;
+            display: flex;
+            gap: 3px;
+            background: #EDEFF3;
+            padding: 3px;
+            border-radius: 10px;
+        }
+
+        .vt {
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--muted);
+            padding: 7px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .vt.on { background: #fff; color: var(--text); box-shadow: 0 1px 3px rgba(0, 0, 0, .1); }
+
         .tools { margin-left: auto; display: flex; gap: 7px; flex-wrap: wrap; }
+
+        /* 갱신 시각 안내 */
+        .schedule {
+            background: #FFFDF5;
+            border: 1px solid #EFE4C4;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: #6B5A22;
+            line-height: 1.65;
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+        }
+
+        .schedule b { color: #4A3D12; }
+        .schedule .detail { color: #8A7842; }
+        .schedule .ic { font-size: 14px; line-height: 1.4; }
+
+        .view { display: none; }
+        .view.on { display: block; }
 
         .tool {
             border: 1px solid var(--line);
@@ -105,7 +150,7 @@
             border: 1px solid var(--line);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 32px 34px 26px;
+            padding: 22px 28px 20px;
         }
 
         .hero .kicker {
@@ -120,7 +165,7 @@
         }
 
         .hero h1 {
-            margin: 15px 0 0;
+            margin: 11px 0 0;
             font-size: clamp(21px, 2.6vw, 30px);
             font-weight: 900;
             letter-spacing: -.035em;
@@ -129,7 +174,7 @@
 
         /* 왜 이게 오늘의 핵심인지 - 사실 기반 후킹 문구 */
         .hero .hook {
-            margin-top: 13px;
+            margin-top: 10px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -154,7 +199,7 @@
         }
 
         .hero .sub {
-            margin-top: 12px;
+            margin-top: 9px;
             font-size: 13px;
             font-weight: 500;
             color: var(--muted);
@@ -162,7 +207,7 @@
 
         /* 지표 4칸 */
         .stats {
-            margin-top: 24px;
+            margin-top: 16px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
@@ -172,14 +217,14 @@
             background: #FAFBFC;
             border: 1px solid var(--line);
             border-radius: 12px;
-            padding: 15px 16px;
+            padding: 11px 14px;
         }
 
         .stat .k { font-size: 11.5px; font-weight: 700; color: var(--muted); }
 
         .stat .v {
-            margin-top: 8px;
-            font-size: 24px;
+            margin-top: 6px;
+            font-size: 21px;
             font-weight: 900;
             letter-spacing: -.04em;
             line-height: 1;
@@ -187,7 +232,7 @@
 
         .stat .v span { font-size: 12px; font-weight: 700; color: var(--muted); margin-left: 3px; }
 
-        .stat .d { margin-top: 8px; font-size: 11.5px; font-weight: 800; }
+        .stat .d { margin-top: 6px; font-size: 11.5px; font-weight: 800; }
         .stat .d.up { color: var(--up); }
         .stat .d.down { color: var(--down); }
         .stat .d.flat { color: var(--muted); }
@@ -343,15 +388,15 @@
 
         /* ============ 오늘의 키워드 ============ */
         .kwbar {
-            margin-top: 12px;
+            margin-top: 10px;
             background: var(--card);
             border: 1px solid var(--line);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 17px 22px;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
         }
 
@@ -381,7 +426,7 @@
             border: 1px solid var(--line);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            padding: 24px 26px;
+            padding: 18px 22px;
         }
 
         .panel h3 {
@@ -417,6 +462,99 @@
             font-weight: 500;
             color: var(--muted);
         }
+
+        /* ============ 스크랩 ============ */
+        .scrapbar {
+            display: flex; align-items: center; gap: 12px;
+            flex-wrap: wrap; margin: 14px 0;
+        }
+
+        .chipline { display: flex; gap: 6px; flex-wrap: wrap; }
+        .scrapacts { margin-left: auto; display: flex; gap: 7px; }
+
+        .fchip {
+            border: 1px solid var(--line); background: #fff;
+            border-radius: 999px; padding: 7px 14px;
+            font-family: inherit; font-size: 12.5px; font-weight: 700;
+            color: var(--muted); cursor: pointer;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+
+        .fchip .sw { width: 9px; height: 9px; border-radius: 50%; }
+        .fchip.on { background: var(--text); border-color: var(--text); color: #fff; }
+
+        .scgroup { margin-bottom: 22px; }
+
+        .scgroup > .gh {
+            font-size: 12px; font-weight: 900; color: var(--muted);
+            margin-bottom: 9px; letter-spacing: -.02em;
+        }
+
+        .scitem {
+            background: #fff; border: 1px solid var(--line);
+            border-left: 4px solid var(--sec, var(--brand));
+            border-radius: 12px; padding: 15px 18px; margin-bottom: 8px;
+            display: flex; align-items: flex-start; gap: 14px;
+        }
+
+        .scitem .body { flex: 1; min-width: 0; }
+        .scitem h4 { margin: 0; font-size: 14px; font-weight: 700; line-height: 1.55; letter-spacing: -.02em; }
+        .scitem .m { margin-top: 8px; font-size: 11px; font-weight: 600; color: var(--muted); display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+        .scitem .m a { color: var(--sec, var(--brand)); text-decoration: none; font-weight: 800; }
+
+        .scitem .del {
+            border: 1px solid var(--line); background: #fff; color: var(--muted);
+            border-radius: 8px; padding: 6px 10px; font-family: inherit;
+            font-size: 11.5px; font-weight: 800; cursor: pointer; white-space: nowrap;
+        }
+
+        .scitem .del:hover { border-color: var(--up); color: var(--up); }
+
+        .scempty {
+            background: #fff; border: 1px dashed var(--line); border-radius: var(--radius);
+            padding: 44px 24px; text-align: center; color: var(--muted);
+            font-size: 13px; font-weight: 600; line-height: 1.8;
+        }
+
+        /* 보드 카드 안의 스크랩 버튼 (관리자 로그인 시에만 노출) */
+        .scrapbtn {
+            border: 1px solid var(--line); background: #fff; color: var(--muted);
+            border-radius: 7px; padding: 4px 9px; font-family: inherit;
+            font-size: 11px; font-weight: 800; cursor: pointer; margin-left: 6px;
+        }
+
+        .scrapbtn:hover { border-color: var(--sec); color: var(--sec); }
+        .scrapbtn.done { background: var(--sec); border-color: var(--sec); color: #fff; }
+
+        /* ============ 통계 ============ */
+        .stgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .stwide { grid-column: 1 / -1; }
+
+        .panel .cap {
+            margin: 12px 0 0; font-size: 11.5px; line-height: 1.7;
+            color: var(--muted); font-weight: 500;
+        }
+
+        /* 가로 막대 - 6개 카테고리 비교. 길이로 크기, 색은 정체성 */
+        .hbar { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+        .hbar .lb { width: 92px; font-size: 11.5px; font-weight: 700; text-align: right; flex: none; }
+        .hbar .track { flex: 1; height: 22px; background: #F3F4F7; border-radius: 4px; overflow: hidden; }
+        .hbar .fill { height: 100%; border-radius: 0 4px 4px 0; }
+        .hbar .vl { width: 34px; font-size: 12px; font-weight: 800; flex: none; }
+
+        /* 시간대 막대 - 단일 색(크기는 높이로 표현) */
+        .hours { display: flex; align-items: flex-end; gap: 2px; height: 116px; margin-top: 6px; }
+        .hours .h { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+        .hours .h .b { background: var(--brand); border-radius: 3px 3px 0 0; min-height: 2px; }
+        .hours .h.peak .b { background: #005E2F; }
+        .hours .h .t { font-size: 8.5px; color: var(--muted); text-align: center; margin-top: 4px; font-weight: 700; }
+
+        .lchart { margin-top: 4px; }
+        .lchart svg { width: 100%; height: 150px; display: block; overflow: visible; }
+
+        .tblnote { margin-top: 12px; font-size: 11px; color: var(--muted); font-weight: 500; }
+
+        @media (max-width: 900px) { .stgrid { grid-template-columns: 1fr; } }
 
         .toast {
             position: fixed; left: 50%; bottom: 28px;
@@ -505,8 +643,10 @@
             .grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* 큰 모니터에서는 6개를 한 줄에 놓아 스크롤 없이 다 보이게 한다 */
-        @media (min-width: 1800px) {
+        /* 6개를 한 줄에 놓아야 세로가 줄어 한 화면에 들어온다.
+           실측: 1440px 화면에서 3열이면 1121px(스크롤 필요), 6열이면 920px.
+           카드 폭이 223px까지 좁아지지만 제목이 잘리지는 않는 것을 확인했다. */
+        @media (min-width: 1400px) {
             .grid { grid-template-columns: repeat(6, 1fr); }
         }
 
@@ -534,12 +674,21 @@
 <body>
     <div class="topbar">
         <span class="logo"><span class="mark">HDEC</span>건설 뉴스 브리핑</span>
+        <div class="viewtabs">
+            <button class="vt on" data-v="board">보드</button>
+            <button class="vt" data-v="scrap">스크랩</button>
+            <button class="vt" data-v="stats">통계</button>
+        </div>
         <div class="tools">
             <select class="tool" id="dsel" title="지난 브리핑"></select>
             <button class="tool" id="bcopy">요약 복사</button>
             <button class="tool" id="bprint">인쇄 / PDF</button>
             <button class="tool" id="badmin">관리자</button>
         </div>
+    </div>
+
+    <div class="wrap">
+        <div class="schedule" id="sched"></div>
     </div>
 
     <!-- 관리자: 비밀번호 -->
@@ -592,52 +741,113 @@
     </div>
 
     <div class="wrap">
-        <section class="hero">
-            <span class="kicker" id="kicker">오늘의 핵심</span>
-            <h1 id="hl">데이터를 불러오는 중…</h1>
-            <div class="hook" id="hook"></div>
-            <div class="sub" id="sub"></div>
-            <div class="stats" id="stats"></div>
-        </section>
+        <!-- ============ 보드 ============ -->
+        <div class="view on" id="v-board">
+            <section class="hero">
+                <span class="kicker" id="kicker">오늘의 핵심</span>
+                <h1 id="hl">데이터를 불러오는 중…</h1>
+                <div class="hook" id="hook"></div>
+                <div class="sub" id="sub"></div>
+                <div class="stats" id="stats"></div>
+            </section>
 
-        <div class="grid" id="grid"></div>
+            <div class="grid" id="grid"></div>
 
-        <div class="kwbar">
-            <span class="t">오늘의 키워드</span>
-            <span id="kw"></span>
+            <div class="kwbar">
+                <span class="t">오늘의 키워드</span>
+                <span id="kw"></span>
+            </div>
+
+            <div class="bottom">
+                <div class="panel">
+                    <h3>📅 지난주 돌아보기</h3>
+                    <ol id="lw"></ol>
+                </div>
+                <div class="panel fc">
+                    <h3>🔭 다음주 전망</h3>
+                    <p id="ol">-</p>
+                </div>
+            </div>
         </div>
 
-        <div class="bottom">
-            <div class="panel">
-                <h3>📅 지난주 돌아보기</h3>
-                <ol id="lw"></ol>
+        <!-- ============ 스크랩 ============ -->
+        <div class="view" id="v-scrap">
+            <section class="hero">
+                <span class="kicker">스크랩 보관함</span>
+                <h1 id="sc-count">0건</h1>
+                <div class="sub" id="sc-sub">관리자가 골라 모아둔 기사입니다.</div>
+            </section>
+
+            <div class="scrapbar">
+                <div class="chipline" id="sc-filter"></div>
+                <div class="scrapacts">
+                    <button class="tool" id="sc-export">scraps.js 내보내기</button>
+                    <button class="tool" id="sc-copy">목록 복사</button>
+                </div>
             </div>
-            <div class="panel fc">
-                <h3>🔭 다음주 전망</h3>
-                <p id="ol">-</p>
+
+            <div class="note" id="sc-guide" style="margin:0 0 14px">
+                <b>스크랩을 영구 보관하려면</b> — 방금 담은 스크랩은 지금 이 브라우저에만 저장됩니다.
+                <code>scraps.js 내보내기</code> → GitHub 저장소의 <code>scraps.js</code>에 덮어쓰면
+                모두가 보는 보관함이 되고, 다른 PC에서도 보입니다.
+            </div>
+
+            <div id="sc-list"></div>
+        </div>
+
+        <!-- ============ 통계 ============ -->
+        <div class="view" id="v-stats">
+            <section class="hero">
+                <span class="kicker">뉴스 리포트</span>
+                <h1 id="st-total">0</h1>
+                <div class="sub" id="st-sub"></div>
+            </section>
+
+            <div class="stgrid">
+                <div class="panel">
+                    <h3>📊 카테고리별 수집 기사</h3>
+                    <div id="st-cat"></div>
+                </div>
+                <div class="panel">
+                    <h3>🕘 기사 발행 시간대</h3>
+                    <div id="st-hour"></div>
+                    <p class="cap" id="st-hourcap"></p>
+                </div>
+                <div class="panel stwide">
+                    <h3>📈 일자별 수집 추이</h3>
+                    <div id="st-line"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="foot">
-        <span>매일 오전 GitHub Actions 자동 갱신 · 뉴스 출처 Google News (주요 언론사 한정)</span>
+        <span>GitHub Actions 자동 갱신 · 뉴스 출처 Google News (주요 언론사 한정)</span>
         <span id="cnt"></span>
     </div>
 
     <div class="toast" id="toast"></div>
 
     <script src="data.js" charset="utf-8"></script>
+    <!-- 관리자가 커밋한 영구 스크랩 보관함. data.js 와 같은 이유로 .json 이 아닌 .js 입니다
+         (file:// 로 열면 fetch 가 CORS 에 막히지만 script 태그는 로드됩니다) -->
+    <script src="scraps.js" charset="utf-8"></script>
     <script>
         (function () {
             var DATA = (window.NEWS_DATA && Array.isArray(window.NEWS_DATA)) ? window.NEWS_DATA.slice() : [];
 
+            /* 색 순서는 색약 검증(OKLab ΔE, Machado 2009 시뮬)을 통과한 조합입니다.
+               인접쌍 최저 ΔE 14.6(deutan), 정상시야 최저 28.1, 흰 배경 대비 전부 3:1 이상.
+               순서를 바꾸면 인접쌍이 달라져 검증이 무효가 되니 함부로 재배열하지 마세요.
+               원래 쓰던 경쟁사 크림슨(#B91C4A)은 수주 그린과 적록색약에서 ΔE 3.7로
+               구분이 안 돼(하한 6.0) 블루로 교체했습니다. */
             var CAT = {
-                order:      { icon: '🏆', name: '수주',          c: '#008C46', soft: '#E8F5EE' },
-                competitor: { icon: '⚔️', name: '경쟁사',        c: '#B91C4A', soft: '#FCE8EF' },
-                trend:      { icon: '🔬', name: '핵심상품 트렌드', c: '#0E7490', soft: '#E0F4F8' },
-                industry:   { icon: '🏗️', name: '건설업계',      c: '#2563EB', soft: '#E8F0FE' },
-                economy:    { icon: '💰', name: '물가·경제',     c: '#E8760C', soft: '#FDF0E3' },
-                geo:        { icon: '🌍', name: '지정학적 이슈',  c: '#7C3AED', soft: '#F1EAFE' }
+                order:      { icon: '🏆', name: '수주',          c: '#008C46', soft: '#E6F4EC' },
+                competitor: { icon: '⚔️', name: '경쟁사',        c: '#2563EB', soft: '#E8F0FE' },
+                trend:      { icon: '🔬', name: '핵심상품 트렌드', c: '#D9660A', soft: '#FCEFE2' },
+                industry:   { icon: '🏗️', name: '건설업계',      c: '#7C3AED', soft: '#F1EAFE' },
+                economy:    { icon: '💰', name: '물가·경제',     c: '#B91C4A', soft: '#FCE8EF' },
+                geo:        { icon: '🌍', name: '지정학적 이슈',  c: '#0E9BA8', soft: '#E0F5F7' }
             };
             // 견적팀 기준 중요도 순서 (보드에 놓이는 순서이기도 하다)
             var ORDER = ['order', 'competitor', 'trend', 'industry', 'economy', 'geo'];
@@ -677,6 +887,18 @@
 
             /* 몇 개 언론사가 같은 사건을 다뤘는지 = 신뢰도 신호.
                건설 뉴스는 대개 1~2개사만 다루므로 '단독'도 그대로 싣고 표시만 구분한다. */
+            /* 스크랩 버튼 - 관리자로 로그인했을 때만 보인다.
+               (보관함 자체는 누구나 볼 수 있고, 담는 것만 관리자 권한) */
+            var isAdmin = false;
+
+            function scrapBtn(it, catKey) {
+                if (!isAdmin || !safeUrl(it.url)) return '';
+                var done = isScrapped(it.url);
+                return '<button class="scrapbtn' + (done ? ' done' : '') + '" data-scrap="'
+                    + esc(it.url) + '" data-cat="' + esc(catKey) + '">'
+                    + (done ? '✓ 스크랩됨' : '+ 스크랩') + '</button>';
+            }
+
             function covBadge(it) {
                 var n = it.coverage || 1;
                 if (n >= 2) {
@@ -732,6 +954,7 @@
                             + '<div class="meta">' + covBadge(it) + ' '
                             + esc(s2.press) + (s2.when ? ' · ' + esc(s2.when) : '') + '</div>'
                             + (u2 ? '<a href="' + esc(u2) + '" target="_blank" rel="noopener noreferrer">원문 →</a>' : '')
+                            + scrapBtn(it, k)
                             + '</div>';
                     }).join('');
 
@@ -744,8 +967,11 @@
                         + '<div class="meta">' + (top.hot ? '<span class="hotbadge">주목</span>' : '')
                         + covBadge(top) + '<span>' + esc(s.press)
                         + (s.when ? ' · ' + esc(s.when) : '') + '</span></div>'
-                        + (u ? '<a class="go" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">'
-                            + '원문 보기 →</a>' : '')
+                        + '<div style="margin-top:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap">'
+                        + (u ? '<a class="go" style="margin:0" href="' + esc(u)
+                            + '" target="_blank" rel="noopener noreferrer">원문 보기 →</a>' : '')
+                        + scrapBtn(top, k)
+                        + '</div>'
                         + '</div>'
                         + (rest.length
                             ? '<div class="rest">' + restHtml + '</div>'
@@ -799,6 +1025,34 @@
             }
 
             DATA.sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); });
+
+            // 카드 안 스크랩 버튼
+            $('grid').addEventListener('click', function (ev) {
+                var sb = ev.target.closest('[data-scrap]');
+                if (!sb) return;
+                ev.preventDefault();
+                var url = sb.getAttribute('data-scrap');
+                var cat = sb.getAttribute('data-cat');
+                if (isScrapped(url)) {
+                    removeScrap(url);
+                    sb.classList.remove('done');
+                    sb.textContent = '+ 스크랩';
+                    toast('스크랩에서 뺐습니다');
+                } else {
+                    var found = null;
+                    ORDER.forEach(function (k) {
+                        ((DATA[+$('dsel').value] || {}).categories || {})[k] &&
+                            DATA[+$('dsel').value].categories[k].forEach(function (x) {
+                                if (x.url === url) found = x;
+                            });
+                    });
+                    if (!found) { toast('기사를 찾지 못했습니다'); return; }
+                    addScrap(found, cat);
+                    sb.classList.add('done');
+                    sb.textContent = '✓ 스크랩됨';
+                    toast('스크랩에 담았습니다');
+                }
+            });
 
             // 카드 제자리 펼치기 (페이지 이동 없이 한 화면 유지)
             $('grid').addEventListener('click', function (ev) {
@@ -913,9 +1167,13 @@
 
             function tryLogin() {
                 if ($('pw').value === ADMIN_PW) {
+                    isAdmin = true;
+                    $('badmin').textContent = '관리자 ✓';
+                    render(DATA[+$('dsel').value]);   // 스크랩 버튼이 나타나도록 다시 그린다
                     show('m-login', false);
                     fillAdmin();
                     show('m-admin', true);
+                    toast('관리자 모드 - 기사마다 [스크랩] 버튼이 나타납니다');
                 } else {
                     $('pw-err').textContent = '비밀번호가 다릅니다';
                 }
@@ -952,6 +1210,289 @@
             document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') { show('m-login', false); show('m-admin', false); }
             });
+
+            /* ================= 갱신 시각 안내 ================= */
+            /* 실제 기사 발행 시각을 조사한 결과를 근거로 적는다 (임의 문구가 아님) */
+            $('sched').innerHTML =
+                '<span class="ic">🕐</span><span>'
+                + '<b>매일 오전 7시 · 평일 오후 3시 30분 자동 갱신</b> '
+                + '<span class="detail">— 주요 언론사 발행량을 실측해 보니 오전 7시까지는 하루치의 15%뿐이고 '
+                + '<b>오전 9~10시와 오후 2시</b>에 몰립니다(건설 기사는 오후 2시가 최다). '
+                + '그래서 아침(전날 기사 중심)·오후(당일 기사 반영) 두 번으로 나눴습니다.</span>'
+                + '</span>';
+
+            /* ================= 화면 전환 ================= */
+            var VIEWS = { board: 'v-board', scrap: 'v-scrap', stats: 'v-stats' };
+
+            function switchView(v) {
+                Object.keys(VIEWS).forEach(function (k) {
+                    $(VIEWS[k]).classList.toggle('on', k === v);
+                });
+                Array.prototype.forEach.call(document.querySelectorAll('.vt'), function (b) {
+                    b.classList.toggle('on', b.getAttribute('data-v') === v);
+                });
+                // 보드 전용 도구는 보드에서만 의미가 있다
+                ['dsel', 'bcopy'].forEach(function (id) {
+                    $(id).style.display = v === 'board' ? '' : 'none';
+                });
+                if (v === 'scrap') renderScraps();
+                if (v === 'stats') renderStats();
+            }
+
+            Array.prototype.forEach.call(document.querySelectorAll('.vt'), function (b) {
+                b.addEventListener('click', function () { switchView(b.getAttribute('data-v')); });
+            });
+
+            /* ================= 스크랩 ================= */
+            /* 저장소가 없는 정적 페이지라 두 겹으로 둔다.
+               - scraps.json (저장소에 커밋된 것)  = 모두가 보는 영구 보관함
+               - localStorage                     = 지금 브라우저에서 방금 담은 것
+               관리자가 [scraps.js 내보내기]로 합쳐 커밋하면 영구 보관된다. */
+            var SC_KEY = 'hec_news_scraps_v1';
+            var scFilter = 'all';
+
+            function loadLocalScraps() {
+                try { return JSON.parse(localStorage.getItem(SC_KEY) || '[]'); }
+                catch (e) { return []; }
+            }
+
+            function saveLocalScraps(a) {
+                try { localStorage.setItem(SC_KEY, JSON.stringify(a)); }
+                catch (e) { toast('브라우저 저장 공간이 가득 찼습니다'); }
+            }
+
+            function allScraps() {
+                var committed = (window.NEWS_SCRAPS && Array.isArray(window.NEWS_SCRAPS))
+                    ? window.NEWS_SCRAPS : [];
+                var local = loadLocalScraps();
+                var seen = {}, out = [];
+                committed.concat(local).forEach(function (s) {
+                    if (!s || !s.url || seen[s.url]) return;
+                    seen[s.url] = 1;
+                    out.push(s);
+                });
+                out.sort(function (a, b) {
+                    return String(b.scrappedAt || '').localeCompare(String(a.scrappedAt || ''));
+                });
+                return out;
+            }
+
+            function isScrapped(url) {
+                return allScraps().some(function (s) { return s.url === url; });
+            }
+
+            function addScrap(it, catKey) {
+                var local = loadLocalScraps();
+                if (local.some(function (s) { return s.url === it.url; })) return;
+                local.push({
+                    text: it.text, url: it.url, source: it.source,
+                    cat: catKey, coverage: it.coverage || 1,
+                    scrappedAt: new Date().toISOString().slice(0, 10)
+                });
+                saveLocalScraps(local);
+            }
+
+            function removeScrap(url) {
+                saveLocalScraps(loadLocalScraps().filter(function (s) { return s.url !== url; }));
+            }
+
+            function renderScraps() {
+                var list = allScraps();
+                var shown = scFilter === 'all'
+                    ? list : list.filter(function (s) { return s.cat === scFilter; });
+
+                $('sc-count').textContent = list.length + '건';
+                var committed = (window.NEWS_SCRAPS || []).length;
+                $('sc-sub').textContent = '저장소 보관 ' + committed + '건 · 이 브라우저 '
+                    + loadLocalScraps().length + '건';
+
+                // 카테고리 필터
+                var counts = {};
+                list.forEach(function (s) { counts[s.cat] = (counts[s.cat] || 0) + 1; });
+                $('sc-filter').innerHTML =
+                    '<button class="fchip' + (scFilter === 'all' ? ' on' : '') + '" data-f="all">전체 '
+                    + list.length + '</button>'
+                    + ORDER.filter(function (k) { return counts[k]; }).map(function (k) {
+                        return '<button class="fchip' + (scFilter === k ? ' on' : '') + '" data-f="' + k + '">'
+                            + '<span class="sw" style="background:' + CAT[k].c + '"></span>'
+                            + CAT[k].name + ' ' + counts[k] + '</button>';
+                    }).join('');
+
+                if (!shown.length) {
+                    $('sc-list').innerHTML = '<div class="scempty">'
+                        + (list.length ? '이 카테고리에는 스크랩이 없습니다.'
+                            : '아직 스크랩한 기사가 없습니다.<br>'
+                            + '<b>관리자로 로그인하면</b> 보드의 각 기사에 [스크랩] 버튼이 나타납니다.')
+                        + '</div>';
+                    return;
+                }
+
+                // 스크랩한 날짜별로 묶어 보여준다
+                var groups = {};
+                shown.forEach(function (s) {
+                    var d = s.scrappedAt || '날짜 미상';
+                    (groups[d] = groups[d] || []).push(s);
+                });
+
+                $('sc-list').innerHTML = Object.keys(groups).sort().reverse().map(function (d) {
+                    return '<div class="scgroup"><div class="gh">' + esc(fmtDate(d))
+                        + ' · ' + groups[d].length + '건</div>'
+                        + groups[d].map(function (s) {
+                            var m = CAT[s.cat] || { c: '#666', name: s.cat || '기타' };
+                            var u = safeUrl(s.url);
+                            return '<div class="scitem" style="--sec:' + m.c + '">'
+                                + '<div class="body"><h4>' + esc(s.text) + '</h4>'
+                                + '<div class="m"><span class="cov '
+                                + ((s.coverage || 1) >= 2 ? 'multi">' + s.coverage + '개사 보도' : 'solo">단독')
+                                + '</span><span>' + esc(m.name) + '</span><span>' + esc(s.source || '') + '</span>'
+                                + (u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">원문 →</a>' : '')
+                                + '</div></div>'
+                                + '<button class="del" data-del="' + esc(s.url) + '">삭제</button></div>';
+                        }).join('') + '</div>';
+                }).join('');
+            }
+
+            $('sc-filter').addEventListener('click', function (ev) {
+                var b = ev.target.closest('[data-f]');
+                if (!b) return;
+                scFilter = b.getAttribute('data-f');
+                renderScraps();
+            });
+
+            $('sc-list').addEventListener('click', function (ev) {
+                var b = ev.target.closest('[data-del]');
+                if (!b) return;
+                var url = b.getAttribute('data-del');
+                if ((window.NEWS_SCRAPS || []).some(function (s) { return s.url === url; })) {
+                    toast('저장소에 커밋된 스크랩입니다. 내보내기 후 GitHub 에서 지워주세요');
+                    return;
+                }
+                removeScrap(url);
+                renderScraps();
+                toast('삭제했습니다');
+            });
+
+            $('sc-export').addEventListener('click', function () {
+                var txt = '/* 관리자 스크랩 영구 보관함 - 보드판에서 내보낸 파일입니다.\n'
+                    + ' * GitHub 저장소의 scraps.js 에 덮어쓰고 커밋하면 모두가 보게 됩니다.\n'
+                    + ' * 내보낸 시각: ' + new Date().toLocaleString('ko-KR') + '\n */\n'
+                    + 'window.NEWS_SCRAPS = ' + JSON.stringify(allScraps(), null, 2) + ';\n';
+                var url = URL.createObjectURL(new Blob([txt], { type: 'text/javascript' }));
+                var a = document.createElement('a');
+                a.href = url; a.download = 'scraps.js';
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+                setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+                toast('scraps.js 를 받았습니다 - GitHub 에 덮어쓰세요');
+            });
+
+            $('sc-copy').addEventListener('click', function () {
+                var t = allScraps().map(function (s) {
+                    return '- [' + ((CAT[s.cat] || {}).name || s.cat) + '] ' + s.text
+                        + ' (' + (s.source || '') + ') ' + s.url;
+                }).join('\n');
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(t).then(
+                        function () { toast('스크랩 목록을 복사했습니다'); },
+                        function () { toast('복사 실패'); });
+                }
+            });
+
+            /* ================= 통계 ================= */
+            function renderStats() {
+                var days = DATA.slice(0, 30);
+                var totals = {}, total = 0;
+                ORDER.forEach(function (k) { totals[k] = 0; });
+                days.forEach(function (e) {
+                    ORDER.forEach(function (k) {
+                        var n = ((e.categories || {})[k] || []).length;
+                        totals[k] += n; total += n;
+                    });
+                });
+
+                $('st-total').textContent = total + '건';
+                $('st-sub').textContent = '최근 ' + days.length + '일간 수집한 기사입니다. '
+                    + (days.length < 3 ? '며칠 쌓이면 추이가 더 잘 보입니다.' : '');
+
+                // 카테고리별 - 가로 막대 (순서 고정: 색이 순위를 따라가면 안 됨)
+                var mx = Math.max.apply(null, ORDER.map(function (k) { return totals[k]; }).concat([1]));
+                $('st-cat').innerHTML = ORDER.map(function (k) {
+                    var pct = total ? Math.round(totals[k] / total * 100) : 0;
+                    return '<div class="hbar"><span class="lb">' + esc(CAT[k].name) + '</span>'
+                        + '<span class="track"><span class="fill" style="width:'
+                        + (totals[k] / mx * 100) + '%;background:' + CAT[k].c + '"></span></span>'
+                        + '<span class="vl">' + totals[k] + '</span>'
+                        + '<span style="font-size:11px;color:var(--muted);font-weight:700">' + pct + '%</span></div>';
+                }).join('');
+
+                // 시간대별 - 후보 기사 발행 시각 히스토그램 합산
+                var hist = new Array(24).fill(0), pool = 0;
+                days.forEach(function (e) {
+                    (e.hourHistogram || []).forEach(function (n, h) { hist[h] += n; });
+                    pool += e.poolSize || 0;
+                });
+                var hmax = Math.max.apply(null, hist.concat([1]));
+                var peak = hist.indexOf(hmax);
+                $('st-hour').innerHTML = '<div class="hours">' + hist.map(function (n, h) {
+                    return '<div class="h' + (h === peak ? ' peak' : '') + '" title="'
+                        + h + '시 ' + n + '건"><span class="b" style="height:'
+                        + (n / hmax * 100) + '%"></span>'
+                        + '<span class="t">' + (h % 6 === 0 ? h : '') + '</span></div>';
+                }).join('') + '</div>';
+                var am = hist.slice(6, 12).reduce(function (a, b) { return a + b; }, 0);
+                $('st-hourcap').textContent = pool
+                    ? '표본 ' + pool.toLocaleString() + '건 · 가장 많이 나온 시간대는 '
+                        + peak + '시입니다. 오전(6~12시)이 전체의 '
+                        + Math.round(am / Math.max(pool, 1) * 100) + '%를 차지합니다.'
+                    : '데이터가 쌓이면 표시됩니다.';
+
+                // 일자별 추이 - 선 그래프 (단일 계열이라 범례 불필요)
+                var series = days.slice().reverse().map(function (e) {
+                    return {
+                        d: e.date,
+                        n: ORDER.reduce(function (a, k) { return a + ((e.categories || {})[k] || []).length; }, 0)
+                    };
+                });
+                if (series.length < 2) {
+                    $('st-line').innerHTML = '<div class="tblnote">이틀 이상 쌓이면 추이 그래프가 나타납니다. '
+                        + '현재 ' + series.length + '일치.</div>';
+                    return;
+                }
+                var W = 900, H = 150, P = 26;
+                var vmax = Math.max.apply(null, series.map(function (s) { return s.n; }).concat([1]));
+                var pts = series.map(function (s, i) {
+                    return [P + i * (W - P * 2) / (series.length - 1),
+                            H - P - (s.n / vmax) * (H - P * 2)];
+                });
+                var path = pts.map(function (p, i) {
+                    return (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+                }).join(' ');
+                $('st-line').innerHTML = '<div class="lchart"><svg viewBox="0 0 ' + W + ' ' + H
+                    + '" role="img" aria-label="일자별 수집 기사 수 추이">'
+                    + '<line x1="' + P + '" y1="' + (H - P) + '" x2="' + (W - P) + '" y2="' + (H - P)
+                    + '" stroke="#E7E9EF" stroke-width="1"/>'
+                    + '<path d="' + path + '" fill="none" stroke="#008C46" stroke-width="2" '
+                    + 'stroke-linejoin="round" stroke-linecap="round"/>'
+                    + pts.map(function (p, i) {
+                        return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1)
+                            + '" r="4" fill="#fff" stroke="#008C46" stroke-width="2"><title>'
+                            + esc(series[i].d) + ' · ' + series[i].n + '건</title></circle>';
+                    }).join('')
+                    + pts.map(function (p, i) {
+                        // 첫·끝·최댓값만 직접 라벨 (모든 점에 숫자를 붙이지 않는다)
+                        if (i !== 0 && i !== pts.length - 1 && series[i].n !== vmax) return '';
+                        return '<text x="' + p[0].toFixed(1) + '" y="' + (p[1] - 11).toFixed(1)
+                            + '" font-size="11" font-weight="700" fill="#191C24" text-anchor="middle">'
+                            + series[i].n + '</text>';
+                    }).join('')
+                    + series.map(function (s, i) {
+                        if (series.length > 8 && i % Math.ceil(series.length / 6) !== 0
+                            && i !== series.length - 1) return '';
+                        return '<text x="' + pts[i][0].toFixed(1) + '" y="' + (H - P + 15)
+                            + '" font-size="10" fill="#79808F" text-anchor="middle">'
+                            + esc(s.d.slice(5)) + '</text>';
+                    }).join('')
+                    + '</svg></div>';
+            }
 
             render(DATA[0]);
         })();

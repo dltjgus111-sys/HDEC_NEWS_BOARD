@@ -86,6 +86,7 @@ BLOCK_WORDS = ["분양광고", "협찬", "특별기고", "부고", "인사말"]
 ALLOWED_PRESS = []
 _press_dropped = {}
 _pool_titles = []   # 키워드 추출용 - 필터를 통과한 후보 기사 제목 전체
+_pool_hours = []    # 통계용 - 후보 기사들의 발행 시각(KST 시)
 
 
 def load_config():
@@ -241,7 +242,8 @@ def build_category(key, spec, used_keys):
         log(f"  - {q}: {len(got)}건")
         pool.extend(got)
 
-    _pool_titles.extend(a["title"] for a in pool)   # 키워드 추출용 표본
+    _pool_titles.extend(a["title"] for a in pool)              # 키워드 추출용 표본
+    _pool_hours.extend(a["pub"].astimezone(KST).hour for a in pool)  # 시간대 통계용
     pool.sort(key=lambda a: a["score"], reverse=True)
 
     # --- 같은 사건끼리 묶어 '몇 개 언론사가 다뤘나'를 센다 ---
@@ -645,6 +647,10 @@ def main():
         "headlineCat": headline_cat,
         "indicators": indicators,
         "categories": categories,
+        # 통계용: 후보 기사들이 몇 시에 발행됐는지 24칸 히스토그램.
+        # 보드에 실린 15건만으로는 표본이 작아 후보 전체(100건 이상)를 센다.
+        "hourHistogram": [_pool_hours.count(h) for h in range(24)],
+        "poolSize": len(_pool_hours),
         "keywords": extract_keywords(
             _pool_titles, [q for v in cats_cfg.values() for q in v.get("queries", [])]),
         "lastWeek": last_week or ["아카이브가 쌓이면 지난주 요약이 자동으로 표시됩니다."],

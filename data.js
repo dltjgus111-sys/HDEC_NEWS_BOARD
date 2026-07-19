@@ -6,9 +6,9 @@
 window.NEWS_DATA = [
   {
     "date": "2026-07-19",
-    "generatedAt": "17:49",
-    "headline": "대우건설, 울산 북항 LNG 터미널 3단계 준공",
-    "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 16개 언론사 보도 · 대우건설 관련",
+    "generatedAt": "18:04",
+    "headline": "SK에코플랜트 대표, KTX 공사 중 숨진 미얀마 노동자 빈소 방문",
+    "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 6개 언론사 보도 · SK에코플랜트 관련",
     "headlineCat": "경쟁사",
     "indicators": [
       {
@@ -82,13 +82,14 @@ window.NEWS_DATA = [
           "text": "SK에코플랜트 대표, KTX 공사 중 숨진 미얀마 노동자 빈소 방문",
           "source": "뉴스1 · 07/19",
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE0zTEZzc3RtWFZmZGpFS2J2VVRkWnNVSWhyNnFVbHE4ZE85Zmh1UjhyM3NNTW1raG1SdjRtRlNOd2cwUGptcGdaaTZRMUVXVmticjNMU2l3bUZoNnM?oc=5",
-          "coverage": 5,
+          "coverage": 6,
           "outlets": [
             "Chosunbiz",
             "SBS Biz",
             "경향신문",
             "뉴스1",
-            "이투데이"
+            "이투데이",
+            "파이낸셜뉴스"
           ],
           "hot": true
         },
@@ -125,7 +126,7 @@ window.NEWS_DATA = [
           "text": "국민성장펀드 1호 '신안우이 해상풍력' 첫삽…바람소득 시동[하반기 에너지②]",
           "source": "뉴시스 · 07/18",
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1ubmZObW00QV95Zjc4ZUdGQ2ZIcVgzYlhKVEpvTTB5d3NORTA5MDhJakxUNlR3bUpzY2VhVHNlRXNfUTc2a0Q4X0ZWd196dTJPNnM2NHp1RHJUTDNLaE1mMNIBeEFVX3lxTE40YndhLWZFcDc3NVYtbnd3dkFOUWZqU0ZVaW5RY3hValFoRHdpdERFdFJ6RWRHdFhJRWdERlgxcUpLeXg0aU9yQWV2bTgzSEJQajBScmZFeU9ncEc4Zk5pRWtjMm0wVVZWVzBZUjVtQWI5YnJ3c1BTaQ?oc=5",
-          "coverage": 10,
+          "coverage": 9,
           "outlets": [
             "KBS 뉴스",
             "뉴스1",
@@ -133,8 +134,8 @@ window.NEWS_DATA = [
             "뉴시스",
             "머니투데이",
             "서울경제",
-            "아주경제",
-            "에너지경제신문"
+            "에너지경제신문",
+            "연합인포맥스"
           ],
           "hot": false
         },
@@ -201,18 +202,13 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "42개월 만에 기준금리 인상…'빚투·영끌' 부담↑",
-          "source": "news.sbs.co.kr · 07/17",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE4tV19QVTFrT2p0eVREWXZKVnE0N0NOSG5qWWxfb2NLZnBFMTBmREZ0RExfRGludmRsd3BaSXlab2ZZSG9aOF9hZ04yMDJ0Z1pfdS00ajVHMTlqZmVfa1YwcWxZb1VHUmhucVHSAWZBVV95cUxNRktJUFdzSmJGOTd6bXdVcE1KMF9UUmRBVVZnTW1rX3FzbkJzWFVTN0ZpRGdRRTlwb2Z5MkpmSldmeUtLOEZJSjVkZHFvSllRdHMzMTlvbFhBNWtfVUpHamllNU0wWFE?oc=5",
-          "coverage": 7,
+          "text": "1500원 아래로 하락한 원달러 환율",
+          "source": "매일경제 마켓 · 07/19",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5JR0pUR0ZvU2pMelNrb1FlN2szdmdILVI1YktWNmJCYV9hQlVsX0dHLU5EeXc0cWJtZlpKRVVEN043dDFKUTU1MTJiRkUxdGd0Umc?oc=5",
+          "coverage": 2,
           "outlets": [
-            "Chosunbiz",
-            "KBS 뉴스",
-            "YTN",
-            "news.sbs.co.kr",
-            "뉴스1",
-            "연합뉴스",
-            "조선일보"
+            "매일경제",
+            "매일경제 마켓"
           ],
           "hot": false
         }
@@ -251,11 +247,38 @@ window.NEWS_DATA = [
         }
       ]
     },
+    "hourHistogram": [
+      3,
+      1,
+      1,
+      2,
+      7,
+      14,
+      23,
+      10,
+      11,
+      39,
+      30,
+      19,
+      20,
+      12,
+      13,
+      16,
+      25,
+      23,
+      9,
+      9,
+      10,
+      3,
+      3,
+      2
+    ],
+    "poolSize": 305,
     "keywords": [
       "한은",
       "이란",
-      "신안우이",
       "울산",
+      "신안우이",
       "LNG",
       "북항"
     ],
