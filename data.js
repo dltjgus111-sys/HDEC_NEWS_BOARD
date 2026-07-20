@@ -6,24 +6,24 @@
 window.NEWS_DATA = [
   {
     "date": "2026-07-21",
-    "generatedAt": "05:52",
+    "generatedAt": "07:14",
     "headline": "대우건설, 상도15구역 재개발 도시정비사업 시공사 선정",
-    "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 8개 언론사 보도 · 대우건설 관련",
+    "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 9개 언론사 보도 · 대우건설 관련",
     "headlineCat": "수주",
     "indicators": [
       {
         "label": "국제유가 (Brent)",
-        "value": "89.0",
+        "value": "89.1",
         "unit": "$/배럴",
-        "delta": "5일 +4.7%",
+        "delta": "5일 +4.9%",
         "dir": "up",
         "note": "Yahoo Finance BZ=F"
       },
       {
         "label": "원/달러 환율",
-        "value": "1,476",
+        "value": "1,475",
         "unit": "원",
-        "delta": "5일 -1.4%",
+        "delta": "5일 -1.5%",
         "dir": "down",
         "note": "Yahoo Finance KRW=X"
       },
@@ -49,24 +49,24 @@ window.NEWS_DATA = [
         {
           "text": "대우건설, 상도15구역 재개발 도시정비사업 시공사 선정",
           "source": "한국경제 · 07/20",
-          "url": "https://www.msn.com/ko-kr/%EB%8F%84%EC%8B%9C-%EC%9D%B8%ED%94%84%EB%9D%BC/%EC%A3%BC%ED%83%9D-%EB%B0%8F-%EB%8F%84%EC%8B%9C-%EA%B0%9C%EB%B0%9C/%EB%8C%80%EC%9A%B0%EA%B1%B4%EC%84%A4-%EC%83%81%EB%8F%8415%EA%B5%AC%EC%97%AD-%EC%9E%AC%EA%B0%9C%EB%B0%9C-%EB%8F%84%EC%8B%9C%EC%A0%95%EB%B9%84%EC%82%AC%EC%97%85-%EC%8B%9C%EA%B3%B5%EC%82%AC-%EC%84%A0%EC%A0%95/ar-AA28g0te",
-          "coverage": 8,
+          "url": "https://www.msn.com/ko-kr/news/other/%EB%8C%80%EC%9A%B0%EA%B1%B4%EC%84%A4-%EC%83%81%EB%8F%8415%EA%B5%AC%EC%97%AD-%EC%9E%AC%EA%B0%9C%EB%B0%9C-%EB%8F%84%EC%8B%9C%EC%A0%95%EB%B9%84%EC%82%AC%EC%97%85-%EC%8B%9C%EA%B3%B5%EC%82%AC-%EC%84%A0%EC%A0%95/ar-AA28g0te",
+          "coverage": 9,
           "outlets": [
             "Chosunbiz",
             "매일경제",
+            "서울경제",
             "아시아경제",
             "아주경제",
             "연합뉴스TV",
             "이투데이",
-            "파이낸셜뉴스",
-            "한국경제"
+            "파이낸셜뉴스"
           ],
           "hot": true
         },
         {
           "text": "교보證 \"현대건설, 하반기 원전 수주 기대감에도 목표가 18만원으로 하향\"",
           "source": "이투데이 · 07/20",
-          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBaQlozX3BUTmxOd1lYV0Fua1JuUzFuVTk5ejJPSkI3alhFUUhMYmRrWjlmVXp3U1BrR21zbk1mek8taTVnNWkwa0FwUS0xd1NfNUFLUw?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9ReVlYeUpLLWxKSjJ2ZmZKRlc1eWdNcDRsOUl3bWNpV0tuM2JxajFYYjJGcXRTYnVNM1hxVWhyeEs3NkdhaEF5NzhBMWw2Z0RsOHBFOTdqczVFQ0ZNekF0MUxSRTB2LWJZS2tfRTRUd09ibTNr?oc=5",
           "coverage": 1,
           "outlets": [
             "이투데이"
@@ -121,6 +121,26 @@ window.NEWS_DATA = [
           "hot": true
         },
         {
+          "text": "한강변·압여목성 정비사업서 삼성물산 두각…대우·GS 뒤이어",
+          "source": "뉴스핌 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBDbEhNTjZoRGg1UW9lbmxzWmpwdnh6d3c3djFMckxHZWxaRU1vS202WUdyX09RNDVaN3NNdkVCdnlSYUlPY0tfNVVaWjBieTFoaTk4eDd5ZE5ScHE0?oc=5",
+          "coverage": 1,
+          "outlets": [
+            "뉴스핌"
+          ],
+          "hot": false
+        },
+        {
+          "text": "원전 앞세운 김보현 대우건설 대표…체코 넘어 글로벌 영토 확장 [CEO탐구생활]",
+          "source": "이투데이 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBBZ3pJMlI2ZXNQbHY2MUVYTWYyVjJsbnZEaExBSy1KdzFDWEVzdTJ4RU9UWF8zSjJnR0VBSlc0V3Jxb2NZV1c3Qm5ZM1pQNlRXUHJJeQ?oc=5",
+          "coverage": 1,
+          "outlets": [
+            "이투데이"
+          ],
+          "hot": false
+        },
+        {
           "text": "SK에코플랜트, 노량진뉴타운 ‘드파인 아르티아’ 20일부터 정당계약",
           "source": "이데일리 · 07/20",
           "url": "https://www.edaily.co.kr/News/Read?newsId=01558006645516488",
@@ -139,26 +159,6 @@ window.NEWS_DATA = [
           "outlets": [
             "뉴스핌",
             "머니투데이"
-          ],
-          "hot": false
-        },
-        {
-          "text": "아람코와 20년… 삼성E&A, 에너지 사업 두각",
-          "source": "파이낸셜뉴스 · 07/20",
-          "url": "https://www.fnnews.com/news/202607201812156410",
-          "coverage": 1,
-          "outlets": [
-            "파이낸셜뉴스"
-          ],
-          "hot": false
-        },
-        {
-          "text": "포스코이앤씨, 인천 ‘더샵 검단레이크파크’ 분양",
-          "source": "한국일보 · 07/20",
-          "url": "https://www.hankookilbo.com/news/article/A2026072015360000488",
-          "coverage": 1,
-          "outlets": [
-            "한국일보"
           ],
           "hot": false
         }
@@ -209,14 +209,12 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "국내 최대 신안우이 해상풍력 첫 삽…3.4조원 투자·390MW 규모",
-          "source": "MTN 머니투데이방송 · 07/20",
-          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5xSWxvWmttLUhxTHExRGhXd1hjaDUxNzRDOHlnZkNrVGd2R0d2Qk9UdkFGcTRxeTJWOGw0RW14eDRtVWNUSzlaR0FRaUxCaFJWNmc3YTJrRElIRE16LXRaMjY3c2I?oc=5",
-          "coverage": 3,
+          "text": "22개월 만에 반도체 공장 완성…‘구마모토의 기적’",
+          "source": "KBS 뉴스 · 07/20",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5WVWpnWEZaMlpiVEtNV3U5T1Z3Z0Q4NTJQY3dZc3hMMWtLUER6Sy13TDlPT2d5bTVwU29NaHRmQnpIU0tha19qaDM2OVo5MkNBc2Vnek53anpyeWs?oc=5",
+          "coverage": 1,
           "outlets": [
-            "MTN 머니투데이방송",
-            "서울신문",
-            "한국건설신문"
+            "KBS 뉴스"
           ],
           "hot": false
         }
@@ -267,12 +265,12 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "안철수 “문재인·김현미·김수현, 부동산 토론회에 초청하라”",
-          "source": "세계일보 · 07/20",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE4wODRFbjBSb1ZwaE13VXJOUWJtWm9jSlNnSkFFN3FjNTdFNVlzYUVlb29WdU14VmN0TVl6TVc2ekJmMnptdUE5WFZhTlhrcVoxR1Nzdnp5UTlRUWJYaTJDUHlRY2s4azZNa3NB0gFUQVVfeXFMT2l0S1dnVE8zTVgtUGxhMHhZZWRtellyWUZjby1CMmJmN3VzaTlLN2xQZXMzWUl3Zm5vNkpwUzNEb3Vyb3pCaVVIb1JEVVF5d0ZuMG9a?oc=5",
+          "text": "대출규제에 이주비 막히고 분양도 불안…소규모 정비사업 삼중고",
+          "source": "아주경제 · 07/20",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFA1NjVOZExmbENLS2Zld0FsZzlCbDRLclV1ak1RaThOX2pqWnlTM0dBWW5aUzh3SjlvYnNDQ1RBU0QyWjE4ajNISUIxRERjUlF0bDRWWGJocHPSAVhBVV95cUxQNTY1TmRMZmxDS0tmZXdBbGc5Qmw0S3JVdWpNUWk4Tl9qalp5UzNHQVluWlM4d0o5b2JzQ0NUQVNEMloxOGozSElCMUREY1JRdGw0VlhiaHBz?oc=5",
           "coverage": 1,
           "outlets": [
-            "세계일보"
+            "아주경제"
           ],
           "hot": false
         }
@@ -317,17 +315,6 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "'기준금리 인상' 영끌족 이자 부담 증가",
-          "source": "뉴스1 · 07/20",
-          "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFBJRlRLWHIxbHI4ZTRqR1Fxd3NlSTd1dERhSzIwenRxVUw5UVoxbnc5VGdXTTE4UjJ2Z3JKQmg3SHFRTmRtMksyMllEUQ?oc=5",
-          "coverage": 2,
-          "outlets": [
-            "news.sbs.co.kr",
-            "뉴스1"
-          ],
-          "hot": false
-        },
-        {
           "text": "기준금리 인상 기조에… 저축銀 수신경쟁 '데자뷔' - 머니투데이",
           "source": "머니투데이 · 07/21",
           "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFAtM2Foa21FVlB4Z3VmMEJzRGpQY2ZKbjBfdjNkbE11Z05BdXZJbzBIQTNTOXhpWWsxRGlDUy1IVHU5WmREbWppclFNMTZRUi1ubW5WQkR5OTdZUzFfcXNOeTdrMWg0RThyQksw0gFwQVVfeXFMTi1oVkhkenIxdGRGUV9KaS1RcjlCRWt4cnA3M3JUSnZQU21sNHNmaWVkZ1dQajJGWGhPTFRqZlhJcHB4NzJwS0VwY2pTMnZ0MGd0d0RMMHhmWFhibzJ1cS1BZ1ZwUlNnMElPY1hJQkJrOQ?oc=5",
@@ -336,9 +323,33 @@ window.NEWS_DATA = [
             "머니투데이"
           ],
           "hot": false
+        },
+        {
+          "text": "\"가뜩이나 힘들었는데\"…기준금리 인상에 카드사 조달비용 부담 커진다",
+          "source": "edaily.co.kr · 07/20",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPc1FhT2dCYmxwbVBKbmFmdk82LTA0VGQtWi1QWWQyX2JpanFRVGNVQnpqdDhvRk43Qkh3ZUthblpsZFhQRkgtN0o3UV9GQUVrUXZ3RmdGdEo5MElNMWlaNmExRG9BZG1WLW4wTjRFeVh5b3picVVBRFRnT3FrOVRXWg?oc=5",
+          "coverage": 1,
+          "outlets": [
+            "edaily.co.kr"
+          ],
+          "hot": false
         }
       ],
       "geo": [
+        {
+          "text": "국제유가, 중동 정세 불안에 상승…브렌트유 1.27%↑[상보]",
+          "source": "이투데이 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5ZTUJlTnJDcDhTb1JFYzBja2lTTnMtcHpITndnVjN1ZXB4SVJoOUw4d01kT094dko1aG1JeFl0c2JBZlR5czBDa19vbjZ3WVN4YWhCbg?oc=5",
+          "coverage": 5,
+          "outlets": [
+            "KBS 뉴스",
+            "MBC 뉴스",
+            "연합뉴스",
+            "이투데이",
+            "파이낸셜뉴스"
+          ],
+          "hot": false
+        },
         {
           "text": "美·이란 무력 충돌에 국제 유가 급등",
           "source": "조선일보 · 07/21",
@@ -357,18 +368,16 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "호르무즈 해협 이어 홍해까지 막히나… 중동 원유 공급망 비상",
-          "source": "서울신문 · 07/19",
-          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE00SnJvNUkzRnlJTzEyaWlLdGVCc2xxSFZrSHdqQy0zTVJtXzBJTWlSTnF3UFBzVUt1U3Z6VkxxZ1FJUTRwWTRRZGgwbThidFNrckpINFkzZE1QN2VHV2dIMi0xQ0pDTTNFSzJaRld0N2RyVjJpWjRn?oc=5",
-          "coverage": 7,
+          "text": "후티, 사우디 해상 봉쇄 선언…호르무즈 이어 홍해 원유길도 위협",
+          "source": "아주경제 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE14NWgtYURQenRhQUJ4NEFtVEN5dHQwUndkMEVVWlVGN1dsdG52WVhMU3dxNEMwdFp0TEctclJlNkVyelNudUlkc0R4NUUzczZiSkIxaE5XWEdyZ9IBWEFVX3lxTE9GajluU0NWcHBwdDVyazBKdjJDZ19HTFJjWWc2QjVia0ZaSnVKVUxSdVE5RUVlTTdXaUY4bWtBUUtXOFAyRHBYWjZaV2FpUWZja09PSmZweWE?oc=5",
+          "coverage": 5,
           "outlets": [
-            "Chosunbiz",
             "SBS Biz",
+            "YTN",
             "서울경제TV",
-            "서울신문",
             "세계일보",
-            "아주경제",
-            "한국경제TV"
+            "아주경제"
           ],
           "hot": false
         },
@@ -376,7 +385,7 @@ window.NEWS_DATA = [
           "text": "호르무즈 봉쇄 후 15번째 한국선박 홍해 통해 원유 운송",
           "source": "세계일보 · 07/19",
           "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE04cHlPOGtxTkNsZ0p0TmF6TFNGNXc4ZHBIRC1vWDhEV2ZyZk14U0FkMHJRV2s5amw4NHgxdHBuUnBnZFhiTlk5SldoYWZqS1lrZ3ZwRFZvMHDSAVRBVV95cUxNMVNqUWZ1THZ0V1ZmeVBmR0o0RHVmS3U1Y0FJRUF6c00wUGU0alVOWWtZRHBNRmVBTnh1bElEVmFmc29HT2hMYTc3eWtNYTNoT3dsRjA?oc=5",
-          "coverage": 8,
+          "coverage": 7,
           "outlets": [
             "뉴시스",
             "매일경제 마켓",
@@ -384,28 +393,20 @@ window.NEWS_DATA = [
             "아시아경제",
             "연합뉴스",
             "연합인포맥스",
-            "중앙일보",
-            "헤럴드경제"
+            "중앙일보"
           ],
           "hot": false
         },
         {
-          "text": "중동 정세 불안에 국제유가 상승세 지속…브렌트유 1.3%↑",
-          "source": "KBS 뉴스 · 07/21",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBLNy13Sk9VdWZKdkE2MklfMkh4NnlEb1ZRRjN0bG02XzRjaHF0ZzhpYm1tcDBoeUxlUF9vZkNFSmg0Z3lhUmNaSXlBYm9iVTlRek50cmlzUjVBckk?oc=5",
-          "coverage": 2,
+          "text": "호르무즈 해협 이어 홍해까지 막히나… 중동 원유 공급망 비상",
+          "source": "서울신문 · 07/19",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE00SnJvNUkzRnlJTzEyaWlLdGVCc2xxSFZrSHdqQy0zTVJtXzBJTWlSTnF3UFBzVUt1U3Z6VkxxZ1FJUTRwWTRRZGgwbThidFNrckpINFkzZE1QN2VHV2dIMi0xQ0pDTTNFSzJaRld0N2RyVjJpWjRn?oc=5",
+          "coverage": 5,
           "outlets": [
-            "KBS 뉴스",
-            "연합뉴스"
-          ],
-          "hot": false
-        },
-        {
-          "text": "[속보] 중동 정세·유가 상승, 불안감 휩싸인 증시…다우 0.6%↓",
-          "source": "한국경제TV · 07/21",
-          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE54TzdKZDVYVjB1dEhxTmhWd2JiV0ZkMWp0aE9RV21LbWlxVTZtUzVSSTBrSEFrQV9UcjNhOTZBdTR1bnV6RkNVMG5Ea1hMa2JDSTdaSlZxU09ycU9JaG5TcHp3TVJrNE50NG9RbU01NVF5alc3RC0weDJLYUVUQQ?oc=5",
-          "coverage": 1,
-          "outlets": [
+            "Chosunbiz",
+            "edaily.co.kr",
+            "서울신문",
+            "아주경제",
             "한국경제TV"
           ],
           "hot": false
@@ -413,39 +414,39 @@ window.NEWS_DATA = [
       ]
     },
     "hourHistogram": [
-      7,
-      5,
-      2,
+      8,
+      4,
+      1,
       6,
-      12,
+      11,
       19,
-      13,
-      15,
-      29,
-      56,
-      27,
+      33,
+      18,
+      33,
+      54,
+      28,
       26,
       18,
+      13,
       14,
+      27,
+      29,
+      32,
+      23,
       11,
-      31,
-      30,
-      33,
-      21,
-      10,
       4,
-      9,
-      5,
-      3
+      8,
+      6,
+      5
     ],
-    "poolSize": 406,
+    "poolSize": 431,
     "keywords": [
       "이란",
       "브렌트유",
       "상도15구역",
+      "원전",
       "충돌",
-      "홍해",
-      "원전"
+      "홍해"
     ],
     "lastWeek": [
       "07-20 대우건설, 상도15구역 재개발 도시정비사업 시공사 선정",
