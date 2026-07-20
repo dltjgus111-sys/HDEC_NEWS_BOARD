@@ -321,7 +321,8 @@ select.tool {
 .kw .kwtop input { width: 58px; padding: 5px 8px; font-size: 12px; text-align: center; }
 
 /* ============================ 5. 하단 2단 ============================ */
-.bottom { display: grid; grid-template-columns: 1.5fr 1fr; gap: 14px; margin-top: 6px; }
+/* 요약(오른쪽)이 넓은 칸을 쓴다 — 기사 제목이 1줄에 들어가야 6행이 안 접힌다 */
+.bottom { display: grid; grid-template-columns: 1fr 1.6fr; gap: 14px; margin-top: 6px; }
 .panel {
   background: var(--card); border: 1px solid var(--line);
   border-radius: var(--radius); box-shadow: var(--shadow); padding: 17px 22px;
@@ -334,10 +335,21 @@ select.tool {
 .panel ol li { font-size: 13px; line-height: 1.7; padding: 5px 0; font-weight: 500; color: var(--text-2); }
 .panel .cap { margin: 12px 0 0; font-size: 11.5px; line-height: 1.7; color: var(--muted); font-weight: 500; }
 
-/* 다음주 전망 — 홍보판넬 다크그린→그린 그라데이션 */
+/* 카테고리별 요약 — 홍보판넬 다크그린→그린 그라데이션 */
 .panel.fc { background: linear-gradient(140deg, #0F2C1D 0%, #0B6E39 55%, #008C46 100%); border: none; color: #fff; }
 .panel.fc h3 { color: rgba(255,255,255,.72); }
 .panel.fc p { margin: 0; font-size: 14.5px; font-weight: 700; line-height: 1.65; letter-spacing: -.02em; color: #fff; }
+
+/* 카테고리별 한 줄 요약 — 수집 데이터만으로 구성(자동). AI 분석 없음 */
+.dg { display: flex; align-items: baseline; gap: 8px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.13); }
+.dg:last-child { border-bottom: none; }
+.dg .k { flex: none; width: 92px; font-size: 11.5px; font-weight: 900; color: var(--mint); letter-spacing: -.03em; white-space: nowrap; }
+.dg .n { flex: none; width: 74px; font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,.5); font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* 제목은 1줄 고정 — 6행이 접히면 한 화면 높이(920px)를 넘는다 */
+.dg .t { flex: 1; min-width: 0; font-size: 12.5px; font-weight: 600; line-height: 1.45; letter-spacing: -.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dg .t a { color: #fff; text-decoration: none; }
+.dg .t a:hover { text-decoration: underline; }
+.dgnote { margin: 10px 0 0; font-size: 11.5px; font-weight: 600; line-height: 1.6; color: rgba(255,255,255,.75); letter-spacing: -.02em; }
 
 .foot {
   width: var(--content); margin: 20px auto 0;
@@ -536,7 +548,7 @@ select.tool {
             <label style="margin-top:20px">허용 언론사 <span style="font-weight:500;color:var(--muted)">(여기 있는 곳의 기사만 실립니다. 부분일치 — '연합뉴스'만 적어도 '연합뉴스TV' 포함)</span></label>
             <textarea id="press" style="min-height:120px"></textarea>
 
-            <label style="margin-top:20px">다음주 전망 <span style="font-weight:500;color:var(--muted)">(사람이 직접 씁니다)</span></label>
+            <label style="margin-top:20px">한 줄 코멘트 <span style="font-weight:500;color:var(--muted)">(선택 — 비워두면 카테고리별 요약만 나옵니다)</span></label>
             <textarea id="outlook-in" style="min-height:60px"></textarea>
 
             <div class="note">
@@ -579,8 +591,8 @@ select.tool {
                     <ol id="lw"></ol>
                 </div>
                 <div class="panel fc">
-                    <h3>🔭 다음주 전망</h3>
-                    <p id="ol">-</p>
+                    <h3>📋 오늘 카테고리별 요약</h3>
+                    <div id="ol">-</div>
                 </div>
             </div>
         </div>
@@ -864,7 +876,28 @@ select.tool {
                 $('lw').innerHTML = lw.length
                     ? lw.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('')
                     : '<li>기록 없음</li>';
-                $('ol').textContent = e.outlook || '-';
+                // 카테고리별 요약 — 수집한 기사만으로 자동 구성한다(AI 분석 없음).
+                // 카드가 대표기사 1건씩만 보여주므로, 여기선 건수와 교차보도 최다 기사를 함께 짚는다.
+                var cats = e.categories || {};
+                var dg = ORDER.filter(function (k) { return (cats[k] || []).length; }).map(function (k) {
+                    var arr = cats[k];
+                    // 가장 많은 언론사가 함께 보도한 기사 = 그 카테고리에서 가장 널리 다뤄진 사안
+                    var pick = arr.reduce(function (a, b) {
+                        return (b.coverage || 1) > (a.coverage || 1) ? b : a;
+                    }, arr[0]);
+                    var cov = pick.coverage || 1;
+                    var title = pick.url
+                        ? '<a href="' + esc(pick.url) + '" target="_blank" rel="noopener noreferrer">' + esc(pick.text) + '</a>'
+                        : esc(pick.text);
+                    return '<div class="dg">'
+                        + '<span class="k">' + esc(CAT[k].name) + '</span>'
+                        + '<span class="n">' + arr.length + '건' + (cov > 1 ? ' · ' + cov + '개사' : '') + '</span>'
+                        + '<span class="t">' + title + '</span>'
+                        + '</div>';
+                });
+                $('ol').innerHTML = dg.length
+                    ? dg.join('') + (e.outlook ? '<p class="dgnote">' + esc(e.outlook) + '</p>' : '')
+                    : '<div class="dg"><span class="t">수집된 기사가 없습니다</span></div>';
             }
 
             function buildText(e) {
@@ -880,7 +913,7 @@ select.tool {
                     o.push('');
                 });
                 if ((e.keywords || []).length) o.push('■ 오늘의 키워드: ' + e.keywords.join(', '), '');
-                if (e.outlook) o.push('■ 다음주 전망: ' + e.outlook);
+                if (e.outlook) o.push('■ 코멘트: ' + e.outlook);
                 return o.join('\n');
             }
 
