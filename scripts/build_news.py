@@ -591,7 +591,11 @@ def write_email(entry, board_url):
         return (str(s).replace("&", "&amp;").replace("<", "&lt;")
                 .replace(">", "&gt;").replace('"', "&quot;"))
 
-    titles = {"order": "🏆 수주", "industry": "🏗️ 건설업계",
+    # 보드의 6개 카테고리와 순서를 맞춘다.
+    # (경쟁사·핵심상품을 나중에 추가하면서 여기에 반영을 빠뜨려
+    #  메일에만 기사 3분의 1이 누락됐던 적이 있다. 카테고리를 늘리면 여기도 같이 고칠 것)
+    titles = {"order": "🏆 수주", "competitor": "⚔️ 경쟁사",
+              "trend": "🔬 핵심상품 트렌드", "industry": "🏗️ 건설업계",
               "economy": "💰 물가·경제", "geo": "🌍 지정학적 이슈"}
 
     rows = []
@@ -602,7 +606,9 @@ def write_email(entry, board_url):
         lis = "".join(
             f'<li style="margin:0 0 9px;line-height:1.6">'
             f'<a href="{esc(i["url"])}" style="color:#111;text-decoration:none">{esc(i["text"])}</a>'
-            f'<br><span style="color:#888;font-size:12px">{esc(i["source"])}</span></li>'
+            f'<br><span style="color:#888;font-size:12px">{esc(i["source"])}'
+            + (f' · {i["coverage"]}개사 보도' if i.get("coverage", 1) >= 2 else " · 단독")
+            + '</span></li>'
             for i in items)
         rows.append(
             f'<h3 style="margin:22px 0 10px;font-size:15px;color:#008C46">{label}</h3>'
@@ -625,8 +631,10 @@ def write_email(entry, board_url):
                   '<ul style="margin:0;padding-left:18px;font-size:13px;color:#444">'
                   + "".join(f'<li style="margin:0 0 6px;line-height:1.6">{esc(x)}</li>' for x in lw)
                   + "</ul>")
+    # 전망은 사람이 매주 써야 해서 결국 빈칸이 됐다. 보드는 카테고리별 자동 요약으로
+    # 대체했고, 메일은 이미 전 카테고리를 나열하므로 코멘트가 있을 때만 덧붙인다.
     if entry.get("outlook"):
-        extra += ('<h3 style="margin:22px 0 10px;font-size:15px;color:#008C46">🔭 다음주 전망</h3>'
+        extra += ('<h3 style="margin:22px 0 10px;font-size:15px;color:#008C46">📝 한 줄 코멘트</h3>'
                   f'<div style="font-size:13px;line-height:1.7;color:#444">{esc(entry["outlook"])}</div>')
 
     board_btn = (
@@ -635,19 +643,26 @@ def write_email(entry, board_url):
         'text-decoration:none;font-weight:700;font-size:14px">보드판 전체 보기 →</a></div>'
     ) if board_url else ""
 
-    html = f"""<div style="font-family:'Malgun Gothic',sans-serif;max-width:640px;margin:0 auto">
-  <div style="background:#1F2B40;color:#fff;padding:22px 24px;border-radius:12px">
-    <div style="font-size:11px;color:#7ee2b0;letter-spacing:.1em;font-weight:700">오늘의 핵심</div>
+    # charset 선언이 없으면 메일 클라이언트가 인코딩을 추측하다 한글이 깨진다
+    # (실제로 '대우건설'이 'ëŒ€ìš°ê±´ì„¤'로 보였다). MIME 헤더에만 기대지 말 것.
+    html = f"""<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#EDF1ED">
+<div style="font-family:'Malgun Gothic',sans-serif;max-width:640px;margin:0 auto;padding:16px">
+  <div style="background:#0F2C1D;color:#fff;padding:22px 24px;border-radius:12px">
+    <div style="font-size:11px;color:#5FCB93;letter-spacing:.1em;font-weight:700">오늘의 핵심</div>
     <div style="font-size:17px;font-weight:700;margin-top:8px;line-height:1.5">{esc(entry['headline'])}</div>
-    <div style="font-size:12px;color:#9aa4b2;margin-top:12px">{esc(entry['date'])} 기준</div>
+    <div style="font-size:12px;color:#A9BBB0;margin-top:12px">{esc(entry['date'])} {esc(entry.get('generatedAt',''))} 기준</div>
   </div>
   <table style="width:100%;margin-top:14px;border-collapse:separate;border-spacing:6px"><tr>{inds}</tr></table>
   {''.join(rows)}
   {extra}
   {board_btn}
   <div style="color:#999;font-size:11px;margin-top:18px">
-    자동 발송 · GitHub Actions · 뉴스 출처 Google News</div>
-</div>"""
+    자동 발송 · GitHub Actions · 뉴스 출처 Google News + Bing News (주요 언론사 한정)</div>
+</div>
+</body></html>"""
 
     with open(os.path.join(ROOT, "email.html"), "w", encoding="utf-8") as f:
         f.write(html)
