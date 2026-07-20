@@ -16,6 +16,7 @@ import os
 import re
 import ssl
 import sys
+import time
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -193,42 +194,101 @@ def search_news(query):
     now = datetime.now(timezone.utc)
     out = []
     for item in root.findall(".//item"):
-        pub = parse_pubdate(item.findtext("pubDate"))
-        if pub is None:
-            continue
-        age_days = (now - pub).total_seconds() / 86400.0
-        if age_days > FRESH_DAYS or age_days < -1:
-            continue
-
         src_el = item.find("source")
-        source = (src_el.text if src_el is not None else "") or ""
-        if not is_allowed_press(source):
-            _press_dropped[source.strip() or "(무기명)"] = \
-                _press_dropped.get(source.strip() or "(무기명)", 0) + 1
-            continue
-        title = clean_title(item.findtext("title"), source)
-        if not title or any(w in title for w in BLOCK_WORDS):
-            continue
-        # 잘린 제목("…에 미국은...")과 너무 짧은 낚시성 제목은 정보가 없어 제외
-        if title.endswith(("...", "…", "..")) or len(title) < 18:
-            continue
+        art = make_article(
+            raw_title=item.findtext("title"),
+            source=(src_el.text if src_el is not None else "") or "",
+            link=(item.findtext("link") or "").strip(),
+            pub=parse_pubdate(item.findtext("pubDate")),
+            query=query, now=now,
+        )
+        if art:
+            out.append(art)
+    return out
 
+
+# 빙은 한국어 결과를 MSN 재배포본으로 준다. 그래서 언론사가 '비즈워치 on MSN' 처럼 붙어 나온다.
+# 이걸 그대로 두면 구글의 '비즈워치'와 다른 언론사로 세어져 교차보도 수가 부풀고,
+# 신뢰도 배지(N개사 보도)가 거짓말을 하게 된다. 반드시 꼬리를 떼서 맞춰야 한다.
+_MSN_TAIL = re.compile(r"\s+on\s+MSN\s*$", re.I)
+
+
+def normalize_source(s):
+    return _MSN_TAIL.sub("", (s or "").strip()).strip()
+
+
+def make_article(raw_title, source, link, pub, query, now):
+    """RSS 한 건을 공통 규칙으로 걸러 기사 dict 를 만든다(구글·빙 공용).
+    통과 못 하면 None."""
+    if pub is None:
+        return None
+    age_days = (now - pub).total_seconds() / 86400.0
+    if age_days > FRESH_DAYS or age_days < -1:
+        return None
+
+    source = normalize_source(source)
+    if not is_allowed_press(source):
+        _press_dropped[source or "(무기명)"] = _press_dropped.get(source or "(무기명)", 0) + 1
+        return None
+    title = clean_title(raw_title, source)
+    if not title or any(w in title for w in BLOCK_WORDS):
+        return None
+    # 잘린 제목("…에 미국은...")과 너무 짧은 낚시성 제목은 정보가 없어 제외
+    if title.endswith(("...", "…", "..")) or len(title) < 18:
+        return None
+    if not link.startswith("http"):
+        return None
+
+    # 점수: 최신일수록 +, 대형사 언급 +, 검색어 토큰 일치 +
+    score = max(0.0, FRESH_DAYS - age_days) * 10
+    if any(m in title for m in MAJORS):
+        score += 25
+    for tok in query.split():
+        if tok in title:
+            score += 6
+    return {"title": title, "source": source or "출처",
+            "url": link, "pub": pub, "score": score}
+
+
+def search_bing(query):
+    """빙 뉴스 검색 RSS. 구글이 놓친 기사를 보강한다(쿼리당 12건 안팎).
+
+    네이버·다음은 뉴스검색 RSS 를 폐지해 키 없이는 못 쓴다.
+    빙은 키가 필요 없어 유일하게 바로 붙일 수 있는 두 번째 플랫폼이다.
+    """
+    q = urllib.parse.quote(query)
+    url = f"https://www.bing.com/news/search?q={q}&format=RSS&setmkt=ko-KR"
+    try:
+        raw = fetch(url)
+    except Exception as e:
+        log(f"  ! 빙 실패 [{query}]: {type(e).__name__}")
+        return []
+    try:
+        root = ET.fromstring(raw)
+    except ET.ParseError as e:
+        log(f"  ! 빙 파싱 실패 [{query}]: {e}")
+        return []
+
+    now = datetime.now(timezone.utc)
+    out = []
+    for item in root.findall(".//item"):
+        # 언론사는 빙 전용 네임스페이스에 들어 있어 태그 끝으로 찾는다.
+        source = ""
+        for child in item:
+            if child.tag.endswith("}Source"):
+                source = child.text or ""
+                break
+        # link 는 bing.com 리디렉트다. url= 파라미터에 실제 주소가 들어 있으니 꺼내 쓴다.
         link = (item.findtext("link") or "").strip()
-        if not link.startswith("http"):
-            continue
+        real = urllib.parse.parse_qs(urllib.parse.urlparse(link).query).get("url")
+        if real:
+            link = real[0]
 
-        # 점수: 최신일수록 +, 대형사 언급 +, 검색어 토큰 일치 +
-        score = max(0.0, FRESH_DAYS - age_days) * 10
-        if any(m in title for m in MAJORS):
-            score += 25
-        for tok in query.split():
-            if tok in title:
-                score += 6
-
-        out.append({
-            "title": title, "source": source.strip() or "출처",
-            "url": link, "pub": pub, "score": score,
-        })
+        art = make_article(raw_title=item.findtext("title"), source=source,
+                           link=link, pub=parse_pubdate(item.findtext("pubDate")),
+                           query=query, now=now)
+        if art:
+            out.append(art)
     return out
 
 
@@ -238,9 +298,15 @@ def build_category(key, spec, used_keys):
     log(f"[{key}] 검색 {len(queries)}건")
     pool = []
     for q in queries:
-        got = search_news(q)
-        log(f"  - {q}: {len(got)}건")
-        pool.extend(got)
+        g = search_news(q)
+        # 검색어가 늘고 플랫폼이 둘이 되면서 요청 수가 2배가 됐다.
+        # 몰아치면 429(요청 과다)를 맞으니 사이를 살짝 띄운다.
+        time.sleep(0.35)
+        b = search_bing(q)
+        time.sleep(0.35)
+        log(f"  - {q}: 구글 {len(g)} + 빙 {len(b)}건")
+        pool.extend(g)
+        pool.extend(b)
 
     _pool_titles.extend(a["title"] for a in pool)              # 키워드 추출용 표본
     _pool_hours.extend(a["pub"].astimezone(KST).hour for a in pool)  # 시간대 통계용
@@ -310,7 +376,33 @@ STOPWORDS = {
     "만에", "개월", "달러", "원대", "억원", "조원", "만원", "포인트", "퍼센트",
     "이후", "대비", "전년", "기록", "수준", "규모", "돌파", "육박", "가운데서",
     "번째", "눈앞", "속에", "에서", "으로", "하며", "이며", "라며", "까지",
+    # 조사를 떼고 나면 남는 흔한 껍데기
+    "격화", "확산", "지속", "본격", "잇따", "나선", "밝혀", "따르", "위한",
+    "재돌파", "재진입", "급등", "급락", "상승", "하락",   # '돌파'와 같은 결의 시황 동사
 }
+
+# 조사(뒤에 붙어 의미를 흐리는 꼬리). 긴 것부터 떼어야 '에서는'이 '에서'로 안 잘린다.
+JOSA_LONG = ("에서는", "에서도", "으로는", "으로도", "에게서",
+             "에서", "에는", "에도", "으로", "라며", "하며", "이며", "까지", "부터",
+             "보다", "처럼", "만큼", "에게", "만에", "라고", "이라", "지만", "다는")
+# 한 글자 조사는 위험하다. '국제유가'의 '가', '제도'의 '도'처럼 명사 끝소리와 겹친다.
+# 그래서 비교적 안전한 것만, 그것도 3글자 이상 단어에서만 뗀다.
+JOSA_SHORT = ("에", "은", "는", "을", "를", "의")
+
+
+def strip_josa(tok):
+    """'격화에' -> '격화', '부동산은' -> '부동산'. 떼고 2글자 미만이면 원형을 둔다."""
+    for j in JOSA_LONG:
+        if tok.endswith(j) and len(tok) - len(j) >= 2:
+            return tok[:-len(j)]
+    if len(tok) >= 3:
+        for j in JOSA_SHORT:
+            if tok.endswith(j) and len(tok) - 1 >= 2:
+                return tok[:-1]
+    # '이'는 4글자 이상에서만. '현대건설이'는 떼야 하지만 '어린이'는 두어야 한다.
+    if len(tok) >= 4 and tok.endswith("이"):
+        return tok[:-1]
+    return tok
 
 
 def extract_keywords(titles, queries_used, top=6):
@@ -331,8 +423,15 @@ def extract_keywords(titles, queries_used, top=6):
     counts = {}
     for t in titles:
         seen = set()
-        for tok in re.findall(r"[가-힣A-Za-z]{2,}", t):   # 숫자 섞인 토큰은 제외
-            if tok in banned or tok in seen:
+        # 숫자를 통째로 빼면 '상도15구역'이 '상도'+'구역'으로 쪼개져 뜻이 사라진다.
+        # 그래서 숫자를 품은 토큰도 받되, 아래에서 '금액·수치 덩어리'만 걸러낸다.
+        for raw in re.findall(r"[가-힣A-Za-z0-9]{2,}", t):
+            if raw[0].isdigit():            # 1조4367억원 · 113억달러 · 90달러
+                continue
+            if re.search(r"\d{3,}", raw):   # 17만5000원 처럼 숫자가 긴 것
+                continue
+            tok = strip_josa(raw)
+            if len(tok) < 2 or tok in banned or tok in seen:
                 continue
             seen.add(tok)
             counts[tok] = counts.get(tok, 0) + 1
