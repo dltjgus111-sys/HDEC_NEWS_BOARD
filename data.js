@@ -6,22 +6,22 @@
 window.NEWS_DATA = [
   {
     "date": "2026-07-21",
-    "generatedAt": "17:42",
+    "generatedAt": "19:07",
     "headline": "대우건설, 상도15구역 재개발 도시정비사업 시공사 선정",
     "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 7개 언론사 보도 · 대우건설 관련",
     "headlineCat": "수주",
     "indicators": [
       {
         "label": "국제유가 (Brent)",
-        "value": "88.6",
+        "value": "90.0",
         "unit": "$/배럴",
-        "delta": "5일 +5.1%",
+        "delta": "5일 +6.9%",
         "dir": "up",
         "note": "Yahoo Finance BZ=F"
       },
       {
         "label": "원/달러 환율",
-        "value": "1,478",
+        "value": "1,477",
         "unit": "원",
         "delta": "5일 -0.7%",
         "dir": "down",
@@ -49,7 +49,7 @@ window.NEWS_DATA = [
         {
           "text": "대우건설, 상도15구역 재개발 도시정비사업 시공사 선정",
           "source": "한국경제 · 07/20",
-          "url": "https://www.msn.com/ko-kr/news/other/%EB%8C%80%EC%9A%B0%EA%B1%B4%EC%84%A4-%EC%83%81%EB%8F%8415%EA%B5%AC%EC%97%AD-%EC%9E%AC%EA%B0%9C%EB%B0%9C-%EB%8F%84%EC%8B%9C%EC%A0%95%EB%B9%84%EC%82%AC%EC%97%85-%EC%8B%9C%EA%B3%B5%EC%82%AC-%EC%84%A0%EC%A0%95/ar-AA28g0te",
+          "url": "https://www.msn.com/ko-kr/%EB%8F%84%EC%8B%9C-%EC%9D%B8%ED%94%84%EB%9D%BC/%EC%A3%BC%ED%83%9D-%EB%B0%8F-%EB%8F%84%EC%8B%9C-%EA%B0%9C%EB%B0%9C/%EB%8C%80%EC%9A%B0%EA%B1%B4%EC%84%A4-%EC%83%81%EB%8F%8415%EA%B5%AC%EC%97%AD-%EC%9E%AC%EA%B0%9C%EB%B0%9C-%EB%8F%84%EC%8B%9C%EC%A0%95%EB%B9%84%EC%82%AC%EC%97%85-%EC%8B%9C%EA%B3%B5%EC%82%AC-%EC%84%A0%EC%A0%95/ar-AA28g0te",
           "coverage": 7,
           "outlets": [
             "Chosunbiz",
@@ -93,33 +93,44 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "부천시, 민간 건설사와 '신뉴딜정책 경제활력' 협약'…지역업체 수주 확대",
-          "source": "아시아경제 · 07/21",
-          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1fR2ZRa2pMU2hDNEtSU1Bmb0NfUnVkMERudUhHZGNuRnNndVdnM3dZa3RBUVJObnNFSkRmX2FRdFNPd1dXNUtyNzdMWkRzOEF2MndwYmh2MV9zX1FOSEdWUw?oc=5",
+          "text": "중동戰 후폭풍…해외건설 수주 '반토막'",
+          "source": "한국경제 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBwRnpMVmZWV3hRSXNxM25uVzU3TGQ1SXFUSmVtZ2hPQVlwRlN2SXlmUjRsbXBIODdDSG94cGhvaEY1MEFEV1FYV2U1SWtPZllsdm9naktpcjRFdw?oc=5",
           "coverage": 1,
           "outlets": [
-            "아시아경제"
+            "한국경제"
           ],
           "hot": false
         }
       ],
       "competitor": [
         {
-          "text": "롯데건설, 지속가능경영보고서 발간…기후 리스크 공시 강화 - 머니투데이",
-          "source": "머니투데이 · 07/21",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1ETnpOdUZRTWUwdjFzR181TVNBWE1ZQ3FDZDMyZjdkQ2lQQW5hVHkzN1lKOW14YldvajBFbkxkY0pidEJUZTVOdTdNTGVOTGhMbzNPUHJEYUdIaTZqTm4yT3U5bV9aODItbEHSAW9BVV95cUxPLWtkTHlOM3VQYnlqSm93eDV6VU44VnQyNEJlVm51QmhtQ3pobC02VXAwWVlYUWduSVRJeU9vQzZaZHl5QzU5NWRSaVBvMFR1OTlhaVRXY01lNnk0RmFmeVNHS2NOczh1dlppeVRYQjQ?oc=5",
-          "coverage": 9,
+          "text": "롯데건설 '2026 지속가능경영보고서' 발간, 최신 ESG 공시체계 반영",
+          "source": "비즈니스포스트 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFAzN19NRGxnRDRkd2RZRTd4cGY1c1VMdWNLUzZLbUdDRmRwcy1DMGtEODQ3Y0R6OVBzRWdMYkJVdVpheFhMR1E4b0Nibk9PWnpuZzZuN1VRSE84ckdjQnA2Z3hhMUdzUXI5Q0NRUVFaeHg3Ukk?oc=5",
+          "coverage": 7,
           "outlets": [
             "뉴스핌",
             "뉴시스",
             "데일리안",
-            "머니투데이",
             "비즈니스포스트",
-            "서울경제",
             "소년한국일보",
-            "파이낸셜뉴스"
+            "파이낸셜뉴스",
+            "헤럴드경제"
           ],
           "hot": true
+        },
+        {
+          "text": "뉴로메카, 삼성물산 건설부문과 MOU…스마트빌딩 협력",
+          "source": "파이낸셜뉴스 · 07/21",
+          "url": "https://www.fnnews.com/news/202607210838487613",
+          "coverage": 3,
+          "outlets": [
+            "뉴시스",
+            "서울경제TV",
+            "파이낸셜뉴스"
+          ],
+          "hot": false
         },
         {
           "text": "DL이앤씨, ‘e편한세상 부천 어반스퀘어’ 분양",
@@ -140,8 +151,8 @@ window.NEWS_DATA = [
           "coverage": 3,
           "outlets": [
             "edaily.co.kr",
-            "서울경제",
-            "연합인포맥스"
+            "연합인포맥스",
+            "이데일리"
           ],
           "hot": false
         },
@@ -149,26 +160,14 @@ window.NEWS_DATA = [
           "text": "‘미얀마 노동자 산재 사망’ SK에코플랜트 “엄중한 책임 통감”",
           "source": "경향신문 · 07/19",
           "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE5rMEFjZl81ZTRvUVBJaGRfVC1hSHdpMmxreGpTVFpDZVlkdmtmQ09Da1E3UlI0TFZVZGdTRWtlRkFSeXAtWWtFNldOS1M4cmpaSnY5QjZaMDhkQdIBX0FVX3lxTE1DMzgzTUpkLVluajF2dFFpVzFnd0hvcjAxZzlVektCTUx4WjRSNExTSGwwSFhIeXAtTVhFalIzSDJYYzRhenRRclNNLW1nTG9sak5uQTh5dkVPenhtU1Br?oc=5",
-          "coverage": 7,
+          "coverage": 6,
           "outlets": [
             "SBS Biz",
             "경향신문",
-            "연합뉴스",
             "이투데이",
             "파이낸셜뉴스",
             "한겨레",
             "헤럴드경제"
-          ],
-          "hot": false
-        },
-        {
-          "text": "뉴로메카, 삼성물산 건설부문과 MOU…스마트빌딩 협력",
-          "source": "뉴시스 · 07/21",
-          "url": "https://www.newsis.com/view/NISX20260721_0003716180",
-          "coverage": 2,
-          "outlets": [
-            "뉴시스",
-            "서울경제TV"
           ],
           "hot": false
         }
@@ -185,18 +184,6 @@ window.NEWS_DATA = [
           "hot": true
         },
         {
-          "text": "AI 데이터센터 건설 산업 활성화 포럼 출범…정부·산업계 협력 통한 제도 개선 논의",
-          "source": "뉴스핌 · 07/21",
-          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MajhEUXMzMG5ZdVRMM1JvYjFTYWM3cnViZFJrajlpczY0cGlkSGlsUk1hRElyYjlsblJZWUtXODQwbVdoT3AzcGFEVEM0eEJwY3FtbjFQQXBfYnpI?oc=5",
-          "coverage": 3,
-          "outlets": [
-            "edaily.co.kr",
-            "뉴스핌",
-            "이데일리"
-          ],
-          "hot": false
-        },
-        {
           "text": "“블랙록, 데이터센터 건설 위해 18조원 채권 발행 계획”",
           "source": "KBS 뉴스 · 07/21",
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE03UFJUTGtUbTVZOEloOUtpRFAzdTh3aGdXYnVnbWMwbU5laHYwb2ZUQWo1cDFHb1FSRzF1YktodWtYb3dhOEp2dGdLNFNxZkJUOGlRZ2hTTTRRaFU?oc=5",
@@ -205,6 +192,17 @@ window.NEWS_DATA = [
             "KBS 뉴스",
             "SBS Biz",
             "연합뉴스"
+          ],
+          "hot": false
+        },
+        {
+          "text": "AI 데이터센터 건설 산업 활성화 포럼 출범…정부·산업계 협력 통한 제도 개선 논의",
+          "source": "뉴스핌 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MajhEUXMzMG5ZdVRMM1JvYjFTYWM3cnViZFJrajlpczY0cGlkSGlsUk1hRElyYjlsblJZWUtXODQwbVdoT3AzcGFEVEM0eEJwY3FtbjFQQXBfYnpI?oc=5",
+          "coverage": 2,
+          "outlets": [
+            "edaily.co.kr",
+            "뉴스핌"
           ],
           "hot": false
         },
@@ -246,37 +244,26 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "이준석 “부동산 대책, 증세 아닌 대출 정상화”…실수요자 규제 완화 촉구",
-          "source": "대한경제 · 07/20",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE8wb3lNU3Zmbi1RTC1ueUZ0dTMxeUhSbjYtNUx6YzgzSjBKZFpOLUFrWWwyR3FMUFFoRjBoV3lIa1pNeHRSMFVOZGRGYm9CRXVTUUhUWW1aVkJ2VlhkQUVtY1JlajQ3R2NvRUtYTWpSQ1pEaVE?oc=5",
-          "coverage": 4,
-          "outlets": [
-            "KBS 뉴스",
-            "뉴스핌",
-            "대한경제",
-            "아시아경제"
-          ],
-          "hot": false
-        },
-        {
           "text": "李대통령 “부동산 불로소득, 국민통합 저해…속도감 있는 공급 대책”",
           "source": "에너지경제신문 · 07/21",
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE40OVZya082aU1wQ1QyejZIR05OcUd0cWpLS0Vqb2xENkF5T3MwX3pvSDRnVmJKYXZPSVB5N3ptYVN4dldjZ1J4Z1I0Vnc3WmxFRnZSVW5TUC1Jd0U?oc=5",
-          "coverage": 2,
+          "coverage": 3,
           "outlets": [
+            "뉴시스",
             "세계일보",
             "에너지경제신문"
           ],
           "hot": false
         },
         {
-          "text": "李 \"부동산 불로소득, 공정·상식 파괴하는 주범\"… 공급 대책 속도 낸다",
-          "source": "한국일보 · 07/21",
-          "url": "https://www.msn.com/ko-kr/news/national/%EF%A7%A1-%EB%B6%80%EB%8F%99%EC%82%B0-%EB%B6%88%EB%A1%9C%EC%86%8C%EB%93%9D-%EA%B3%B5%EC%A0%95-%EC%83%81%EC%8B%9D-%ED%8C%8C%EA%B4%B4%ED%95%98%EB%8A%94-%EC%A3%BC%EB%B2%94-%EA%B3%B5%EA%B8%89-%EB%8C%80%EC%B1%85-%EC%86%8D%EB%8F%84-%EB%82%B8%EB%8B%A4/ar-AA28kwFQ",
-          "coverage": 2,
+          "text": "이준석 “부동산 대책, 증세 아닌 대출 정상화”…실수요자 규제 완화 촉구",
+          "source": "대한경제 · 07/20",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9MUXRhbGFaZF9xRG9zNHpuMlp2ak5QUUZCNmF5czNfOFd5UkI2Q2R5ZUFpenZNOFRwc1k3N0ZUTHZRdThYd0t0eF9tTy1aclIyamE0S193ZE1tRVR3c0xwOFVwYXd2LUVVeC01SXNULXp2ZFE2?oc=5",
+          "coverage": 3,
           "outlets": [
-            "경향신문",
-            "한국일보"
+            "KBS 뉴스",
+            "대한경제",
+            "아시아경제"
           ],
           "hot": false
         },
@@ -287,6 +274,16 @@ window.NEWS_DATA = [
           "coverage": 1,
           "outlets": [
             "이투데이"
+          ],
+          "hot": false
+        },
+        {
+          "text": "[모닝콜] 발표 앞둔 부동산 대책‥어떤 내용 담기나?",
+          "source": "MBC 뉴스 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBQaUc2S3Y4UWRGZlpKa3dqTzJ2XzBWT3lod240ZXpzV1NmYkU2eElIMU5mc2d6b2ltUkVzbXQxclduOF9GLVpzbW5uV210UVZOeVRXeDZwakNSRXltWXB5bEY4QXJNbTNBZnZ3UTcyOGxXQ3NkRG4xVFN3?oc=5",
+          "coverage": 1,
+          "outlets": [
+            "MBC 뉴스"
           ],
           "hot": false
         }
@@ -309,9 +306,20 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
+          "text": "중동 긴장 고조에 제조원가 상승 부담…시멘트업계 \"에너지원 다변화로 대응\"",
+          "source": "파이낸셜뉴스 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1tMWwzdDlYb3o4VXBROC1FRHljSVQtR1lqLWl3UVhwWXMwT3BEOTRIcGNlZ0otcGJuR1E4ODlqYUthTTNyYWF6M1JVOU5XUjBielZNbUVBRVkydw?oc=5",
+          "coverage": 2,
+          "outlets": [
+            "연합뉴스",
+            "파이낸셜뉴스"
+          ],
+          "hot": false
+        },
+        {
           "text": "신한은행, 예·적금 금리 0.4%p 인상…은행권 수신금리 상승 신호탄",
           "source": "에너지경제신문 · 07/21",
-          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1TLWF4N3hibVBoMWRWQlhGZ0dUQ0JzQnhxdXBtU040c2NGQXoxNUV4SWFJdDZkUHotNXViOTBqWG5IVlhUa01yU01kdjJCTTVpTW9ZQzIya1RiOGFab2wwUWMwSQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9lQVFKVU9SUDE4RW5vbWpHeXJqS0Q3TTJVTFk1X3VVamFmeVNoNTZCTXdPQlc0S1QxRG9MUDJ1X0pWd01icjZMQ1Z6VDRic2lPOUdWYVJjZUctRHc?oc=5",
           "coverage": 2,
           "outlets": [
             "아시아경제",
@@ -339,16 +347,6 @@ window.NEWS_DATA = [
             "비즈니스포스트"
           ],
           "hot": false
-        },
-        {
-          "text": "수출기업 환헤지·외국인 '사자'…원달러 환율 장중 1,471.1원까지 하락",
-          "source": "SBS 뉴스 · 07/21",
-          "url": "https://www.msn.com/ko-kr/news/other/%EC%88%98%EC%B6%9C%EA%B8%B0%EC%97%85-%ED%99%98%ED%97%A4%EC%A7%80-%EC%99%B8%EA%B5%AD%EC%9D%B8-%EC%82%AC%EC%9E%90-%EC%9B%90%EB%8B%AC%EB%9F%AC-%ED%99%98%EC%9C%A8-%EC%9E%A5%EC%A4%91-14711%EC%9B%90%EA%B9%8C%EC%A7%80-%ED%95%98%EB%9D%BD/ar-AA28mblo",
-          "coverage": 1,
-          "outlets": [
-            "SBS 뉴스"
-          ],
-          "hot": false
         }
       ],
       "geo": [
@@ -356,16 +354,16 @@ window.NEWS_DATA = [
           "text": "국제유가, 중동 정세 불안에 상승…브렌트유 1.27%↑[상보]",
           "source": "이투데이 · 07/21",
           "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5ZTUJlTnJDcDhTb1JFYzBja2lTTnMtcHpITndnVjN1ZXB4SVJoOUw4d01kT094dko1aG1JeFl0c2JBZlR5czBDa19vbjZ3WVN4YWhCbg?oc=5",
-          "coverage": 22,
+          "coverage": 20,
           "outlets": [
             "Chosunbiz",
             "KBS 뉴스",
             "MBC 뉴스",
             "SBS Biz",
-            "news.sbs.co.kr",
             "경향신문",
             "뉴스핌",
-            "동아일보"
+            "동아일보",
+            "비즈니스포스트"
           ],
           "hot": false
         },
@@ -384,27 +382,26 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "호르무즈 이어 홍해도 막히나…세계 원유 ‘양대 동맥’ 봉쇄 위기 [종합]",
-          "source": "이투데이 · 07/21",
-          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9GNnFsbjd3R3ZsOEVPRTZac1U0WVdzaWxMX2wyVURQeUE0TGQ0R2NCTkcxekZTSWVOalVRcGxmSFlMTXo0eW1CTUVfT1poUlBXSUdIUQ?oc=5",
-          "coverage": 3,
-          "outlets": [
-            "매일경제",
-            "이투데이",
-            "한국경제"
-          ],
-          "hot": false
-        },
-        {
-          "text": "“국제유가 떨어진다더니”…美·이란 충돌에 ‘올해 120달러 전망’도 나왔다 [머니+]",
-          "source": "에너지경제신문 · 07/21",
-          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1GNndYTXR5c193U1NoNjlXMy0xdGtIRk9JQ1ZPQ1hKSWZCYlJQTlN5bkc2ZEpjaThDelpLR2lUeVF3SGF4ZlI5dUVwd0RfOVJ5dmZfZ3JwaDZpT2NkelZ1RWlPWQ?oc=5",
+          "text": "美·이란 무력 충돌에 국제 유가 급등",
+          "source": "조선일보 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQOWpxektYVHowNy1mcDh0bE5SeURmTWtwT29jWHRGTW1KS19Sdl9idjNsVFVwR2phNVFKYVNweEt4T044S3c0c0JKOWtZU3JCS2Z1ejVUaHVJZVpDeDcxR1VXa3QzcXpITGVRMFZZY0dFTDdIRWJpbEVNOHZrQjZpbmh2QzhXOEF0cXZCUUFB?oc=5",
           "coverage": 4,
           "outlets": [
             "에너지경제신문",
             "연합뉴스",
             "연합뉴스TV",
             "조선일보"
+          ],
+          "hot": false
+        },
+        {
+          "text": "요동치는 중동 정세에 국제유가 다시 90달러대…정부, 석유최고가격 '고심'",
+          "source": "데일리안 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQRHQzSDV3eHViU3NPdjBybjJxYVdJalRFdW0tcmJ3dDgxTVFLMGtzbWdpOUdjVEwzMnEyZXowaFdJX3pkYXI2MnpvYlNUQTlmcml2elkzY2RpU0FkOFpLalVha1l4RUtMdmdJN3RoZHBkYmFzbVlFUkJleUJGcnRuR3AzWkVyQXpWWlBhUEZUMEw2MTkzRzFVREhucXo5RldscDAwVWZWT3FGUG45NERKY3RXU0dYN3h3QUd3N1dEM21fRnloaFgzY3ZiTDZmYmhXYjhDRGNRbndDS3VDdUlybkcwWEIzRy1aS2JPQTEtYVJnS2pTQTltVHF0Vk8wSHNfRHdR?oc=5",
+          "coverage": 2,
+          "outlets": [
+            "데일리안",
+            "파이낸셜뉴스"
           ],
           "hot": false
         },
@@ -423,32 +420,32 @@ window.NEWS_DATA = [
       ]
     },
     "hourHistogram": [
-      7,
+      4,
+      10,
+      9,
       11,
-      13,
-      13,
+      19,
+      20,
+      32,
+      29,
+      47,
+      48,
+      59,
+      32,
       16,
-      18,
-      34,
-      30,
-      44,
-      55,
-      54,
-      27,
-      15,
       11,
       25,
       42,
-      34,
+      33,
+      31,
       23,
-      17,
       8,
+      3,
+      6,
       5,
-      7,
-      5,
-      5
+      7
     ],
-    "poolSize": 519,
+    "poolSize": 530,
     "keywords": [
       "이란",
       "브렌트유",
