@@ -6,24 +6,24 @@
 window.NEWS_DATA = [
   {
     "date": "2026-07-22",
-    "generatedAt": "17:41",
+    "generatedAt": "19:05",
     "headline": "대우건설, 상도15구역 재개발 도시정비사업 시공사 선정",
     "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 8개 언론사 보도 · 대우건설 관련",
     "headlineCat": "수주",
     "indicators": [
       {
         "label": "국제유가 (Brent)",
-        "value": "93.8",
+        "value": "84.4",
         "unit": "$/배럴",
-        "delta": "5일 +6.5%",
-        "dir": "up",
+        "delta": "5일 -4.2%",
+        "dir": "down",
         "note": "Yahoo Finance BZ=F"
       },
       {
         "label": "원/달러 환율",
-        "value": "1,480",
+        "value": "1,479",
         "unit": "원",
-        "delta": "5일 -0.4%",
+        "delta": "5일 -0.5%",
         "dir": "down",
         "note": "Yahoo Finance KRW=X"
       },
@@ -49,7 +49,7 @@ window.NEWS_DATA = [
         {
           "text": "대우건설, 상도15구역 재개발 도시정비사업 시공사 선정",
           "source": "한국경제 · 07/20",
-          "url": "https://www.msn.com/ko-kr/%EB%8F%84%EC%8B%9C-%EC%9D%B8%ED%94%84%EB%9D%BC/%EC%A3%BC%ED%83%9D-%EB%B0%8F-%EB%8F%84%EC%8B%9C-%EA%B0%9C%EB%B0%9C/%EB%8C%80%EC%9A%B0%EA%B1%B4%EC%84%A4-%EC%83%81%EB%8F%8415%EA%B5%AC%EC%97%AD-%EC%9E%AC%EA%B0%9C%EB%B0%9C-%EB%8F%84%EC%8B%9C%EC%A0%95%EB%B9%84%EC%82%AC%EC%97%85-%EC%8B%9C%EA%B3%B5%EC%82%AC-%EC%84%A0%EC%A0%95/ar-AA28g0te",
+          "url": "https://www.msn.com/ko-kr/news/other/%EB%8C%80%EC%9A%B0%EA%B1%B4%EC%84%A4-%EC%83%81%EB%8F%8415%EA%B5%AC%EC%97%AD-%EC%9E%AC%EA%B0%9C%EB%B0%9C-%EB%8F%84%EC%8B%9C%EC%A0%95%EB%B9%84%EC%82%AC%EC%97%85-%EC%8B%9C%EA%B3%B5%EC%82%AC-%EC%84%A0%EC%A0%95/ar-AA28g0te",
           "coverage": 8,
           "outlets": [
             "Chosunbiz",
@@ -108,19 +108,19 @@ window.NEWS_DATA = [
       ],
       "competitor": [
         {
-          "text": "현대엔지니어링 영업정지 처분 받아, 법적 대응 절차 검토",
-          "source": "비즈니스포스트 · 07/22",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBaQ0poeFE4SVF4Sl9TVFdFZlF1NEFtWktXNE9LVEtxTkFQeU41MW1WM3g5dVg0enNSdmdnWjlOaS1tbkE5ZVE1N0hpNzN3bjE4d2JuOU1IZ1U5X2lRWVZaa2pOUTlEU21vZGsxT0lWZkpmcHM?oc=5",
-          "coverage": 13,
+          "text": "현대엔지니어링, 안성 교량 붕괴 사고로 영업정지 3개월",
+          "source": "서울경제 · 07/22",
+          "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9fVjVtSEZOZlZicTc1cHpMa25vRVRCRlRZZ2lFV3c0bUhMRzFBcFAtaU9McTV3WUFKemRzdi0tMVFKZl9Eak5MUDJYQloyQklmN3fSAVNBVV95cUxNVF9ZdnNVNHR4S0Q3dzdxZ2UxZG94RDVEeEQ5TnppekJVMlNISkhLeldOb0ZLUFBLZkRyemtsbGMxaXJFUTF5RUNHRDVHTWlyOUZoVQ?oc=5",
+          "coverage": 14,
           "outlets": [
             "MBC 뉴스",
             "MTN 뉴스",
             "경향신문",
             "뉴스1",
+            "뉴스핌",
             "머니투데이",
-            "비즈니스포스트",
             "비즈워치",
-            "서울신문"
+            "서울경제"
           ],
           "hot": true
         },
@@ -155,16 +155,18 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "롯데건설, 지속가능경영보고서 발간…기후 리스크 공시 강화 - 머니투데이",
-          "source": "머니투데이 · 07/21",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1ETnpOdUZRTWUwdjFzR181TVNBWE1ZQ3FDZDMyZjdkQ2lQQW5hVHkzN1lKOW14YldvajBFbkxkY0pidEJUZTVOdTdNTGVOTGhMbzNPUHJEYUdIaTZqTm4yT3U5bV9aODItbEHSAW9BVV95cUxPLWtkTHlOM3VQYnlqSm93eDV6VU44VnQyNEJlVm51QmhtQ3pobC02VXAwWVlYUWduSVRJeU9vQzZaZHl5QzU5NWRSaVBvMFR1OTlhaVRXY01lNnk0RmFmeVNHS2NOczh1dlppeVRYQjQ?oc=5",
-          "coverage": 6,
+          "text": "롯데건설 '2026 지속가능경영보고서' 발간, 최신 ESG 공시체계 반영",
+          "source": "비즈니스포스트 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFAzN19NRGxnRDRkd2RZRTd4cGY1c1VMdWNLUzZLbUdDRmRwcy1DMGtEODQ3Y0R6OVBzRWdMYkJVdVpheFhMR1E4b0Nibk9PWnpuZzZuN1VRSE84ckdjQnA2Z3hhMUdzUXI5Q0NRUVFaeHg3Ukk?oc=5",
+          "coverage": 8,
           "outlets": [
             "뉴스핌",
             "뉴시스",
             "데일리안",
-            "머니투데이",
+            "비즈니스포스트",
+            "서울경제",
             "소년한국일보",
+            "아시아경제",
             "헤럴드경제"
           ],
           "hot": false
@@ -176,7 +178,7 @@ window.NEWS_DATA = [
           "coverage": 4,
           "outlets": [
             "edaily.co.kr",
-            "매일경제",
+            "아주경제",
             "연합뉴스",
             "이데일리"
           ],
@@ -186,7 +188,7 @@ window.NEWS_DATA = [
       "trend": [
         {
           "text": "특징주, 현대건설-원자력발전소 해체 테마 상승세에 2.8% ↑",
-          "source": "매일경제 · 07/21",
+          "source": "매일경제 · 07/22",
           "url": "https://www.mk.co.kr/news/stock/12104055",
           "coverage": 1,
           "outlets": [
@@ -221,25 +223,26 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "인천신항에 해상풍력 유지-보수 거점 만든다",
-          "source": "동아일보 · 07/22",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5PV3dOcHdycklXckE5WjdKWkFLV2t4ckdROUhJa1h5Nk5HMEZJNFVPSFprS0lJcnNNbXFDVDRZRU90OHFpMUVZS2JwSkszV2Y0MXc3MUY2MC1WQjdveVN1SE9rT1N5UGxraW040gFmQVVfeXFMUGUxa2VGN013QVZtQjI1UVJocWJEZlgtZ2FEM3JQM2p6VXZqaE5EdWRZbXpqa0N4eHFCeVBlY0lYcER6N0JKYTFsWkFwRGg3YmVYS0VDY2VxaHVOVmJSQjhINWZhczdR?oc=5",
+          "text": "남부발전, 거창군과 양수발전사업 유치·지역상생 협력",
+          "source": "뉴시스 · 07/22",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBVeXloWnQ0ZW1OTkQ1bzkybDNFSUVVZlhhZ3ZLalppOVVUZEwyd282WUVXcVpvU3l4SUNkWUM2MS1zMzJHc01EY01GbThsRExuOHh2b0c2dHctM1hrNW90MNIBeEFVX3lxTFAtZkxlWElTM2xfWDFpbkRyRHcydFFpXzk5eWVOX1dCMjB6OTdER1lnZFhsNlc0d2k5UGxrQ1JON3VNVGkyTUFsQWM1QkwyRWNyU3ZwY2s3WHpSdldfMTh1aWN1Z0JsblNsOG5hZW82TGdlSkhDM3FGag?oc=5",
           "coverage": 3,
           "outlets": [
-            "대한경제",
-            "동아일보",
-            "연합뉴스"
+            "뉴시스",
+            "이투데이",
+            "파이낸셜뉴스"
           ],
           "hot": false
         },
         {
-          "text": "남부발전, 거창군과 양수발전소 유치 맞손⋯ 탄소중립·지역 상생 시동",
-          "source": "이투데이 · 07/22",
-          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5yYk15MFQ0Rjc4Um5oNkRfbXY0V3V2R3dkWjRidUNmT2xsa0JZdzd0ZG9PR2hpeDZOa01Nb0FDVXRlYjVqMWlVVTlWOXBoQ0M2X2lvcw?oc=5",
-          "coverage": 2,
+          "text": "AI 데이터센터 건설 산업 활성화 포럼 출범…정부·산업계 협력 통한 제도 개선 논의",
+          "source": "뉴스핌 · 07/21",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9MajhEUXMzMG5ZdVRMM1JvYjFTYWM3cnViZFJrajlpczY0cGlkSGlsUk1hRElyYjlsblJZWUtXODQwbVdoT3AzcGFEVEM0eEJwY3FtbjFQQXBfYnpI?oc=5",
+          "coverage": 3,
           "outlets": [
-            "뉴시스",
-            "이투데이"
+            "edaily.co.kr",
+            "뉴스핌",
+            "이데일리"
           ],
           "hot": false
         }
@@ -320,12 +323,11 @@ window.NEWS_DATA = [
           "text": "[달러·원] 환율 6.7원 오른 1480.1원 (15:30 기준)",
           "source": "뉴스1 · 07/22",
           "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE02NzI2eUl0cXgtejBPUlVTMWN2TkxvZVc3a1EwV2R1RnA0RmtIRnhhd3BPVl9JaTdob3lDRGtHY1BXT2tQWThqS1ZPck5jS3hFTFBqbDdDUWtFNVhGeld3?oc=5",
-          "coverage": 4,
+          "coverage": 3,
           "outlets": [
             "Chosunbiz",
             "뉴스1",
-            "뉴시스",
-            "아시아경제"
+            "뉴시스"
           ],
           "hot": false
         },
@@ -370,16 +372,16 @@ window.NEWS_DATA = [
           "text": "미·이란 충돌에 홍해 봉쇄 위협까지…국제유가 2% 급등",
           "source": "서울경제TV · 07/22",
           "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1yWDc3eklFc1BhRUdGZDNjUF9tZHNJc0VzRlpiNHJPY2EwOEdPZnpod0dCMHNmZnpEYnljVTI2d1dIUlBGVERMWXNiZ1cyWDdmWlMxdkt2VmJ4VmFJRnkwRy1vU0Q?oc=5",
-          "coverage": 14,
+          "coverage": 16,
           "outlets": [
+            "Chosunbiz",
             "KBS 뉴스",
             "MBC 뉴스",
             "경향신문",
-            "뉴스핌",
+            "뉴시스",
             "동아일보",
             "비즈니스포스트",
-            "서울경제TV",
-            "아주경제"
+            "서울경제"
           ],
           "hot": false
         },
@@ -387,13 +389,27 @@ window.NEWS_DATA = [
           "text": "반도체 반등에 뉴욕증시 강세…유가 상승에도 3대 지수↑",
           "source": "서울경제TV · 07/22",
           "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE45dl92SjM1cFd3WHBTYlFhSVR6YUw1WFVpcFFHbE9VQnJHS1BxZzRsaGNTUVZOcXUwc1ZtOVcwVktXUV9tRm5iTi1Ka1NfMjltcGpKS2RuTXg1MGZoNUFFWlVLcGk?oc=5",
-          "coverage": 5,
+          "coverage": 6,
           "outlets": [
             "news.sbs.co.kr",
             "매일경제 마켓",
             "미주조선일보",
             "서울경제TV",
-            "연합뉴스"
+            "연합뉴스",
+            "이투데이"
+          ],
+          "hot": false
+        },
+        {
+          "text": "홍해 봉쇄 우려에 유조선 회항…국제유가 상승세 이어져",
+          "source": "한겨레 · 07/22",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOSFpza2s5VnNXamRnaW9fSy1panFzaWw2blhaMjNzUUdzSGs1TlFIWDlzY0hDVC1aM2lsSExRY2MwWnJib1BDV3ZpRTN1aUIyeHJianRXcjBNLXVFLTNIZmpWYnM5RWMyN3lfcmx2VlVlTG5MeDAxTDBib1hVZzBVNTFn?oc=5",
+          "coverage": 4,
+          "outlets": [
+            "Chosunbiz",
+            "연합뉴스",
+            "연합뉴스TV",
+            "한겨레"
           ],
           "hot": false
         },
@@ -411,24 +427,14 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "중동發 LNG 가격 급등에… 전기요금 인상 막을 ‘SMP 상한제’ 시행 가능성 커져 - 조선비즈",
-          "source": "Chosunbiz · 07/22",
-          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQNlI1VTU1ZHR1Sm44dkduZ19LZ29FVGtKcmtIQU1icUZ1ZDQ0YlNoV3Nnc0tSdEFpWlVUQ29MS2tnOXBaSnJ4UkZybENnbFFGY2oyZHFtTGI3Nm5iN3FlQjN4akhYeVFmQ0RtZEJLSWFnVXZUMXBJai1oY3FiLUw4M3dSTUjSAZgBQVVfeXFMUEJYcERnZGV4ZXk4MnZEMGhIdkFYekh2N3ZrT0JyeHR0d3JvcW1HalZzTGxYSi1DdFB6NE5tVTJ3RnpyQUVRX05MVE9DMnN0bXUxMGJ0LWxzbEpCZFIzNjZfTEJ1Ti1sWXlfMTNTbEpzcEVKam1adW1DM1ZqLTdZdmVEQzhaS3JZeWdZc0V6VXR1Rm5acWd1cWk?oc=5",
-          "coverage": 2,
-          "outlets": [
-            "Chosunbiz",
-            "조선비즈"
-          ],
-          "hot": false
-        },
-        {
-          "text": "6월 생산자물가지수 10개월 만에 오름세 멈춰, 국제유가 하락 영향",
-          "source": "비즈니스포스트 · 07/22",
-          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9ydWhYbEZfU21LZjRULXk4dzhwdFRseTZodHpqN0xZVDhlTEZvTk94V2VLelRVT05idFpSTTFIc2lWZFVOS25nYTM0XzIyd2tzdDdCWWgxMTc4aHNic2pQTWswc3J5ZjJKWVlvTk03aGhvVzg?oc=5",
-          "coverage": 3,
+          "text": "국제유가 꺾이자…생산자물가 상승세 10개월 만에 멈췄다",
+          "source": "아시아경제 · 07/22",
+          "url": "https://www.msn.com/ko-kr/money/topstories/%EA%B5%AD%EC%A0%9C%EC%9C%A0%EA%B0%80-%EA%BA%BE%EC%9D%B4%EC%9E%90-%EC%83%9D%EC%82%B0%EC%9E%90%EB%AC%BC%EA%B0%80-%EC%83%81%EC%8A%B9%EC%84%B8-10%EA%B0%9C%EC%9B%94-%EB%A7%8C%EC%97%90-%EB%A9%88%EC%B7%84%EB%8B%A4/ar-AA28oAxo",
+          "coverage": 4,
           "outlets": [
             "뉴시스",
             "비즈니스포스트",
+            "아시아경제",
             "연합뉴스"
           ],
           "hot": false
@@ -436,37 +442,37 @@ window.NEWS_DATA = [
       ]
     },
     "hourHistogram": [
-      8,
-      9,
-      9,
-      9,
-      19,
-      18,
-      33,
-      22,
-      52,
-      54,
-      54,
-      42,
-      10,
-      15,
-      32,
-      45,
-      38,
-      33,
-      15,
-      10,
       7,
-      8,
+      4,
+      4,
+      12,
+      15,
+      21,
+      34,
+      19,
+      53,
+      59,
+      57,
+      49,
+      10,
+      19,
+      31,
+      41,
+      37,
+      34,
+      15,
+      12,
+      7,
       9,
-      5
+      7,
+      4
     ],
-    "poolSize": 556,
+    "poolSize": 560,
     "keywords": [
       "이란",
       "홍해",
-      "브렌트유",
       "원전",
+      "브렌트유",
       "불안",
       "정부"
     ],
