@@ -6,25 +6,25 @@
 window.NEWS_DATA = [
   {
     "date": "2026-07-24",
-    "generatedAt": "21:33",
-    "headline": "GS건설, 분양부터 입주까지 전자계약 도입",
-    "headlineUrl": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rc2E5eG10bE5tZlZvYWd3NXZKNWxSWDdBWmZQdjNwZXpwamZjU1BCbVdOdF9DY3d1TXFPVmRCVHlEMjM4cC0xWFR5a2UwYXdlcE51VjE5RzNkX3o3RUE?oc=5",
-    "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 13개 언론사 보도 · GS건설 관련",
+    "generatedAt": "22:59",
+    "headline": "현대엔지니어링, 북미 원자력·SMR 산업 동향 사내 세미나 개최",
+    "headlineUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1qY2IxdlJhdV9ieVUxbW5iRDVJZ3hNSTZ4REFjWDhTcFF4a1Ixc0JMLWF4RkF4b3d3YTcwQnU5aTJaQlNZb2M1aGNQNkFlSlI3SkVsSnNwM0p0ZnJuUnlobjFGSDNYTzhNSFRhVFdhNDh3MnltSkHSAWZBVV95cUxQMFAyMzVPVEMyZWM1akRPaVg5NnY4YVhxTVlHNGU1dEtBUDFRWTZoNzZOMGszUEQ0NVAwUk1hV1MwZ3M5T3VqYlkyT1B2Y1B3T3BZdjFQd0d6N1BCRklQcnZ4V3B0a0E?oc=5",
+    "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 7개 언론사 보도 · 현대엔지니어링 관련",
     "headlineCat": "경쟁사",
     "indicators": [
       {
         "label": "국제유가 (Brent)",
-        "value": "92.1",
+        "value": "97.6",
         "unit": "$/배럴",
-        "delta": "5일 +3.2%",
+        "delta": "5일 +9.4%",
         "dir": "up",
         "note": "Yahoo Finance BZ=F"
       },
       {
         "label": "원/달러 환율",
-        "value": "1,462",
+        "value": "1,461",
         "unit": "원",
-        "delta": "5일 -1.7%",
+        "delta": "5일 -1.8%",
         "dir": "down",
         "note": "Yahoo Finance KRW=X"
       },
@@ -50,20 +50,10 @@ window.NEWS_DATA = [
         {
           "text": "꿈틀대는 용산 일대 재개발…대형 건설사도 수주 경쟁 본격화",
           "source": "뉴스핌 · 07/24",
-          "url": "https://www.newspim.com/news/view/20260723001022",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5tS093REJpbVRjT0lwMXlXdzdDVXZUdHZ0NnMzMF9aZTg3MGtJQnljWlh1RkdHOTVfWjFucVJHei1jUHBMWF85SGdvcFFoTTA2cHpHV2tEX0p3Ymkw?oc=5",
           "coverage": 1,
           "outlets": [
             "뉴스핌"
-          ],
-          "hot": false
-        },
-        {
-          "text": "Q. 재개발·재건축 공급효과 없다?…A. 실제론 14년간 서울서만 5만가구 늘어",
-          "source": "매일경제 · 07/24",
-          "url": "https://www.mk.co.kr/news/realestate/12106874",
-          "coverage": 1,
-          "outlets": [
-            "매일경제"
           ],
           "hot": false
         },
@@ -90,22 +80,48 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "유디엠텍, 창사 최대 수주…\"피지컬 AI로 자율제조 레퍼런스 확보\"-밸류파인더",
-          "source": "이데일리 · 07/24",
-          "url": "https://www.edaily.co.kr/News/Read?newsId=03322646645517800",
+          "text": "지역 대장 단지 10곳 중 2곳, 도시정비 수주 '빅5'가 지었다",
+          "source": "edaily.co.kr · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOU2ZPYXRmM0pSZnFIajU1QVM3U2hnU0ZBZGRHelIyR0dGWUtyZFIwRlluVGRGSkhqWEVTeklHYmF0TW52LThOMGpYU01XaEdxeG96ZTB2alVRc0JBZkxqZjFsR3Qyck5QVW1mYUxCWF9aeV9SUk1sakg3QUQ3U2J0SQ?oc=5",
           "coverage": 1,
           "outlets": [
-            "이데일리"
+            "edaily.co.kr"
+          ],
+          "hot": false
+        },
+        {
+          "text": "지역 최고가 아파트 45%, 정비사업 수주 '빅5' 시공",
+          "source": "뉴시스 · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5PYjRkV2xHSnVBQXQ1TXU5dG9VNHpJVGkxTVZnS2dOampaU3RhVERQVjJCYmg0Z2daMUJDTEFQOWNxUzZEWVdtQXBJWll6VWJLVTRfenlzZUVfLXFiZi1iMdIBeEFVX3lxTE1HWkd1QUZNRWJjVHIzYXdyREtYMWNLb19qY3ZlZDVTUHlzcE93QmJJQ3hUMHRzRWg5YjM3aHVBVVdHeXR5a1ZSZGRxOTFMTXhPci02TkN6SzgyWjdIZExxWUxPNHFrZTkxbFduWjQxdGpzSV9TQzNobg?oc=5",
+          "coverage": 1,
+          "outlets": [
+            "뉴시스"
           ],
           "hot": false
         }
       ],
       "competitor": [
         {
+          "text": "현대엔지니어링, 북미 원자력·SMR 산업 동향 사내 세미나 개최",
+          "source": "동아일보 · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1qY2IxdlJhdV9ieVUxbW5iRDVJZ3hNSTZ4REFjWDhTcFF4a1Ixc0JMLWF4RkF4b3d3YTcwQnU5aTJaQlNZb2M1aGNQNkFlSlI3SkVsSnNwM0p0ZnJuUnlobjFGSDNYTzhNSFRhVFdhNDh3MnltSkHSAWZBVV95cUxQMFAyMzVPVEMyZWM1akRPaVg5NnY4YVhxTVlHNGU1dEtBUDFRWTZoNzZOMGszUEQ0NVAwUk1hV1MwZ3M5T3VqYlkyT1B2Y1B3T3BZdjFQd0d6N1BCRklQcnZ4V3B0a0E?oc=5",
+          "coverage": 7,
+          "outlets": [
+            "SBS Biz",
+            "뉴스1",
+            "뉴스핌",
+            "뉴시스",
+            "동아일보",
+            "파이낸셜뉴스",
+            "헤럴드경제"
+          ],
+          "hot": true
+        },
+        {
           "text": "GS건설, 분양부터 입주까지 전자계약 도입",
           "source": "YTN · 07/24",
           "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rc2E5eG10bE5tZlZvYWd3NXZKNWxSWDdBWmZQdjNwZXpwamZjU1BCbVdOdF9DY3d1TXFPVmRCVHlEMjM4cC0xWFR5a2UwYXdlcE51VjE5RzNkX3o3RUE?oc=5",
-          "coverage": 13,
+          "coverage": 14,
           "outlets": [
             "SBS Biz",
             "YTN",
@@ -116,7 +132,7 @@ window.NEWS_DATA = [
             "동아일보",
             "머니투데이"
           ],
-          "hot": true
+          "hot": false
         },
         {
           "text": "대우건설, 데이터센터 통합 디벨로퍼 도약 위해 전문 운영사와 맞손",
@@ -136,49 +152,32 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "SK에코플랜트, 회사채 수요예측 흥행에 2천억 증액 확정",
-          "source": "연합인포맥스 · 07/24",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE81bl93ZEV5XzI1Z0phRnBfQXNxUVo2QWRVSWdhUlNHNW5iQTRtOWk0SFZxeUNlMHFQTEZjcndmank2S3NrTEFNTDEyVG96QmpQbE1DODNfWUFweEZERFRsMVpKTUF0X2MycVlxTi1NSG81bUcw?oc=5",
-          "coverage": 9,
-          "outlets": [
-            "edaily.co.kr",
-            "매일경제",
-            "서울경제TV",
-            "세계일보",
-            "아주경제",
-            "연합뉴스",
-            "연합인포맥스",
-            "이데일리"
-          ],
-          "hot": false
-        },
-        {
-          "text": "롯데건설 유튜브 오케롯캐, 소셜아이어워드 2관왕 수상",
-          "source": "아주경제 · 07/24",
-          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5uOGdiQlRfN0xXaFBtWVFyTXNoS0M5WFpsRk8zNTV1ODFFZVFxaGRQVmFXQVpQUEh3VFNpeFkxeV9MbkkxclF6UkQzNVpfMDFPOTE3TUx0RXTSAVhBVV95cUxObjhnYkJUXzdMV2hQbVlRck1zaEtDOVhabEZPMzU1dTgxRWVRcWhkUFZhV0FaUFBId1RTaXhZMXlfTG5JMXJRelJEMzVaXzAxTzkxN01MdEV0?oc=5",
-          "coverage": 6,
-          "outlets": [
-            "뉴시스",
-            "데일리안",
-            "아주경제",
-            "연합뉴스",
-            "파이낸셜뉴스",
-            "헤럴드경제"
-          ],
-          "hot": false
-        },
-        {
           "text": "‘더블 초역세권’ DL이앤씨, e편한세상 부천 어반스퀘어 분양",
           "source": "문화일보 · 07/24",
           "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE1JUGQ1SS12QzNwQjNvSndDaEdnUHpVU3hxZTdzcWNFSlVvTmgtZjRFRHpJaTV6dWtNTFdHMDJNSEg5Nk4yUnBhOXVWazFXVDZG?oc=5",
-          "coverage": 6,
+          "coverage": 7,
           "outlets": [
             "동아일보",
             "문화일보",
             "비즈니스포스트",
             "서울경제",
             "에너지경제신문",
+            "한국건설신문",
             "헤럴드경제"
+          ],
+          "hot": false
+        },
+        {
+          "text": "SK에코플랜트, 회사채 수요예측 흥행에 2천억 증액 확정",
+          "source": "연합인포맥스 · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE81bl93ZEV5XzI1Z0phRnBfQXNxUVo2QWRVSWdhUlNHNW5iQTRtOWk0SFZxeUNlMHFQTEZjcndmank2S3NrTEFNTDEyVG96QmpQbE1DODNfWUFweEZERFRsMVpKTUF0X2MycVlxTi1NSG81bUcw?oc=5",
+          "coverage": 5,
+          "outlets": [
+            "edaily.co.kr",
+            "서울경제TV",
+            "세계일보",
+            "연합뉴스",
+            "연합인포맥스"
           ],
           "hot": false
         }
@@ -188,7 +187,7 @@ window.NEWS_DATA = [
           "text": "대우건설, 데이터센터 전문 기업 KINX와 업무협약",
           "source": "한국경제 · 07/24",
           "url": "https://www.msn.com/ko-kr/news/other/%EB%8C%80%EC%9A%B0%EA%B1%B4%EC%84%A4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%84%BC%ED%84%B0-%EC%A0%84%EB%AC%B8-%EA%B8%B0%EC%97%85-kinx%EC%99%80-%EC%97%85%EB%AC%B4%ED%98%91%EC%95%BD/ar-AA28zbAO",
-          "coverage": 10,
+          "coverage": 11,
           "outlets": [
             "뉴스1",
             "뉴시스",
@@ -196,8 +195,8 @@ window.NEWS_DATA = [
             "매일경제",
             "머니투데이",
             "아주경제",
-            "연합인포맥스",
-            "파이낸셜뉴스"
+            "연합뉴스",
+            "연합인포맥스"
           ],
           "hot": true
         },
@@ -213,26 +212,6 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "현대엔지니어링, 원자력·SMR 전문가 초청 세미나 개최",
-          "source": "뉴시스 · 07/24",
-          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBKakQ5S19rV0hBOUJvaGlnYjRFMlVvZjQ2dm9XMnRiTFVxbTJrLWVZV1NadUQ1cjMzTVZ0a2NiZzRrd2dHY3BOY0hYNHVCd0RWbkt3Um5QQkxnUHNDM05xStIBeEFVX3lxTE45cENXUWVPV01KOEdnVGF2VmtjbE85aUFTSXF6SUJuMWNSaVpJdHA2SEVPRFpfQWVmNndmeVltcDlqR3JVNUZhUHBhQmFEWnRfQnlPV2JOY3R3UHc5eEh6cjdxeTFXOHB3NGJpTjZrUDd1akVXVmY2SQ?oc=5",
-          "coverage": 1,
-          "outlets": [
-            "뉴시스"
-          ],
-          "hot": false
-        },
-        {
-          "text": "현대건설, AI·현장 실무 결합한 기술교육생 모집",
-          "source": "파이낸셜뉴스 · 07/24",
-          "url": "https://www.msn.com/ko-kr/%EA%B8%B0%EC%88%A0/%EC%9D%B8%EA%B3%B5-%EC%A7%80%EB%8A%A5/%ED%98%84%EB%8C%80%EA%B1%B4%EC%84%A4-ai-%ED%98%84%EC%9E%A5-%EC%8B%A4%EB%AC%B4-%EA%B2%B0%ED%95%A9%ED%95%9C-%EA%B8%B0%EC%88%A0%EA%B5%90%EC%9C%A1%EC%83%9D-%EB%AA%A8%EC%A7%91/ar-AA28ze4f",
-          "coverage": 1,
-          "outlets": [
-            "파이낸셜뉴스"
-          ],
-          "hot": false
-        },
-        {
           "text": "현대건설, 스마트 건설인재 양성 나선다",
           "source": "헤럴드경제 · 07/24",
           "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBfck9wbGoxcV9nVldvb19ic3d1Ujl4eXZTQWMzMGNxN2x1YzRsUmVsR2dYQlBuOWNITnFBMEVFRVgwS1VKWWVzQWJrMDJwRWc4YlFPNnl3?oc=5",
@@ -241,22 +220,31 @@ window.NEWS_DATA = [
             "헤럴드경제"
           ],
           "hot": false
-        }
-      ],
-      "industry": [
+        },
         {
-          "text": "공정위·건설업계, '불법 하도급 근절 상생협약' 체결",
-          "source": "MTN 머니투데이방송 · 07/24",
-          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1TZi1JanROaHFsQnRBb2dhNG9vZUtZeTZKZ1Z1WGR4Q1hwQWFpWmdINWlaMUlZZl9xTGtUMnpVQzZvTy01b1c5dEotekJnMVBENWw5T2tLTjVPTjJwZEF5Qy14U1Q?oc=5",
-          "coverage": 4,
+          "text": "\"청소로봇부터 향기구독까지\"…현대건설, 스타트업 12곳 선발",
+          "source": "뉴스1 · 07/23",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE40aHpRM1JHUGxwUEdELVA1bGoxaHRjUl9mdTdSNWFKQUtSR2x1aVA3SkZtajVBRXZpWFduanFlZTJ1VVVkVjRsem1mdGV2SjlmVU9QRkN4WnI0ckE?oc=5",
+          "coverage": 1,
           "outlets": [
-            "MTN 머니투데이방송",
-            "뉴시스",
-            "서울신문",
-            "파이낸셜뉴스"
+            "뉴스1"
           ],
           "hot": false
         },
+        {
+          "text": "수협-산업은행, 해상풍력 '바람소득' 상생 모델 구축 맞손",
+          "source": "뉴스1 · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1pZUdtZWwtUWVadno1VHpVMGtiWTFUdkxTa2RBbE1xUkVEMnAzWTBwRV9LX3FBYTQzbklaNXJ1ZHZnRFFIWmVadmZqRjhHY3hYc1RncWhKclNvZUR5eVpJ?oc=5",
+          "coverage": 3,
+          "outlets": [
+            "뉴스1",
+            "뉴시스",
+            "조선일보"
+          ],
+          "hot": false
+        }
+      ],
+      "industry": [
         {
           "text": "27일 또 토론회 여는 정부…부동산 종합대책 막판 고심",
           "source": "파이낸셜뉴스 · 07/24",
@@ -264,6 +252,18 @@ window.NEWS_DATA = [
           "coverage": 3,
           "outlets": [
             "뉴스1",
+            "뉴시스",
+            "파이낸셜뉴스"
+          ],
+          "hot": false
+        },
+        {
+          "text": "공정위·건설업계, '불법 하도급 근절 상생협약' 체결",
+          "source": "MTN 머니투데이방송 · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE1TZi1JanROaHFsQnRBb2dhNG9vZUtZeTZKZ1Z1WGR4Q1hwQWFpWmdINWlaMUlZZl9xTGtUMnpVQzZvTy01b1c5dEotekJnMVBENWw5T2tLTjVPTjJwZEF5Qy14U1Q?oc=5",
+          "coverage": 3,
+          "outlets": [
+            "MTN 머니투데이방송",
             "뉴시스",
             "파이낸셜뉴스"
           ],
@@ -370,7 +370,7 @@ window.NEWS_DATA = [
           "text": "중동 정세에 국제유가 급등하며 국내 증시 하락‥코스피·코스닥 매도 사이드카",
           "source": "MBC 뉴스 · 07/24",
           "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE4zRUYweGV0NmcyUE1NRWlYYm5kTlNOcW84QmNibW53VDNHQnh3Z3JXOUpaZDRUd1RMYnM5c3hqb1NsSC1fTVMtNG5rYmpHRUY4eWNKWVVfWktLSzl1cTNjSEgweDhsVjUzRlRHckItSTFlbzBt0gF0QVVfeXFMT3QwSHVUeGxMdGhQVERjM21oSGlRQU9TaDc5NEVkaTVycS1MWnplaVN2d2R6cE4wcUh0dUQxZlM5VFhWZXJYLUlmX2l0bVZZeUNGRk5JbVBFMm1BSDZBZEM1cTJ2VGFkSjRkOU1KYUxjaWVvYXY?oc=5",
-          "coverage": 15,
+          "coverage": 14,
           "outlets": [
             "Chosunbiz",
             "MBC 뉴스",
@@ -384,14 +384,17 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "8차 석유 최고가격 동결…국제유가 급등에 출구전략 일단 정지",
-          "source": "연합뉴스 · 07/24",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE02a1lLLWhRUWE1NzVvY3EwVWhMbTZiODBLV3F3X1hmcWxESGEtaW1xdUU1b1VyVFIteW43Sm5rY1ZjMkxrWXdzZ1BlRV9wTUNCY3JxdzVpTmRTbm_SAWBBVV95cUxQUUtNVHg4SU5fVVJyd09YeUJwMHVwSHZ2Q0dIMTZzaC1JRHVYYUlpVXdCX0RDenpfMGlXTnFrb0lEXzZ6ZzU4Tlo4QjFtT0piUWwtY2s4NXlqX2d1TFJwMUY?oc=5",
-          "coverage": 5,
+          "text": "8차 석유 최고가격 동결…국제유가 급등에 출구전략 일단정지",
+          "source": "news.sbs.co.kr · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQRTVYOHIycWhTN0hnSjRXbjhjbHdQcXg5YkxtVFROM2xyTDdLVUEtU0JCa2d4bG1IM0sxLWd4WHRQdVRiVzVMMGxJYWlTLVdFVWZiRGZBRVhoRFlaU3h3RnVtdjloODBIaFVLanFNMVI3SmdEakl1M1NMdlJUY2h6aDNGdUFWQQ?oc=5",
+          "coverage": 8,
           "outlets": [
+            "news.sbs.co.kr",
             "뉴스1",
+            "뉴스핌",
             "비즈니스포스트",
             "연합뉴스",
+            "연합뉴스TV",
             "조선일보",
             "파이낸셜뉴스"
           ],
@@ -437,39 +440,39 @@ window.NEWS_DATA = [
       ]
     },
     "hourHistogram": [
+      6,
+      5,
       7,
-      7,
-      7,
-      9,
-      11,
-      21,
-      25,
-      27,
-      44,
-      83,
-      69,
-      63,
-      26,
-      33,
-      45,
-      55,
-      67,
-      35,
-      33,
+      5,
+      13,
+      19,
       24,
+      21,
+      40,
+      82,
+      65,
+      60,
+      28,
+      35,
+      47,
+      54,
+      65,
+      37,
+      31,
+      23,
       14,
-      3,
-      12,
-      4
+      6,
+      13,
+      2
     ],
-    "poolSize": 724,
+    "poolSize": 702,
     "keywords": [
       "머니투데",
       "영업정지",
-      "AI",
       "정부",
       "금리",
-      "사이드카"
+      "KINX와",
+      "AI"
     ],
     "lastWeek": [
       {
