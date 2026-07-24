@@ -333,6 +333,8 @@ select.tool {
 }
 .panel ol { margin: 0; padding-left: 17px; }
 .panel ol li { font-size: 13px; line-height: 1.7; padding: 5px 0; font-weight: 500; color: var(--text-2); }
+.panel ol li a { color: inherit; text-decoration: none; }
+.panel ol li a:hover { color: var(--brand); text-decoration: underline; }
 .panel .cap { margin: 12px 0 0; font-size: 11.5px; line-height: 1.7; color: var(--muted); font-weight: 500; }
 
 /* 카테고리별 요약 — 홍보판넬 다크그린→그린 그라데이션 */
@@ -874,7 +876,13 @@ select.tool {
 
                 var lw = e.lastWeek || [];
                 $('lw').innerHTML = lw.length
-                    ? lw.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('')
+                    ? lw.map(function (t) {
+                        if (typeof t === 'string') return '<li>' + esc(t) + '</li>';  // 옛 형식 호환
+                        var label = (t.date ? t.date + ' ' : '') + (t.text || '');
+                        return '<li>' + (t.url
+                            ? '<a href="' + esc(t.url) + '" target="_blank" rel="noopener noreferrer">' + esc(label) + '</a>'
+                            : esc(label)) + '</li>';
+                    }).join('')
                     : '<li>기록 없음</li>';
                 // 카테고리별 요약 — 수집한 기사만으로 자동 구성한다(AI 분석 없음).
                 // 카드가 대표기사 1건씩만 보여주므로, 여기선 건수와 교차보도 최다 기사를 함께 짚는다.
