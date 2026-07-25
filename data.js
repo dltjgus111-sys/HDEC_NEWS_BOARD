@@ -6,10 +6,10 @@
 window.NEWS_DATA = [
   {
     "date": "2026-07-26",
-    "generatedAt": "00:00",
-    "headline": "현대엔지니어링, 북미 원자력·SMR 산업 동향 사내 세미나 개최",
-    "headlineUrl": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1qY2IxdlJhdV9ieVUxbW5iRDVJZ3hNSTZ4REFjWDhTcFF4a1Ixc0JMLWF4RkF4b3d3YTcwQnU5aTJaQlNZb2M1aGNQNkFlSlI3SkVsSnNwM0p0ZnJuUnlobjFGSDNYTzhNSFRhVFdhNDh3MnltSkHSAWZBVV95cUxQMFAyMzVPVEMyZWM1akRPaVg5NnY4YVhxTVlHNGU1dEtBUDFRWTZoNzZOMGszUEQ0NVAwUk1hV1MwZ3M5T3VqYlkyT1B2Y1B3T3BZdjFQd0d6N1BCRklQcnZ4V3B0a0E?oc=5",
-    "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 9개 언론사 보도 · 현대엔지니어링 관련",
+    "generatedAt": "04:00",
+    "headline": "GS건설, 분양부터 입주까지 전자계약 도입",
+    "headlineUrl": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rc2E5eG10bE5tZlZvYWd3NXZKNWxSWDdBWmZQdjNwZXpwamZjU1BCbVdOdF9DY3d1TXFPVmRCVHlEMjM4cC0xWFR5a2UwYXdlcE51VjE5RzNkX3o3RUE?oc=5",
+    "headlineNote": "오늘 가장 많이 다뤄진 이슈 · 10개 언론사 보도 · GS건설 관련",
     "headlineCat": "경쟁사",
     "indicators": [
       {
@@ -90,16 +90,6 @@ window.NEWS_DATA = [
           "hot": true
         },
         {
-          "text": "GS건설·SK에코 이어 현대ENG까지…건설업계, 영업정지 현실화 우려",
-          "source": "뉴스핌 · 07/23",
-          "url": "https://www.newspim.com/news/view/20260723000964",
-          "coverage": 1,
-          "outlets": [
-            "뉴스핌"
-          ],
-          "hot": false
-        },
-        {
           "text": "지역 최고가 아파트 절반, 정비사업 수주 톱5가 지었다",
           "source": "이투데이 · 07/24",
           "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBnV2s2bE4xbk43VzVLU3dYbUlVVWk4Qm5GRVlkZW82eTRyQmlJTXNfYzJhX1hwYTFqdHJfSlFoVHhzWk81XzBMaDhNRkxodzAtbXdMbg?oc=5",
@@ -129,6 +119,18 @@ window.NEWS_DATA = [
             "한국경제"
           ],
           "hot": false
+        },
+        {
+          "text": "국토부, 미국·동유럽·동남아 등 해외건설 진출 전략 모색",
+          "source": "데일리안 · 07/23",
+          "url": "https://news.google.com/rss/articles/CBMiogJBVV95cUxOVkRPX1Z3RFhacXhfWTd5Nk1xcWZBZU5hZ1hoZUt0QndiMUhzZHBWQ3c2QTVfREtkV3hrYVNmUnQ2RXY3a1R4NThEOVVDN2V6M3dKQXRmd2hJdERpY3hEZzhpeWZEQ0U0czEwWVN6SHEwSHIyX1BrNE0xN1ZjTVJBVE03eUpVeDRMYUNDQlZfeGRQNnFUd2xKUDdwQW1OZU04RGN4VURxVkI4aTNnU2lLMzhtLVBqblZJdVNSckZOVUJHN2Uyc2c3QkVjX1lsYjQ3dmJSdTlxeHpvT1VhS3RnV0pxVVhKQXZvV0dnWWVXM05EWC1kVUpvbmc1NDg1WHdOMVI0TE52SkEwalpKMDM5UFlzSzRMUHgwUHpyQnMxdDNIZw?oc=5",
+          "coverage": 3,
+          "outlets": [
+            "뉴스핌",
+            "데일리안",
+            "아주경제"
+          ],
+          "hot": false
         }
       ],
       "redev": [
@@ -153,16 +155,6 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "'하이엔드'로 승부...대우건설, 목동 재건축 출격 / [현장+] / 한국경제TV뉴스",
-          "source": "한국경제TV · 07/23",
-          "url": "https://www.msn.com/ko-kr/news/other/%ED%95%98%EC%9D%B4%EC%97%94%EB%93%9C%EB%A1%9C-%EC%8A%B9%EB%B6%80%EB%8C%80%EC%9A%B0%EA%B1%B4%EC%84%A4-%EB%AA%A9%EB%8F%99-%EC%9E%AC%EA%B1%B4%EC%B6%95-%EC%B6%9C%EA%B2%A9-%ED%98%84%EC%9E%A5-%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9Ctv%EB%89%B4%EC%8A%A4/vi-AA28w2OY",
-          "coverage": 1,
-          "outlets": [
-            "한국경제TV"
-          ],
-          "hot": false
-        },
-        {
           "text": "롯데건설, 고급 커뮤니티에 트리플 역세권 … '스카이 브리지'에선 잠실 한눈에",
           "source": "매일경제 · 07/23",
           "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5QZ0htSlA3Y1FSdGs3eS1UX3BEeG5TWUwzYnFuOUJuR2ZRd0lvMzNXV0YzZkJyYXk2cmdub3FWMWRSYjQxbUJ3X18waHM0TzVVS1JiWkhfYnZQTmQxSjA0?oc=5",
@@ -173,9 +165,19 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
+          "text": "'1300가구' 의정부 가능4구역, 대우건설 단독 입찰 유력",
+          "source": "데일리한국 · 07/23",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5CZF8tNjdDMEZ5WWFxcGNUZkdtSXhjTHBlZG1MOW1zUXRTZjcxLU5PZ1d0RnBPajFHeU5LTE1reTZlcU1WckQ3b2RSNUhaT19QUFpCdGpCajlkal83UVpUNlVLdmV5Tm1BRDhwaU5BY9IBc0FVX3lxTE1OakhvV1RKeTJSalliY0FtTG5JWXhabm82Q0tGM0c2OW40dGhrcEVsZW5tU1pJSHcwMmJaMUFiVjlYOEdRRENuRlpKQXlDLXR3bm5McFBfVXFtZUpiU3NUTDhqbmFEWTF0TmhrY19kemxiTk0?oc=5",
+          "coverage": 1,
+          "outlets": [
+            "데일리한국"
+          ],
+          "hot": false
+        },
+        {
           "text": "압구정 재건축 신속 추진 위해 현장 찾은 김현기 강남구청장",
           "source": "아시아투데이 · 07/23",
-          "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260721010008244",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9YM0tqWkNBV1d5dFExOTlpOXNoYjdHdDd3NXZCNzZtLUh5bEVxUHVieFRMZ0wxRk5XZ2JaQ1BhTEdOM0xKQ1ZsU29HV3dtUnZWbnBRam9POTQxTWlVdHJxMDFMa3VxUGRaWE04SGF3?oc=5",
           "coverage": 7,
           "outlets": [
             "뉴시스",
@@ -211,7 +213,7 @@ window.NEWS_DATA = [
           "text": "GS건설, 분양부터 입주까지 전자계약 도입",
           "source": "YTN · 07/24",
           "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9rc2E5eG10bE5tZlZvYWd3NXZKNWxSWDdBWmZQdjNwZXpwamZjU1BCbVdOdF9DY3d1TXFPVmRCVHlEMjM4cC0xWFR5a2UwYXdlcE51VjE5RzNkX3o3RUE?oc=5",
-          "coverage": 15,
+          "coverage": 10,
           "outlets": [
             "SBS Biz",
             "YTN",
@@ -221,6 +223,23 @@ window.NEWS_DATA = [
             "데일리안",
             "동아일보",
             "머니투데이"
+          ],
+          "hot": false
+        },
+        {
+          "text": "​삼성E&A, 2분기 영업익 51% 쑥…첨단·뉴에너지 품고 수익성 '개선 뚜렷'",
+          "source": "데일리한국 · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBWeWM4S0pUM0hRRGlBYXVpeGVqN05HbXRTTk5HVlZlRnhzRjF1Uld4ZkJyX2NDVThIbjhNeVgwU0F0VG8yS014ZkJGU0ZEUVVkdVo4WTlOdzczZ3NOZ1lLdkU2eFlDdzVldU4xYXJSUdIBc0FVX3lxTFBsdGlya0JUTzQ1d2g4Z2NBSGNKUXUwc0d5ejF5QThfRlhZaE1YeVp5YVdweUdtMFlxMnQwUjA1eVdCUWVST2tVbVNLQ0JnMkpMSjZldjJPeTY5ZkF6QkQ4NXpzMnJSQ19XelYxdG9Ub2g0c28?oc=5",
+          "coverage": 9,
+          "outlets": [
+            "대한경제",
+            "데일리한국",
+            "머니투데이",
+            "서울경제",
+            "연합뉴스",
+            "연합인포맥스",
+            "이투데이",
+            "파이낸셜뉴스"
           ],
           "hot": false
         },
@@ -257,38 +276,18 @@ window.NEWS_DATA = [
             "이데일리"
           ],
           "hot": false
-        },
-        {
-          "text": "롯데건설 유튜브 오케롯캐, 소셜아이어워드 2관왕 수상",
-          "source": "아주경제 · 07/24",
-          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5uOGdiQlRfN0xXaFBtWVFyTXNoS0M5WFpsRk8zNTV1ODFFZVFxaGRQVmFXQVpQUEh3VFNpeFkxeV9MbkkxclF6UkQzNVpfMDFPOTE3TUx0RXTSAVhBVV95cUxObjhnYkJUXzdMV2hQbVlRck1zaEtDOVhabEZPMzU1dTgxRWVRcWhkUFZhV0FaUFBId1RTaXhZMXlfTG5JMXJRelJEMzVaXzAxTzkxN01MdEV0?oc=5",
-          "coverage": 9,
-          "outlets": [
-            "뉴시스",
-            "데일리안",
-            "아시아투데이",
-            "아주경제",
-            "연합뉴스",
-            "파이낸셜뉴스",
-            "한국경제",
-            "한국주택경제신문"
-          ],
-          "hot": false
         }
       ],
       "trend": [
         {
-          "text": "현대건설, AI·로보틱스 등 스타트업 12곳 선정…“협업 생태계 확대”",
-          "source": "아시아투데이 · 07/23",
-          "url": "https://www.asiatoday.co.kr/kn/view.php?key=20260723010008482",
-          "coverage": 7,
+          "text": "현대건설, 건설 AI·로보틱스 스타트업 12개사와 기술 실증",
+          "source": "이투데이 · 07/23",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE9RamNESXNMUEJYQzdBeDdZdzFqTlBXR2lnWnpEQUQxWXVtQ2pVUjg5R3BSTlRrSWtKdVJ3WlBpNGFvelllTzF1Q29Od1hUWUhiQVdoOQ?oc=5",
+          "coverage": 4,
           "outlets": [
             "edaily.co.kr",
             "뉴시스",
-            "데일리한국",
             "마켓인",
-            "아시아투데이",
-            "아이뉴스24",
             "이투데이"
           ],
           "hot": true
@@ -316,30 +315,31 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "거창군·남부발전, 1조 5천억 ‘양수발전 유치’ 협약 외",
-          "source": "KBS 뉴스 · 07/23",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1aeG1PMlFIYW1MemQ5aFhlQmFYY1JXclg1R2tkRS1nSDY3NzRUR3JBSnBFS1EtMzFxa1ByWmhBRjdOWGMxN3pNempGWkI1SnhUbGhhdGEzalV3NXM?oc=5",
+          "text": "수협-산업은행, 해상풍력 '바람소득' 상생 모델 구축 맞손",
+          "source": "뉴스1 · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1pZUdtZWwtUWVadno1VHpVMGtiWTFUdkxTa2RBbE1xUkVEMnAzWTBwRV9LX3FBYTQzbklaNXJ1ZHZnRFFIWmVadmZqRjhHY3hYc1RncWhKclNvZUR5eVpJ?oc=5",
           "coverage": 6,
           "outlets": [
-            "KBS 뉴스",
-            "국토일보",
+            "뉴스1",
             "뉴시스",
-            "데일리한국",
-            "이투데이",
-            "파이낸셜뉴스"
+            "데일리안",
+            "아시아투데이",
+            "아주경제",
+            "조선일보"
           ],
           "hot": false
         },
         {
-          "text": "하동군·남부발전, 화력발전 폐지 대응 ‘에너지 전환’ 맞손",
-          "source": "헤럴드경제 · 07/24",
-          "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFB1eUJBcGNCMjdVVV92Z0hvUGh2dy1YQ1o3eGMydnhQVjhqS19ud2t5UmpmSlRnN2FKRzN1Q1dscVh2Tm1pWGtULUw0U2JkaHl2bzhzY0N3?oc=5",
-          "coverage": 4,
+          "text": "거창군·남부발전, 1조 5천억 ‘양수발전 유치’ 협약 외",
+          "source": "KBS 뉴스 · 07/23",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1aeG1PMlFIYW1MemQ5aFhlQmFYY1JXclg1R2tkRS1nSDY3NzRUR3JBSnBFS1EtMzFxa1ByWmhBRjdOWGMxN3pNempGWkI1SnhUbGhhdGEzalV3NXM?oc=5",
+          "coverage": 5,
           "outlets": [
+            "KBS 뉴스",
             "국토일보",
             "뉴시스",
-            "데일리안",
-            "헤럴드경제"
+            "이투데이",
+            "파이낸셜뉴스"
           ],
           "hot": false
         }
@@ -379,26 +379,23 @@ window.NEWS_DATA = [
           "hot": false
         },
         {
-          "text": "[이 대통령 부동산정책 국민 대토론회]",
-          "source": "한국일보 · 07/24",
-          "url": "https://www.hankookilbo.com/news/article/A2026072315500003295",
-          "coverage": 4,
-          "outlets": [
-            "YTN",
-            "뉴시스",
-            "한국경제",
-            "한국일보"
-          ],
-          "hot": false
-        },
-        {
           "text": "27일 또 토론회 여는 정부…부동산 종합대책 막판 고심",
           "source": "뉴시스 · 07/24",
-          "url": "https://www.msn.com/ko-kr/money/topstories/27%EC%9D%BC-%EB%98%90-%ED%86%A0%EB%A1%A0%ED%9A%8C-%EC%97%AC%EB%8A%94-%EC%A0%95%EB%B6%80-%EB%B6%80%EB%8F%99%EC%82%B0-%EC%A2%85%ED%95%A9%EB%8C%80%EC%B1%85-%EB%A7%89%ED%8C%90-%EA%B3%A0%EC%8B%AC/ar-AA28xN6Q",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBxWVJKdjZwUGUySWEyenRGWThOTnl3YmpncnVLZlhjS3pfVDJ5aWl4b3NWRG0zeDQxQll5VDNqRmVmY29jcE5MRFZSakY4WVFweDUwSEkxcWRzdWxCN3piMtIBeEFVX3lxTE12TDczZ2xxY0tXaG9LZFZLclJ3azBwUkdkOWs5SFd3T2dUcUxUS0RsQ2tNRjlYbXM1eEVGWnhlX0g0UEpNZkZsY010Tjc2bFQ2T2VBYmN6ejU5a2xlUlh2MS1kcVkwM3dLUXd2bU4yV1hmQ1VEYnp3Rw?oc=5",
           "coverage": 2,
           "outlets": [
             "뉴스1",
             "뉴시스"
+          ],
+          "hot": false
+        },
+        {
+          "text": "이재명 부동산 대책 '보유세 강화'로는 한계, '15억 이하 쏠림' 대응할 정책조합 한목소리",
+          "source": "비즈니스포스트 · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBlY2pXMmptNDUzUTFwOE9MRmFNUlVkUVVVMGpNMVRUNjNsb0FZbWlKNFFGZEN2UjlEUDNhQWx1ejNxOFJfTmM5Mkg2QTY0RmNYVWY4VmpGeXBKMlBxTEt4MWNHV3VUWnhSRTBnbHY0SjVLUEE?oc=5",
+          "coverage": 1,
+          "outlets": [
+            "비즈니스포스트"
           ],
           "hot": false
         }
@@ -408,12 +405,11 @@ window.NEWS_DATA = [
           "text": "원·달러 환율 0.2원 오른 1466.6원(오후 3시30분)",
           "source": "아시아경제 · 07/24",
           "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBUVmxSbTk4YUJzV1p1R3k0MzZzRVFjNkZybnN0WFJJd0ZKUkJ6Z3ZjXzhpUzhkaFN0a3FibHF0dUhQLXAxcmhySThXVWYxOUI3aVE1TE52TkNNblpGdXBXbg?oc=5",
-          "coverage": 7,
+          "coverage": 6,
           "outlets": [
             "Chosunbiz",
             "뉴스1",
             "뉴시스",
-            "데일리안",
             "매일경제 마켓",
             "아시아경제",
             "연합뉴스"
@@ -470,7 +466,7 @@ window.NEWS_DATA = [
           "text": "전국 기름값 10주째 하락…국제유가 급등에 낙폭 축소",
           "source": "서울경제TV · 07/25",
           "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5LeXZ5MjFkcElETk45MEh2ZERVRTZBSmc1bUU0NjAyeGpPMGljNmpyb2JHcTdzeTZrWW11QWMwSUp3WXhGQUNGV3ozdnJaWkRGaU9NX2ozUzgwVFVIbllXMmp0dmg?oc=5",
-          "coverage": 15,
+          "coverage": 13,
           "outlets": [
             "Chosunbiz",
             "KBS 뉴스",
@@ -478,8 +474,8 @@ window.NEWS_DATA = [
             "MTN 머니투데이방송",
             "SBS Biz",
             "YTN",
-            "동아일보",
-            "서울경제TV"
+            "서울경제TV",
+            "아시아경제"
           ],
           "hot": false
         },
@@ -487,30 +483,14 @@ window.NEWS_DATA = [
           "text": "중동 정세에 국제유가 급등하며 국내 증시 하락‥코스피·코스닥 매도 사이드카",
           "source": "MBC 뉴스 · 07/24",
           "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE4zRUYweGV0NmcyUE1NRWlYYm5kTlNOcW84QmNibW53VDNHQnh3Z3JXOUpaZDRUd1RMYnM5c3hqb1NsSC1fTVMtNG5rYmpHRUY4eWNKWVVfWktLSzl1cTNjSEgweDhsVjUzRlRHckItSTFlbzBt0gF0QVVfeXFMT3QwSHVUeGxMdGhQVERjM21oSGlRQU9TaDc5NEVkaTVycS1MWnplaVN2d2R6cE4wcUh0dUQxZlM5VFhWZXJYLUlmX2l0bVZZeUNGRk5JbVBFMm1BSDZBZEM1cTJ2VGFkSjRkOU1KYUxjaWVvYXY?oc=5",
-          "coverage": 7,
+          "coverage": 6,
           "outlets": [
             "KBS 뉴스",
             "MBC 뉴스",
             "MTN 머니투데이방송",
             "YTN",
             "서울신문",
-            "연합뉴스",
-            "한국경제"
-          ],
-          "hot": false
-        },
-        {
-          "text": "호르무즈·홍해 '이중병목'…유가 110달러선도 뚫나[주末머니]",
-          "source": "아시아경제 · 07/25",
-          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1vM1lCVjdfZjFTRDhrQm12TnpFaEVOOFR0c3dDN0YxYjRtc2dWNXhNdnI2S2RKT2d0c1hOOWJPcG42X3pQT2NxbHZ3VGpIWlN4b0E2cWItY250Mnc3a3JFMl9n?oc=5",
-          "coverage": 6,
-          "outlets": [
-            "뉴시스",
-            "동아일보",
-            "머니투데이",
-            "아시아경제",
-            "파이낸셜뉴스",
-            "한국일보"
+            "연합뉴스"
           ],
           "hot": false
         },
@@ -518,66 +498,81 @@ window.NEWS_DATA = [
           "text": "8차 석유 최고가격 동결…국제유가 급등에 출구전략 일단 정지",
           "source": "연합뉴스 · 07/24",
           "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE02a1lLLWhRUWE1NzVvY3EwVWhMbTZiODBLV3F3X1hmcWxESGEtaW1xdUU1b1VyVFIteW43Sm5rY1ZjMkxrWXdzZ1BlRV9wTUNCY3JxdzVpTmRTbm_SAWBBVV95cUxQUUtNVHg4SU5fVVJyd09YeUJwMHVwSHZ2Q0dIMTZzaC1JRHVYYUlpVXdCX0RDenpfMGlXTnFrb0lEXzZ6ZzU4Tlo4QjFtT0piUWwtY2s4NXlqX2d1TFJwMUY?oc=5",
-          "coverage": 6,
+          "coverage": 8,
           "outlets": [
             "뉴스핌",
+            "동아일보",
             "머니투데이",
             "비즈니스포스트",
             "연합뉴스",
             "연합뉴스TV",
-            "조선일보"
+            "조선일보",
+            "파이낸셜뉴스"
           ],
           "hot": false
         },
         {
-          "text": "급등하던 유가, 中·파키스탄 중재설에 하락…브렌트유 3.9%↓",
-          "source": "아시아경제 · 07/25",
-          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE96c0hYVWh4aWs3TWN3S0Nzclc3VE5WdU50a2VnZzNxY0dvRW9saEI4bWIxdTRmcjlzMjBQNk5NaG9sTFpYNDFham9HdGNTTVlqRnQ5MVNlQmswYXl3bTRKQw?oc=5",
-          "coverage": 4,
+          "text": "또 '블랙데이' 국제유가 급등에 코스피 6600선 후퇴",
+          "source": "SBS Biz · 07/24",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE15cjZaclliT1Vyd0NucERVbzA3U2FaTFZLSXJqTEtqWjQtWEsxQ2VFQTZ2M3g0UHBZX2RGUmxpRUJFZEVsX2k5RG1pNllINGRiU2Vz?oc=5",
+          "coverage": 5,
           "outlets": [
-            "매일경제TV",
-            "아시아경제",
-            "연합뉴스",
-            "연합뉴스TV"
+            "SBS Biz",
+            "YTN",
+            "경향신문",
+            "에너지경제신문",
+            "연합뉴스"
+          ],
+          "hot": false
+        },
+        {
+          "text": "호르무즈 이어 홍해까지 봉쇄 위기…중동 원유 수송로 비상",
+          "source": "서울경제TV · 07/25",
+          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE5HSk9hZkZqT09FeDNINWlwVnFmNlBROW15YzdzbFh2RjdMX1VCLVozampiUlF4TVpyczFHMlhKUEwwWUZFbXpEa2ZBbWNKRTFyX2RjRWpqdFVOU1lDeEl4OUc2N3Y?oc=5",
+          "coverage": 3,
+          "outlets": [
+            "뉴시스",
+            "서울경제TV",
+            "중앙일보"
           ],
           "hot": false
         }
       ]
     },
     "hourHistogram": [
-      6,
-      6,
-      7,
-      6,
+      3,
+      5,
+      3,
+      3,
+      11,
       14,
-      14,
-      40,
-      25,
-      51,
-      70,
-      61,
-      64,
-      39,
-      45,
-      38,
-      59,
-      66,
-      53,
       36,
-      23,
-      14,
-      8,
-      14,
-      6
+      21,
+      40,
+      69,
+      59,
+      56,
+      18,
+      38,
+      37,
+      52,
+      64,
+      45,
+      30,
+      17,
+      12,
+      6,
+      11,
+      4
     ],
-    "poolSize": 765,
+    "poolSize": 654,
     "keywords": [
       "AI",
-      "영업정지",
       "머니투데",
-      "정부",
       "맞손",
-      "목표가"
+      "영업정지",
+      "실적",
+      "정부"
     ],
     "lastWeek": [
       {
