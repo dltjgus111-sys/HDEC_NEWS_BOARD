@@ -207,7 +207,7 @@ select.tool {
 
 /* ============================ 3. 카테고리 카드 (핵심) ============================ */
 .grid {
-  margin-top: 10px; display: grid;
+  margin-top: 8px; display: grid;
   grid-template-columns: repeat(3, 1fr); gap: 12px;
   align-items: stretch;   /* 6장 높이 균일화 — 제목 길이가 들쭉해도 카드가 안 무너짐 */
 }
@@ -232,7 +232,7 @@ select.tool {
 .card:hover { border-color: var(--brand); box-shadow: 0 20px 44px -12px rgba(0,140,70,.32), 0 6px 16px rgba(21,24,27,.10); }
 @media (prefers-reduced-motion: reduce) { .card { animation: none; } }
 .card-head {
-  padding: 14px 16px 12px; display: flex; align-items: center; gap: 9px;
+  padding: 11px 13px 10px; display: flex; align-items: center; gap: 8px;
   background: var(--secsoft, var(--brand-soft));    /* ← 카테고리 연한색 주입 */
 }
 .card-head .ic { font-size: 16px; line-height: 1; }
@@ -244,7 +244,7 @@ select.tool {
 }
 
 /* 대표 기사 = 카드뉴스형 리드. 유형(강한/숫자/공감)은 제목에서 자동 판정된다 */
-.lead { padding: 14px 15px 13px; display: flex; flex-direction: column; flex: 1; }
+.lead { padding: 11px 12px 10px; display: flex; flex-direction: column; flex: 1; }
 .chips { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 11px; min-height: 18px; }
 .bignum {
   font-size: 28px; font-weight: 800; letter-spacing: -.045em; line-height: .95;
@@ -306,7 +306,7 @@ select.tool {
 /* ============================ 4. 오늘의 키워드 ============================ */
 .kwbar {
   margin-top: 10px; background: var(--card); border: 1px solid var(--line);
-  border-radius: var(--radius); box-shadow: var(--shadow); padding: 12px 20px;
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 9px 18px;
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
 }
 .kwbar .t { font-size: 12px; font-weight: 900; color: var(--muted); letter-spacing: -.02em; white-space: nowrap; }
@@ -326,7 +326,7 @@ select.tool {
 .bottom { display: grid; grid-template-columns: 1fr 1.6fr; gap: 14px; margin-top: 6px; }
 .panel {
   background: var(--card); border: 1px solid var(--line);
-  border-radius: var(--radius); box-shadow: var(--shadow); padding: 17px 22px;
+  border-radius: var(--radius); box-shadow: var(--shadow); padding: 13px 18px;
 }
 .panel h3 {
   margin: 0 0 13px; font-size: 14px; font-weight: 900; letter-spacing: -.02em;
@@ -485,7 +485,7 @@ select.tool {
 
 /* ============================ 반응형 / 인쇄 ============================ */
 /* 1440px+ : 6열 = 세로 압축(920px 이내). 그 아래로 좁아지면 2~3열로 접힘 */
-@media (min-width: 1400px) { .grid { grid-template-columns: repeat(6, 1fr); } }
+@media (min-width: 1400px) { .grid { grid-template-columns: repeat(7, 1fr); } }
 @media (max-width: 1180px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 900px)  { .stats { grid-template-columns: repeat(2, 1fr); } .bottom { grid-template-columns: 1fr; } .stgrid { grid-template-columns: 1fr; } }
 @media (max-width: 620px)  { :root { --content: calc(100vw - 24px); } .grid { grid-template-columns: 1fr; } .hero { padding: 22px 18px 18px; } }
@@ -673,6 +673,7 @@ select.tool {
                구분이 안 돼(하한 6.0) 블루로 교체했습니다. */
             var CAT = {
                 order:      { icon: '🏆', name: '수주',          c: '#008C46', soft: '#E6F4EC' },
+                redev:      { icon: '🏙️', name: '도시정비',      c: '#0F766E', soft: '#E3F2F0' },
                 competitor: { icon: '⚔️', name: '경쟁사',        c: '#2563EB', soft: '#E8F0FE' },
                 trend:      { icon: '🔬', name: '핵심상품 트렌드', c: '#D9660A', soft: '#FCEFE2' },
                 industry:   { icon: '🏗️', name: '건설업계',      c: '#7C3AED', soft: '#F1EAFE' },
@@ -680,7 +681,7 @@ select.tool {
                 geo:        { icon: '🌍', name: '지정학적 이슈',  c: '#0E9BA8', soft: '#E0F5F7' }
             };
             // 견적팀 기준 중요도 순서 (보드에 놓이는 순서이기도 하다)
-            var ORDER = ['order', 'competitor', 'trend', 'industry', 'economy', 'geo'];
+            var ORDER = ['order', 'redev', 'competitor', 'trend', 'industry', 'economy', 'geo'];
 
             /* 색감 통일: 카테고리별 색을 쓰지 않고 화이트+딝그린 구조 / 버건디 강조로 통일한다.
                CAT의 아이콘·이름은 그대로 쓰되 색만 딝그린으로 덮어 --sec·통계바·스크랩변이 모두 통일된다. */
