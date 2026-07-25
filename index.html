@@ -157,7 +157,7 @@ select.tool {
 .hero {
   background: var(--card); border: 1px solid var(--line);
   border-radius: var(--radius); box-shadow: var(--shadow);
-  padding: 20px 26px 18px;
+  padding: 18px 26px 14px;
 }
 .hero .kicker {
   display: inline-block;
@@ -186,10 +186,11 @@ select.tool {
 .hero .sub { margin-top: 9px; font-size: 13px; font-weight: 500; color: var(--muted); }
 
 /* 지표 4칸 */
-.stats { margin-top: 15px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+/* 지표 8개를 한 줄에. 2행이 되면 보드가 한 화면(920px)을 넘는다 */
+.stats { margin-top: 10px; display: grid; grid-template-columns: repeat(8, 1fr); gap: 7px; }
 .stat {
   background: var(--panel-2); border: 1px solid var(--line);
-  border-radius: 12px; padding: 11px 14px;
+  border-radius: 12px; padding: 9px 11px;
 }
 .stat .k { font-size: 11.5px; font-weight: 700; color: var(--muted); }
 .stat .v {
@@ -206,7 +207,7 @@ select.tool {
 
 /* ============================ 3. 카테고리 카드 (핵심) ============================ */
 .grid {
-  margin-top: 13px; display: grid;
+  margin-top: 10px; display: grid;
   grid-template-columns: repeat(3, 1fr); gap: 12px;
   align-items: stretch;   /* 6장 높이 균일화 — 제목 길이가 들쭉해도 카드가 안 무너짐 */
 }

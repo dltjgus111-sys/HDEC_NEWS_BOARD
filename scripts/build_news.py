@@ -113,8 +113,9 @@ def is_allowed_press(source):
     return False
 
 
-def fetch(url, timeout=25):
-    req = urllib.request.Request(url, headers=UA)
+def fetch(url, timeout=25, data=None):
+    """data 를 주면 POST 가 된다(오피넷 국제유가 CSV 가 POST 만 받는다)."""
+    req = urllib.request.Request(url, data=data, headers=UA)
     return urllib.request.urlopen(req, timeout=timeout, context=CTX).read()
 
 
@@ -467,14 +468,14 @@ def indicator_oil():
         cur, base = yahoo_quote("BZ=F")
         pct = (cur / base - 1) * 100
         return {
-            "label": "국제유가 (Brent)", "value": f"{cur:,.1f}", "unit": "$/배럴",
+            "label": "브렌트유", "value": f"{cur:,.1f}", "unit": "$/배럴",
             "delta": f"5일 {pct:+.1f}%",
             "dir": "up" if pct > 0.3 else ("down" if pct < -0.3 else "flat"),
             "note": "Yahoo Finance BZ=F",
         }
     except Exception as e:
         log(f"  ! 유가 실패: {type(e).__name__}")
-        return {"label": "국제유가 (Brent)", "value": "-", "unit": "$/배럴",
+        return {"label": "브렌트유", "value": "-", "unit": "$/배럴",
                 "note": "수집 실패", "dir": "flat"}
 
 
@@ -483,7 +484,7 @@ def indicator_fx():
         cur, base = yahoo_quote("KRW=X")
         pct = (cur / base - 1) * 100
         return {
-            "label": "원/달러 환율", "value": f"{cur:,.0f}", "unit": "원",
+            "label": "원/달러", "value": f"{cur:,.0f}", "unit": "원",
             "delta": f"5일 {pct:+.1f}%",
             "dir": "up" if pct > 0.15 else ("down" if pct < -0.15 else "flat"),
             "note": "Yahoo Finance KRW=X",
@@ -491,12 +492,123 @@ def indicator_fx():
     except Exception:
         try:  # 예비 경로
             d = json.loads(fetch("https://api.frankfurter.app/latest?from=USD&to=KRW"))
-            return {"label": "원/달러 환율", "value": f"{d['rates']['KRW']:,.0f}",
+            return {"label": "원/달러", "value": f"{d['rates']['KRW']:,.0f}",
                     "unit": "원", "dir": "flat", "note": f"ECB {d['date']}"}
         except Exception as e:
             log(f"  ! 환율 실패: {type(e).__name__}")
-            return {"label": "원/달러 환율", "value": "-", "unit": "원",
+            return {"label": "원/달러", "value": "-", "unit": "원",
                     "note": "수집 실패", "dir": "flat"}
+
+
+def indicator_fx_eur():
+    """원/유로. 원/달러 x 유로/달러 로 곱하지 않고 직접 조회한다(곱셈은 오차가 겹친다)."""
+    try:
+        cur, base = yahoo_quote("EURKRW=X")
+        pct = (cur / base - 1) * 100
+        return {
+            "label": "원/유로", "value": f"{cur:,.0f}", "unit": "원",
+            "delta": f"5일 {pct:+.1f}%",
+            "dir": "up" if pct > 0.15 else ("down" if pct < -0.15 else "flat"),
+            "note": "Yahoo Finance EURKRW=X",
+        }
+    except Exception as e:
+        log(f"  ! 원/유로 실패: {type(e).__name__}")
+        return {"label": "원/유로", "value": "-", "unit": "원",
+                "note": "수집 실패", "dir": "flat"}
+
+
+# Westmetall 표 한 줄: <td>24. July 2026</td><td>13,617.00</td>
+_WM_ROW = re.compile(
+    r"<tr[^>]*>\s*<td[^>]*>\s*\d{1,2}\.\s*[A-Za-z]+\s*\d{4}\s*</td>"
+    r"\s*<td[^>]*>\s*([\d.,]+)\s*</td>")
+
+
+def westmetall_quote(field):
+    """LME 현물 시세 (최신값, 5거래일 전 값) $/ton.
+
+    LME 공식 현물가다. KOMIS(한국자원정보서비스) 값과 39일 구간이 일치함을 확인했고,
+    KOMIS 는 이용약관이 영리법인의 재이용에 사전협의를 요구해 이쪽을 쓴다.
+    선물(Yahoo HG=F 등)은 거래소가 달라 값이 어긋나므로 쓰면 안 된다.
+    """
+    url = f"https://www.westmetall.com/en/markdaten.php?action=table&field={field}"
+    html = fetch(url).decode("utf-8", errors="replace")
+    vals = []
+    for v in _WM_ROW.findall(html):
+        try:
+            vals.append(float(v.replace(",", "")))
+        except ValueError:
+            continue
+    if not vals:
+        raise ValueError(f"{field}: 표를 못 읽음 (사이트 구조 변경 의심)")
+    # 표는 최신이 위. 최신값과 5거래일 전 값을 돌려준다
+    return vals[0], vals[min(5, len(vals) - 1)]
+
+
+def indicator_metal(field, label, lo, hi):
+    """구리·알루미늄 같은 LME 금속. 자재비에 직접 영향을 주는 지표다."""
+    try:
+        cur, base = westmetall_quote(field)
+        # 자릿수가 튀는 파싱 오류를 여기서 거른다
+        if not (lo <= cur <= hi):
+            raise ValueError(f"값이 범위 밖: {cur} (기대 {lo}~{hi})")
+        pct = (cur / base - 1) * 100 if base else 0.0
+        return {
+            "label": label, "value": f"{cur:,.0f}", "unit": "$/톤",
+            "delta": f"5일 {pct:+.1f}%",
+            "dir": "up" if pct > 0.3 else ("down" if pct < -0.3 else "flat"),
+            "note": "LME 현물 (Westmetall)",
+        }
+    except Exception as e:
+        log(f"  ! {label} 실패: {type(e).__name__} {e}")
+        return {"label": label, "value": "-", "unit": "$/톤",
+                "note": "수집 실패", "dir": "flat"}
+
+
+def indicator_oil_dubai():
+    """두바이유. 국내 정유사 도입 기준유종이라 브렌트와 별개로 의미가 있다.
+
+    오피넷이 유일한 무료 출처다. 국내 사이트라 GitHub Actions(해외 IP)에서
+    막힐 수 있는데, 실패해도 다른 지표에는 영향이 없다.
+    주의: 월별 조회(TERM=M)는 결측일을 0으로 계산하는 버그가 있어 일별로만 받는다.
+    """
+    try:
+        today = datetime.now(KST)
+        body = urllib.parse.urlencode({
+            "OILSRTCD1": "001", "OILSRTCD2": "002", "OILSRTCD3": "003",
+            "SEL_DIV": "div_dar",          # $/BBL. div_won 은 원/리터라 값이 9배 튄다
+            "TERM": "D",
+            "STDDATE": (today - timedelta(days=20)).strftime("%Y%m%d"),
+            "ENDDATE": today.strftime("%Y%m%d"),
+        }).encode()
+        raw = fetch("https://www.opinet.co.kr/glopcoil_csv.do", data=body)
+        txt = raw.decode("cp949", errors="replace")
+        if txt.lstrip().startswith("<"):
+            raise RuntimeError("CSV 대신 HTML 반환 (차단 페이지)")
+
+        rows = []
+        for line in txt.splitlines():
+            m = re.match(r"\s*(\d{2})년(\d{2})월(\d{2})일\s*,([\d.]+),", line)
+            if m:
+                rows.append(float(m.group(4)))
+        if not rows:
+            raise RuntimeError("데이터 행 없음")
+        cur = rows[-1]
+        # 다른 지표가 전부 '5일 변화'라 두바이만 20일 구간을 쓰면 나란히 놓고 볼 수 없다.
+        # (실제로 20일 기준이면 +41% 가 찍혀 브렌트의 +8.5% 와 딴 얘기가 된다)
+        base = rows[-6] if len(rows) >= 6 else rows[0]
+        if not (5 <= cur <= 400):
+            raise ValueError(f"값이 범위 밖: {cur}")
+        pct = (cur / base - 1) * 100 if base else 0.0
+        return {
+            "label": "두바이유", "value": f"{cur:,.1f}", "unit": "$/배럴",
+            "delta": f"5일 {pct:+.1f}%",
+            "dir": "up" if pct > 0.3 else ("down" if pct < -0.3 else "flat"),
+            "note": "한국석유공사 오피넷",
+        }
+    except Exception as e:
+        log(f"  ! 두바이유 실패: {type(e).__name__} {e}")
+        return {"label": "두바이유", "value": "-", "unit": "$/배럴",
+                "note": "수집 실패", "dir": "flat"}
 
 
 def indicators_manual(cfg):
@@ -723,7 +835,16 @@ def main():
         return 1
 
     log("[지표] 수집")
-    indicators = [indicator_oil(), indicator_fx()] + indicators_manual(cfg)
+    # 자동 수집 6종 + 자동화가 어려운 것은 config.json 에서(기준금리·건설공사비지수).
+    # 순서 = 화면에 놓이는 순서. 유가 2 / 금속 2 / 환율 2 로 묶어 읽기 쉽게 한다.
+    indicators = [
+        indicator_oil(),                                        # 브렌트
+        indicator_oil_dubai(),                                  # 두바이
+        indicator_metal("LME_Cu_cash", "구리", 1000, 40000),
+        indicator_metal("LME_Al_cash", "알루미늄", 500, 20000),
+        indicator_fx(),                                         # 원/달러
+        indicator_fx_eur(),                                     # 원/유로
+    ] + indicators_manual(cfg)
 
     # 아카이브를 먼저 읽어둔다 (헤드라인 중복 회피와 지난주 목록에 둘 다 쓴다)
     archive = load_archive()
