@@ -142,11 +142,81 @@ select.tool {
   background-repeat: no-repeat; background-position: right 11px center;
 }
 
+/* ============ 날짜 선택 달력 ============
+   아카이브가 180일까지 쌓이므로 목록형 select 로는 감당이 안 된다.
+   하루 선택 + 기간(주·월) 선택을 한 UI 로 처리한다. */
+.datepick { position: relative; }
+
+#dbtn { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+#dbtn .cx { font-size: 9px; color: var(--muted); }
+
+.calpop {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 120;
+  width: 268px; padding: 12px;
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 14px; box-shadow: 0 18px 42px rgba(21, 24, 27, .18);
+}
+.calpop.hide { display: none; }
+
+.calpresets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-bottom: 10px; }
+.calpresets button {
+  border: 1px solid var(--line); background: #fff; color: var(--text-2);
+  border-radius: 7px; padding: 6px 4px; font-family: inherit;
+  font-size: 10.5px; font-weight: 800; cursor: pointer; white-space: nowrap;
+}
+.calpresets button:hover { border-color: var(--brand); color: var(--brand); }
+
+.calhead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.calhead span { font-size: 13px; font-weight: 900; letter-spacing: -.02em; }
+.calnav {
+  width: 26px; height: 26px; border: 1px solid var(--line); background: #fff;
+  border-radius: 7px; font-size: 15px; line-height: 1; color: var(--muted);
+  cursor: pointer; font-family: inherit;
+}
+.calnav:hover:not(:disabled) { border-color: var(--brand); color: var(--brand); }
+.calnav:disabled { opacity: .3; cursor: not-allowed; }
+
+.caldow, .calgrid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.caldow span {
+  text-align: center; font-size: 9.5px; font-weight: 800; color: var(--muted);
+  padding-bottom: 4px;
+}
+.caldow span:first-child { color: #c0392b; }
+.caldow span:last-child { color: var(--blue); }
+
+.calgrid button {
+  aspect-ratio: 1 / 1; border: 1px solid transparent; background: transparent;
+  border-radius: 7px; font-family: inherit; font-size: 11.5px; font-weight: 700;
+  color: #c3c8cd; cursor: default; padding: 0;
+}
+/* 데이터가 있는 날만 고를 수 있다 */
+.calgrid button.has {
+  color: var(--text); cursor: pointer; background: var(--brand-soft);
+  border-color: #d8e9df; font-weight: 800;
+}
+.calgrid button.has:hover { border-color: var(--brand); }
+.calgrid button.sel { background: var(--brand); border-color: var(--brand); color: #fff; }
+.calgrid button.inrange { background: #d9ecdf; border-color: #c3e0cd; color: var(--brand-strong); }
+.calgrid button.empty { visibility: hidden; }
+
+.calfoot {
+  margin-top: 9px; padding-top: 8px; border-top: 1px solid var(--line);
+  font-size: 10.5px; font-weight: 700; color: var(--muted); line-height: 1.5;
+  word-break: keep-all;
+}
+
+/* 기간을 볼 때 헤더에 붙는 배지 */
+.rangetag {
+  display: inline-block; margin-left: 8px; padding: 3px 9px; border-radius: var(--pill);
+  background: var(--brand-soft); color: var(--brand-strong);
+  font-size: 10.5px; font-weight: 900; vertical-align: middle;
+}
+
 /* 갱신 시각 안내 배너 — 차분한 그린 인포 톤 */
 .schedule {
   background: var(--brand-soft); border: 1px solid #CDE6D8;
-  border-radius: 11px; padding: 8px 14px; margin-top: 2px;
-  font-size: 11.5px; font-weight: 600; color: #2C5B41; line-height: 1.65;
+  border-radius: 11px; padding: 6px 13px; margin-top: 2px;
+  font-size: 11px; font-weight: 600; color: #2C5B41; line-height: 1.5;
   display: flex; gap: 9px; align-items: flex-start;
 }
 .schedule b { color: var(--brand-strong); }
@@ -167,8 +237,8 @@ select.tool {
 }
 .hero h1 {
   margin: 11px 0 0;
-  font-size: clamp(21px, 2.4vw, 29px); font-weight: 900;
-  letter-spacing: -.035em; line-height: 1.34; color: var(--text);
+  font-size: clamp(20px, 2.2vw, 27px); font-weight: 900;
+  letter-spacing: -.035em; line-height: 1.26; color: var(--text);
   text-wrap: pretty;
 }
 /* 후킹 배지 — 버건디 포인트 */
@@ -510,7 +580,24 @@ select.tool {
             <button class="vt" data-v="stats">통계</button>
         </div>
         <div class="tools">
-            <select class="tool" id="dsel" title="지난 브리핑"></select>
+            <!-- 날짜 선택. 목록형 select 는 아카이브가 쌓이면 끝없이 길어져 달력으로 바꿨다.
+                 하루를 고르거나, 두 번 눌러 기간(주·월)을 고를 수 있다. -->
+            <div class="datepick">
+                <button class="tool" id="dbtn" title="날짜 선택">
+                    <span id="dbtn-label">—</span> <span class="cx">▾</span>
+                </button>
+                <div class="calpop hide" id="dcal">
+                    <div class="calpresets" id="cal-presets"></div>
+                    <div class="calhead">
+                        <button type="button" class="calnav" id="cal-prev" title="이전 달">‹</button>
+                        <span id="cal-title"></span>
+                        <button type="button" class="calnav" id="cal-next" title="다음 달">›</button>
+                    </div>
+                    <div class="caldow"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+                    <div class="calgrid" id="cal-grid"></div>
+                    <div class="calfoot" id="cal-foot"></div>
+                </div>
+            </div>
             <button class="tool" id="bcopy">요약 복사</button>
             <button class="tool" id="bprint">인쇄 / PDF</button>
             <button class="tool" id="badmin">관리자</button>
@@ -795,8 +882,16 @@ select.tool {
                         + esc(e.headlineNote)
                     : '';
                 var n = ORDER.reduce(function (a, k) { return a + ((e.categories || {})[k] || []).length; }, 0);
-                $('sub').textContent = fmtDate(e.date) +
-                    (e.generatedAt ? ' · ' + e.generatedAt + ' 갱신' : '') + ' · 뉴스 ' + n + '건';
+                if (e.isRange) {
+                    // 기간 보기 - 며칠을 합친 것인지 분명히 알려준다
+                    var rp = e.date.split('~');
+                    $('sub').innerHTML = esc(fmtDate(rp[0]) + ' ~ ' + fmtDate(rp[1]))
+                        + ' · 뉴스 ' + n + '건'
+                        + '<span class="rangetag">' + e.rangeDays + '일치 합산</span>';
+                } else {
+                    $('sub').textContent = fmtDate(e.date) +
+                        (e.generatedAt ? ' · ' + e.generatedAt + ' 갱신' : '') + ' · 뉴스 ' + n + '건';
+                }
 
                 // 지표
                 $('stats').innerHTML = (e.indicators || []).map(function (i) {
@@ -935,7 +1030,7 @@ select.tool {
             if (!DATA.length) {
                 $('hl').textContent = 'data.js 를 읽지 못했습니다';
                 $('sub').textContent = 'index.html 과 같은 폴더에 data.js 가 있는지 확인하세요.';
-                $('dsel').style.display = 'none';
+                $('dbtn').style.display = 'none';
                 return;
             }
 
@@ -955,9 +1050,10 @@ select.tool {
                     toast('스크랩에서 뺐습니다');
                 } else {
                     var found = null;
+                    var shown = currentEntry();   // 하루든 기간이든 지금 보고 있는 것
                     ORDER.forEach(function (k) {
-                        ((DATA[+$('dsel').value] || {}).categories || {})[k] &&
-                            DATA[+$('dsel').value].categories[k].forEach(function (x) {
+                        ((shown || {}).categories || {})[k] &&
+                            shown.categories[k].forEach(function (x) {
                                 if (x.url === url) found = x;
                             });
                     });
@@ -986,16 +1082,213 @@ select.tool {
                 if (card) window.open(card.getAttribute('data-url'), '_blank', 'noopener');
             });
 
-            var sel = $('dsel');
-            sel.innerHTML = DATA.map(function (e, i) {
-                return '<option value="' + i + '">' + fmtDate(e.date) + (i === 0 ? ' · 최신' : '') + '</option>';
-            }).join('');
-            sel.addEventListener('change', function () { render(DATA[+sel.value]); });
+            /* ================= 날짜 선택 (달력) =================
+               DATA 는 최신이 [0]. 날짜별로 바로 찾을 수 있게 색인해 둔다. */
+            var BY_DATE = {};
+            DATA.forEach(function (e) { BY_DATE[e.date] = e; });
+            var DATES = DATA.map(function (e) { return e.date; }).sort();   // 오름차순
+            var MIN_D = DATES[0], MAX_D = DATES[DATES.length - 1];
 
-            $('cnt').textContent = '보관 중인 브리핑 ' + DATA.length + '일치';
+            var curStart = MAX_D, curEnd = MAX_D;   // 지금 보고 있는 구간
+            var pendStart = null;                    // 기간 선택 중 첫 클릭
+            var calYM = MAX_D.slice(0, 7);           // 달력이 보고 있는 달
+
+            function ymd(d) {
+                return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0')
+                    + '-' + String(d.getDate()).padStart(2, '0');
+            }
+            function parseYmd(s) {
+                var p = s.split('-');
+                return new Date(+p[0], +p[1] - 1, +p[2]);
+            }
+            function daysIn(a, b) {   // a~b 구간에 실제 데이터가 있는 날짜들
+                return DATES.filter(function (d) { return d >= a && d <= b; });
+            }
+
+            /* 지금 화면에 그려져 있는 것. 하루면 그 날, 기간이면 합친 결과.
+               스크랩·요약복사처럼 '보고 있는 것'을 다뤄야 하는 곳에서 쓴다. */
+            function currentEntry() {
+                var days = daysIn(curStart, curEnd);
+                return days.length ? aggregate(days) : DATA[0];
+            }
+
+            /* 기간을 고르면 그 날들을 하나의 가상 브리핑으로 합친다.
+               같은 기사가 여러 날 잡히므로 URL 로 합치고, 교차보도 수는 최댓값을 쓴다. */
+            function aggregate(dateList) {
+                if (dateList.length === 1) return BY_DATE[dateList[0]];
+                var latest = BY_DATE[dateList[dateList.length - 1]];
+                var out = {
+                    date: dateList[0] + '~' + dateList[dateList.length - 1],
+                    isRange: true,
+                    rangeDays: dateList.length,
+                    generatedAt: latest.generatedAt,
+                    indicators: latest.indicators,        // 지표는 구간 마지막 날 기준
+                    lastWeek: latest.lastWeek,
+                    outlook: latest.outlook,
+                    categories: {},
+                    keywords: [],
+                    hourHistogram: new Array(24).fill(0),
+                    poolSize: 0
+                };
+
+                var kw = {};
+                dateList.forEach(function (d) {
+                    var e = BY_DATE[d];
+                    Object.keys(e.categories || {}).forEach(function (k) {
+                        var bucket = out.categories[k] || (out.categories[k] = []);
+                        (e.categories[k] || []).forEach(function (it) {
+                            var key = it.url || it.text;
+                            var hit = null;
+                            for (var i = 0; i < bucket.length; i++) {
+                                if ((bucket[i].url || bucket[i].text) === key) { hit = bucket[i]; break; }
+                            }
+                            if (hit) {   // 같은 기사가 여러 날 잡힘 - 큰 값으로 갱신
+                                hit.coverage = Math.max(hit.coverage || 1, it.coverage || 1);
+                                hit.hot = hit.hot || it.hot;
+                            } else {
+                                var copy = {};
+                                Object.keys(it).forEach(function (f) { copy[f] = it[f]; });
+                                copy._d = d;
+                                bucket.push(copy);
+                            }
+                        });
+                    });
+                    (e.keywords || []).forEach(function (w) { kw[w] = (kw[w] || 0) + 1; });
+                    (e.hourHistogram || []).forEach(function (v, i) { out.hourHistogram[i] += v; });
+                    out.poolSize += e.poolSize || 0;
+                });
+
+                // 카테고리별로 많이 다뤄진 순 -> 최신 순, 화면이 감당할 만큼만
+                Object.keys(out.categories).forEach(function (k) {
+                    out.categories[k].sort(function (a, b) {
+                        return (b.coverage || 1) - (a.coverage || 1) || (b._d < a._d ? -1 : 1);
+                    });
+                    out.categories[k] = out.categories[k].slice(0, 12);
+                });
+
+                out.keywords = Object.keys(kw).sort(function (a, b) { return kw[b] - kw[a]; }).slice(0, 8);
+
+                // 구간 전체에서 가장 널리 보도된 기사를 대표로
+                var best = null, bestK = '';
+                Object.keys(out.categories).forEach(function (k) {
+                    (out.categories[k] || []).forEach(function (it) {
+                        if (!best || (it.coverage || 1) > (best.coverage || 1)) { best = it; bestK = k; }
+                    });
+                });
+                if (best) {
+                    out.headline = best.text;
+                    out.headlineUrl = best.url;
+                    out.headlineCat = (CAT[bestK] || {}).name || '';
+                    out.headlineNote = dateList.length + '일간 가장 많이 다뤄진 이슈'
+                        + ((best.coverage || 1) >= 2 ? ' · ' + best.coverage + '개 언론사 보도' : '');
+                }
+                return out;
+            }
+
+            function applySelection() {
+                var days = daysIn(curStart, curEnd);
+                if (!days.length) { toast('그 기간에는 수집된 브리핑이 없습니다'); return; }
+                var entry = aggregate(days);
+                render(entry);
+                $('dbtn-label').textContent = days.length === 1
+                    ? fmtDate(days[0])
+                    : fmtDate(days[0]) + ' ~ ' + fmtDate(days[days.length - 1]);
+                $('cnt').textContent = days.length === 1
+                    ? '보관 중인 브리핑 ' + DATA.length + '일치'
+                    : days.length + '일치를 합쳐서 보는 중 · 보관 ' + DATA.length + '일치';
+            }
+
+            function renderCal() {
+                var y = +calYM.slice(0, 4), m = +calYM.slice(5, 7);
+                $('cal-title').textContent = y + '년 ' + m + '월';
+                var first = new Date(y, m - 1, 1);
+                var last = new Date(y, m, 0).getDate();
+                var html = '';
+                for (var i = 0; i < first.getDay(); i++) html += '<button class="empty"></button>';
+                for (var d = 1; d <= last; d++) {
+                    var ds = y + '-' + String(m).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+                    var cls = 'day';
+                    if (BY_DATE[ds]) cls += ' has';
+                    if (ds === curStart || ds === curEnd || ds === pendStart) cls += ' sel';
+                    else if (!pendStart && ds > curStart && ds < curEnd) cls += ' inrange';
+                    html += '<button class="' + cls + '" data-d="' + ds + '"'
+                        + (BY_DATE[ds] ? '' : ' disabled') + '>' + d + '</button>';
+                }
+                $('cal-grid').innerHTML = html;
+                $('cal-prev').disabled = (calYM <= MIN_D.slice(0, 7));
+                $('cal-next').disabled = (calYM >= MAX_D.slice(0, 7));
+                $('cal-foot').textContent = pendStart
+                    ? '시작 ' + pendStart + ' — 끝나는 날을 한 번 더 누르세요'
+                    : '하루를 누르면 그 날 브리핑, 두 번 누르면 그 기간을 합쳐서 봅니다';
+            }
+
+            function shiftMonth(n) {
+                var y = +calYM.slice(0, 4), m = +calYM.slice(5, 7) + n;
+                y += Math.floor((m - 1) / 12); m = ((m - 1) % 12 + 12) % 12 + 1;
+                calYM = y + '-' + String(m).padStart(2, '0');
+                renderCal();
+            }
+
+            $('cal-prev').addEventListener('click', function () { shiftMonth(-1); });
+            $('cal-next').addEventListener('click', function () { shiftMonth(1); });
+
+            $('cal-grid').addEventListener('click', function (ev) {
+                var b = ev.target.closest('button[data-d]');
+                if (!b || b.disabled) return;
+                var d = b.getAttribute('data-d');
+                if (!pendStart) {                 // 첫 클릭 = 하루 보기 + 기간 시작 후보
+                    pendStart = d; curStart = d; curEnd = d;
+                    renderCal(); applySelection();
+                } else {                          // 두 번째 클릭 = 기간 확정
+                    curStart = pendStart < d ? pendStart : d;
+                    curEnd = pendStart < d ? d : pendStart;
+                    pendStart = null;
+                    renderCal(); applySelection();
+                    $('dcal').classList.add('hide');
+                }
+            });
+
+            // 자주 쓰는 구간은 버튼 한 번으로
+            var PRESETS = [
+                ['최신', function () { return [MAX_D, MAX_D]; }],
+                ['최근 7일', function () { var s = new Date(parseYmd(MAX_D)); s.setDate(s.getDate() - 6); return [ymd(s), MAX_D]; }],
+                ['최근 30일', function () { var s = new Date(parseYmd(MAX_D)); s.setDate(s.getDate() - 29); return [ymd(s), MAX_D]; }],
+                ['이번 주', function () { var e = parseYmd(MAX_D), s = new Date(e); s.setDate(s.getDate() - s.getDay()); return [ymd(s), MAX_D]; }],
+                ['이번 달', function () { return [MAX_D.slice(0, 8) + '01', MAX_D]; }],
+                ['전체', function () { return [MIN_D, MAX_D]; }]
+            ];
+            $('cal-presets').innerHTML = PRESETS.map(function (p, i) {
+                return '<button type="button" data-p="' + i + '">' + p[0] + '</button>';
+            }).join('');
+            $('cal-presets').addEventListener('click', function (ev) {
+                var b = ev.target.closest('button[data-p]');
+                if (!b) return;
+                var r = PRESETS[+b.getAttribute('data-p')][1]();
+                curStart = r[0] < MIN_D ? MIN_D : r[0];
+                curEnd = r[1];
+                pendStart = null;
+                calYM = curEnd.slice(0, 7);
+                renderCal(); applySelection();
+                $('dcal').classList.add('hide');
+            });
+
+            $('dbtn').addEventListener('click', function (ev) {
+                ev.stopPropagation();
+                pendStart = null;
+                calYM = curEnd.slice(0, 7);
+                renderCal();
+                $('dcal').classList.toggle('hide');
+            });
+            document.addEventListener('click', function (ev) {
+                if (!ev.target.closest('.datepick')) $('dcal').classList.add('hide');
+            });
+
+            renderCal();
+            applySelection();
+
             $('bprint').addEventListener('click', function () { window.print(); });
             $('bcopy').addEventListener('click', function () {
-                var t = buildText(DATA[+sel.value]);
+                var t = buildText(aggregate(daysIn(curStart, curEnd)));
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(t).then(
                         function () { toast('요약을 복사했습니다'); },
@@ -1091,7 +1384,7 @@ select.tool {
                 if ($('pw').value === ADMIN_PW) {
                     isAdmin = true;
                     $('badmin').textContent = '관리자 ✓';
-                    render(DATA[+$('dsel').value]);   // 스크랩 버튼이 나타나도록 다시 그린다
+                    render(currentEntry());   // 스크랩 버튼이 나타나도록 다시 그린다
                     show('m-login', false);
                     fillAdmin();
                     show('m-admin', true);
@@ -1156,7 +1449,7 @@ select.tool {
                     b.classList.toggle('on', b.getAttribute('data-v') === v);
                 });
                 // 보드 전용 도구는 보드에서만 의미가 있다
-                ['dsel', 'bcopy'].forEach(function (id) {
+                ['dbtn', 'bcopy'].forEach(function (id) {
                     $(id).style.display = v === 'board' ? '' : 'none';
                 });
                 if (v === 'scrap') renderScraps();

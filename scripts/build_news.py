@@ -8,7 +8,7 @@ GitHub Actions에서 매일 실행되어 data.js 를 갱신한다. (Claude 불�
   환율  : Yahoo Finance KRW=X, 실패 시 frankfurter.app
   수동  : config.json 의 기준금리·건설공사비지수
 
-출력: data.js (window.NEWS_DATA, 최신이 맨 앞, 최대 7일 보관)
+출력: data.js (window.NEWS_DATA, 최신이 맨 앞, 최대 180일 보관)
       email.html / notify.txt (알림 메일용)
 """
 import json
@@ -38,7 +38,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_JS = os.path.join(ROOT, "data.js")
 CONFIG = os.path.join(ROOT, "config.json")
 
-MAX_ARCHIVE = 7        # 보관 일수 (일주일치만 — data.js 가 무한정 커지지 않게)
+MAX_ARCHIVE = 180      # 보관 일수. 달력에서 과거를 고를 수 있으므로 넉넉히 둔다.
+                       # 압축 저장 기준 하루 약 12KB -> 180일 약 2MB.
+                       # 1년치(약 4.4MB)가 필요해지면 월별 파일 분할이 낫다.
 FRESH_DAYS = 4         # 며칠 이내 기사만 채택
 UA = {"User-Agent": "Mozilla/5.0 (compatible; HDEC-NewsBoard/1.0)"}
 CTX = ssl.create_default_context()
@@ -672,6 +674,43 @@ def _headline_url(entry):
     return ""
 
 
+def pick_last_week(archive, since, limit=6):
+    """지난주 돌아보기 목록.
+
+    그냥 날마다 헤드라인을 뽑으면 큰 사건 하나가 며칠씩 1위를 지켜서
+    같은 기사가 3~4줄 반복된다(실제로 07-20~22 사흘 내내 같은 기사였다).
+    그래서 이미 담은 것과 겹치면 그 날의 '차순위' 기사로 밀어낸다.
+
+    차순위 후보 순서 = 그 날 헤드라인 -> 카테고리 우선순위대로 각 기사.
+    그 날 기사가 전부 겹치면 그 날은 건너뛴다(억지로 채우지 않는다).
+    """
+    ORDER = ["order", "redev", "competitor", "trend", "geo", "economy", "industry"]
+    out, seen = [], []
+    for e in archive:
+        if e.get("date", "") < since:
+            continue
+
+        cands = []
+        if e.get("headline"):
+            cands.append((e["headline"], _headline_url(e)))
+        cats = e.get("categories", {}) or {}
+        for k in ORDER + [x for x in cats if x not in ORDER]:
+            for it in cats.get(k, []):
+                t = (it.get("text") or "").strip()
+                if t:
+                    cands.append((t, it.get("url", "")))
+
+        for text, url in cands:
+            if not is_similar(text, seen):        # 2-gram 겹침 50% 미만이면 다른 사건
+                seen.append(text)
+                out.append({"date": e["date"][5:], "text": text, "url": url})
+                break
+
+        if len(out) >= limit:
+            break
+    return out
+
+
 def load_archive():
     """기존 data.js 에서 뉴스 배열만 떼어내 파싱."""
     if not os.path.exists(DATA_JS):
@@ -705,7 +744,10 @@ def write_data_js(archive, cfg):
     로컬에서도 GitHub Pages 에서도 문제없이 읽힌다.
     """
     shown = {k: v for k, v in cfg.items() if not k.startswith("_")}
-    body = json.dumps(archive, ensure_ascii=False, indent=2)
+    # indent 를 주면 공백이 파일의 40% 를 먹는다(85KB -> 140KB). 기계가 읽는
+    # 파일이라 압축해 저장한다. 날짜별로 줄을 나눠 그나마 diff 를 보기 쉽게 한다.
+    body = "[\n" + ",\n".join(
+        json.dumps(e, ensure_ascii=False, separators=(",", ":")) for e in archive) + "\n]"
     conf = json.dumps(shown, ensure_ascii=False, indent=2)
     with open(DATA_JS, "w", encoding="utf-8", newline="\n") as f:
         f.write(HEADER
@@ -899,10 +941,9 @@ def main():
             note_bits.append(f"{hit[0]} 관련")
     headline_note = " · ".join(note_bits[:2])   # 길어지면 후킹이 아니라 잡음이 된다
 
-    # 지난주 돌아보기 = 직전 7일 아카이브의 헤드라인 (원문 링크 포함)
+    # 지난주 돌아보기 = 직전 7일 아카이브 (원문 링크 포함)
     week_ago = (now - timedelta(days=7)).strftime("%Y-%m-%d")
-    last_week = [{"date": e["date"][5:], "text": e["headline"], "url": _headline_url(e)}
-                 for e in archive if e.get("date", "") >= week_ago][:6]
+    last_week = pick_last_week(archive, week_ago)
 
     entry = {
         "date": today,
